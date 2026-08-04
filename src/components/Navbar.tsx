@@ -33,7 +33,7 @@ export default function Navbar() {
             <a 
               key={index} 
               href={link.href}
-              className="text-white text-[22px] font-bold font-lato hover:text-cyan-400 transition-colors"
+              className="text-white text-[22px] font-bold hover:text-cyan-400 transition-colors"
             >
               {link.label}
             </a>
@@ -42,7 +42,7 @@ export default function Navbar() {
 
         {/* Recursion 2.0 Button */}
         <button className="hidden md:flex px-[24px] py-[12px] bg-gradient-to-r from-[#5EF9F1] to-[#00A6FD] rounded-[10px] shadow-[inset_0_-4px_4px_rgba(0,0,0,0.25)] hover:brightness-110 transition-all active:translate-y-1">
-          <span className="text-[#080A8F] text-[22px] font-bold font-lato leading-none">
+          <span className="text-[#080A8F] text-[22px] font-bold leading-none">
             Recursion 2.0
           </span>
         </button>

@@ -1,5 +1,6 @@
 import React from 'react';
 import BaseSection from './BaseSection';
+import HorizontalScrollContainer from './HorizontalScrollContainer';
 
 export default function ProgramKerjaSection() {
   const kompartemen = [
@@ -26,11 +27,11 @@ export default function ProgramKerjaSection() {
       </div>
 
       {/* Kompartemen Tabs */}
-      <div className="flex flex-wrap justify-center gap-4 w-full max-w-5xl mb-12">
+      <HorizontalScrollContainer className="justify-start gap-4 w-full max-w-5xl mb-12 pb-4 px-4">
         {kompartemen.map((item, index) => (
           <button 
             key={index} 
-            className={`px-6 py-3 rounded-2xl font-bold text-sm md:text-base border transition-all ${
+            className={`px-6 py-3 rounded-2xl font-bold text-sm md:text-base border transition-all whitespace-nowrap flex-shrink-0 ${
               index === 0 
               ? 'bg-white text-[#0C35E9] border-white shadow-[0_0_15px_rgba(255,255,255,0.5)]' 
               : 'bg-[#080A8F] text-white border-white/30 hover:bg-white/10'
@@ -39,7 +40,7 @@ export default function ProgramKerjaSection() {
             {item}
           </button>
         ))}
-      </div>
+      </HorizontalScrollContainer>
 
       {/* Program Kerja Box */}
       <div className="w-full flex flex-col gap-6">
