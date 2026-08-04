@@ -10,6 +10,18 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* OKIF Color Palette */
+  --color-okif-dark: #080A8F;
+  --color-okif-darker: #08117A;
+  --color-okif-primary: #0C35E9;
+  --color-okif-primary-20: rgba(12, 53, 233, 0.20);
+  --color-okif-secondary: #1486F6;
+  --color-okif-neon: #5DF4EF;
+  --color-okif-pale: #B0FFFC;
+  --color-okif-gray: #AEAEAE;
+  --color-okif-gray-light: #AFAFAF;
+  --color-okif-white-57: rgba(255, 255, 255, 0.57);
 }
 
 @media (prefers-color-scheme: dark) {
