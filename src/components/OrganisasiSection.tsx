@@ -21,41 +21,71 @@ export default function OrganisasiSection() {
       </div>
 
       {/* Leaders */}
-      <div className="flex flex-col md:flex-row justify-center items-end gap-8 md:gap-32 w-full mb-32 relative">
-        {/* Leader 1 */}
-        <div className="flex flex-col items-center relative z-10 group">
-          <div className="w-64 md:w-80 h-[400px] relative">
-            <div className="absolute bottom-0 left-0 w-full h-[80%] bg-gradient-to-r from-[#0C35E9]/40 to-[#050170]/40 rounded-t-[40px] -z-10 border border-white/20"></div>
-            <img src="https://placehold.co/442x609/000/FFF?text=Foto+Ketua+DMMIF" alt="Ketua DMMIF" className="w-full h-full object-cover rounded-t-[40px] drop-shadow-2xl mask-image-bottom" />
+      <div className="flex items-center justify-between w-full max-w-7xl mx-auto mb-32 relative px-4 md:px-12">
+        
+        {/* Left Arrow */}
+        <button className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-b from-[#0C35E9] to-[#1486F6] rounded-xl border-2 border-[#1486F6] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform z-30 flex-shrink-0">
+          <span className="text-white text-2xl font-bold">&lt;</span>
+        </button>
+
+        {/* Center Container for Leaders */}
+        <div className="flex flex-col md:flex-row flex-1 justify-center items-center gap-10 md:gap-0 relative mt-12">
+          
+          {/* Leader 1 (Left) */}
+          <div className="relative w-full md:w-1/2 flex justify-center md:justify-end md:pr-20 lg:pr-32">
+            {/* Name Tag (Floating to the right, starting behind photo) */}
+            <div className="hidden md:block absolute left-[30%] lg:left-[40%] top-[42%] -translate-y-1/2 bg-gradient-to-r from-[#0C35E9] to-transparent pr-8 lg:pr-12 pl-40 lg:pl-48 py-2 lg:py-3 z-0 w-max text-left">
+              <h4 className="text-base lg:text-lg font-black text-white text-glow-sm">A. Tyas Nur Atda</h4>
+              <p className="text-xs lg:text-sm text-white/90">Ketua DMMIF FT-UH</p>
+            </div>
+            
+            {/* Photo (Aspect 2:3) */}
+            <div className="relative z-10 w-48 md:w-64 lg:w-72 aspect-[2/3] flex flex-col items-center justify-end">
+              <img 
+                src="/ketua.png" 
+                alt="Ketua DMMIF" 
+                className="w-full h-full object-cover mask-image-bottom drop-shadow-2xl"
+                style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)' }}
+              />
+              {/* Mobile Name Tag (Visible only on small screens) */}
+              <div className="md:hidden mt-4 text-center w-full">
+                <h4 className="text-lg font-black text-white text-glow-sm">A. Tyas Nur Atda</h4>
+                <p className="text-sm text-white/90">Ketua DMMIF FT-UH</p>
+              </div>
+            </div>
           </div>
-          <div className="mt-6 text-center">
-            <h4 className="text-2xl md:text-3xl font-black text-white text-glow-sm">A. Tyas Nur Atda</h4>
-            <p className="text-xl font-normal text-white">Ketua DMMIF FT-UH</p>
+
+          {/* Leader 2 (Right) */}
+          <div className="relative w-full md:w-1/2 flex justify-center md:justify-start md:pl-20 lg:pl-32">
+            {/* Name Tag (Floating to the left, starting behind photo) */}
+            <div className="hidden md:block absolute right-[30%] lg:right-[40%] top-[65%] -translate-y-1/2 bg-gradient-to-l from-[#0C35E9] to-transparent pl-8 lg:pl-12 pr-40 lg:pr-48 py-2 lg:py-3 z-0 w-max text-right">
+              <h4 className="text-base lg:text-lg font-black text-white text-glow-sm">A. Tyas Nur Atda</h4>
+              <p className="text-xs lg:text-sm text-white/90">Ketua Umum HMIF FT-UH</p>
+            </div>
+            
+            {/* Photo (Aspect 2:3) */}
+            <div className="relative z-10 w-48 md:w-64 lg:w-72 aspect-[2/3] flex flex-col items-center justify-end">
+              <img 
+                src="/ketua.png" 
+                alt="Ketua Umum" 
+                className="w-full h-full object-cover mask-image-bottom drop-shadow-2xl -scale-x-100"
+                style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)' }}
+              />
+              {/* Mobile Name Tag (Visible only on small screens) */}
+              <div className="md:hidden mt-4 text-center w-full">
+                <h4 className="text-lg font-black text-white text-glow-sm">A. Tyas Nur Atda</h4>
+                <p className="text-sm text-white/90">Ketua Umum HMIF FT-UH</p>
+              </div>
+            </div>
           </div>
+
         </div>
 
-        {/* Arrow / Separator (can be an icon, we leave space for now) */}
-        <div className="hidden md:flex gap-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-            {/* Arrows pointing left and right */}
-            <div className="w-12 h-12 bg-gradient-to-b from-[#0C35E9]/60 to-[#1486F6]/60 rounded-xl border border-white flex items-center justify-center shadow-[0_7px_7px_rgba(0,0,0,0.4)]">
-                <span className="text-white text-2xl font-bold">&lt;</span>
-            </div>
-            <div className="w-12 h-12 bg-gradient-to-b from-[#0C35E9]/60 to-[#1486F6]/60 rounded-xl border border-white flex items-center justify-center shadow-[0_7px_7px_rgba(0,0,0,0.4)]">
-                <span className="text-white text-2xl font-bold">&gt;</span>
-            </div>
-        </div>
+        {/* Right Arrow */}
+        <button className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-b from-[#0C35E9] to-[#1486F6] rounded-xl border-2 border-[#1486F6] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform z-30 flex-shrink-0">
+          <span className="text-white text-2xl font-bold">&gt;</span>
+        </button>
 
-        {/* Leader 2 */}
-        <div className="flex flex-col items-center relative z-10 group">
-          <div className="w-64 md:w-80 h-[400px] relative">
-            <div className="absolute bottom-0 left-0 w-full h-[80%] bg-gradient-to-r from-[#0C35E9]/40 to-[#050170]/40 rounded-t-[40px] -z-10 border border-white/20"></div>
-            <img src="https://placehold.co/442x609/000/FFF?text=Foto+Ketua+Umum" alt="Ketua Umum" className="w-full h-full object-cover rounded-t-[40px] drop-shadow-2xl mask-image-bottom" />
-          </div>
-          <div className="mt-6 text-center">
-            <h4 className="text-2xl md:text-3xl font-black text-white text-glow-sm">A. Tyas Nur Atda</h4>
-            <p className="text-xl font-normal text-white">Ketua Umum HMIF FT-UH</p>
-          </div>
-        </div>
       </div>
 
       {/* About Box */}
@@ -64,32 +94,32 @@ export default function OrganisasiSection() {
         {/* Glow effect inside box */}
         <div className="absolute top-0 right-0 w-1/2 h-full bg-[#1486F6]/20 blur-[80px] pointer-events-none"></div>
 
-        <div className="flex flex-col lg:flex-row gap-12 relative z-10">
+        <div className="flex flex-col lg:flex-row gap-12 relative z-10 items-center">
           
           {/* Left: Image */}
-          <div className="w-full lg:w-[45%]">
-            <img src="https://placehold.co/547x353/000/FFF?text=Foto+Kegiatan" alt="Kegiatan" className="w-full h-auto rounded-3xl object-cover shadow-lg border border-white/10" />
+          <div className="w-full lg:w-[45%] flex justify-center">
+            <img src="https://placehold.co/547x365/000/FFF?text=Foto+Kegiatan" alt="Kegiatan" className="w-full aspect-[3/2] rounded-3xl object-cover shadow-lg border border-white/10" />
           </div>
 
           {/* Right: Content */}
           <div className="w-full lg:w-[55%] flex flex-col justify-center">
             
             {/* Tabs */}
-            <div className="flex gap-4 mb-8">
-              <button className="px-6 py-2 bg-gradient-to-b from-[#0C35E9] to-[#1486F6] text-white font-bold rounded-xl shadow-md">
+            <div className="flex flex-wrap gap-3 mb-6">
+              <button className="px-5 py-1.5 bg-gradient-to-b from-[#0C35E9] to-[#1486F6] text-white text-sm md:text-base font-bold rounded-xl shadow-md">
                 TENTANG KAMI
               </button>
-              <button className="px-6 py-2 bg-[#080A8F] text-white font-bold rounded-xl border border-white/30 hover:bg-white/10 transition">
+              <button className="px-5 py-1.5 bg-[#080A8F] text-white text-sm md:text-base font-bold rounded-xl border border-white/30 hover:bg-white/10 transition">
                 VISI
               </button>
-              <button className="px-6 py-2 bg-[#080A8F] text-white font-bold rounded-xl border border-white/30 hover:bg-white/10 transition">
+              <button className="px-5 py-1.5 bg-[#080A8F] text-white text-sm md:text-base font-bold rounded-xl border border-white/30 hover:bg-white/10 transition">
                 MISI
               </button>
             </div>
 
             {/* Title & Description */}
-            <h2 className="text-5xl md:text-[65px] font-black text-white mb-6 leading-none">OKIF FT-UH</h2>
-            <div className="text-lg md:text-xl text-white/90 space-y-6 font-normal">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-none">OKIF FT-UH</h2>
+            <div className="text-base md:text-lg text-white/90 space-y-6 font-normal">
               <p>
                 Himpunan Mahasiswa Informatika Fakultas Teknik Universitas Hasanuddin - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>

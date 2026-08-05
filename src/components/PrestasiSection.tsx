@@ -3,10 +3,10 @@ import BaseSection from './BaseSection';
 
 export default function PrestasiSection() {
   const prestasiData = [
-    { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: 'https://placehold.co/318x438/0C35E9/FFF?text=Foto' },
-    { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: 'https://placehold.co/318x438/0C35E9/FFF?text=Foto' },
-    { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: 'https://placehold.co/318x438/0C35E9/FFF?text=Foto' },
-    { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: 'https://placehold.co/318x438/0C35E9/FFF?text=Foto' },
+    { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: '/mapres.png' },
+    { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: '' },
+    { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: '' },
+    { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: '' },
   ];
 
   return (
@@ -26,28 +26,24 @@ export default function PrestasiSection() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 w-full justify-items-center">
         {prestasiData.map((item, index) => (
           <div key={index} className="flex flex-col items-center relative group w-full max-w-[317px]">
-            
-            {/* Glowing Border Background Box */}
-            <div className="absolute top-4 w-[90%] h-[365px] bg-[#080A8F] shadow-[15px_15px_15px_rgba(0,0,0,0.5)] rounded-2xl outline outline-[6px] outline-[#1486F6] blur-sm transition-all duration-300 group-hover:blur-md"></div>
-            
-            {/* Main Gradient Box */}
-            <div className="absolute top-4 w-[90%] h-[365px] bg-gradient-to-b from-[#0C35E9] to-[#050170] rounded-[16px] border-[1.5px] border-white z-0"></div>
-            
-            {/* Image Placeholder */}
-            <div className="relative z-10 w-full h-[437px] overflow-hidden -mt-4 mb-4 flex justify-center">
-              {/* Note: In a real app, use next/image here */}
-              <img 
-                src={item.image} 
-                alt={item.nama} 
-                className="w-full h-full object-cover rounded-t-3xl mask-image-bottom"
-                style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)' }}
-              />
-            </div>
-            
-            {/* Text Overlay on top of image fade */}
-            <div className="absolute bottom-6 z-20 flex flex-col items-center text-center w-full">
-              <h3 className="text-2xl font-black text-white text-glow-sm">{item.nama}</h3>
-              <p className="text-xl font-bold text-white mt-1">{item.prestasi}</p>
+            {/* Image Card Container */}
+            <div className="relative z-10 w-full aspect-[3/4] flex justify-center hover:scale-105 transition-transform duration-300">
+              {item.image ? (
+                <img 
+                  src={item.image} 
+                  alt={item.nama} 
+                  className="w-full h-full object-contain drop-shadow-2xl"
+                />
+              ) : (
+                <div 
+                  className="w-full aspect-[3/4] bg-white/5 rounded-[32px] border-2 border-dashed border-white/20 flex flex-col items-center justify-center"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white/30 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span className="text-white/30 text-sm font-bold tracking-widest text-center">GAMBAR<br/>KARTU MAPRES</span>
+                </div>
+              )}
             </div>
             
           </div>
