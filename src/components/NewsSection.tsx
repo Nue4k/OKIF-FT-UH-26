@@ -5,6 +5,7 @@ function NewsCard({ date, tag, title, description, image }: { date: string, tag:
   return (
     <div className="w-full flex flex-col bg-white rounded-[20px] overflow-hidden shadow-xl group hover:-translate-y-2 transition-transform duration-300">
       <div className="h-[200px] w-full relative">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={image} alt={title} className="w-full h-full object-cover" />
       </div>
       <div className="p-6 flex flex-col gap-3">
@@ -89,6 +90,7 @@ export default function NewsSection() {
           </div>
           <div className="w-full lg:w-1/2">
              <div className="w-full h-[300px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl relative">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="https://placehold.co/633x360/0C35E9/FFF?text=Foto+Pengabdian" alt="Pengabdian" className="w-full h-full object-cover" />
                 <div className="absolute bottom-6 left-6 text-white font-bold text-xl">
                   23 Juni 2025

@@ -40,6 +40,7 @@ Jika kamu mengambil alih pengerjaan, silakan eksekusi daftar berikut:
 - [ ] **Ganti Teks "Lorem Ipsum":** Teks deskripsi di `HeroSection` dan `OrganisasiSection` masih berupa draf kosong. Ganti dengan teks profil yang sebenarnya.
 - [ ] **Sambungkan Tautan (Link) Navbar:** Tombol-tombol di `Navbar.tsx` (Beranda, Profil, dll.) harus diarahkan (*href*) ke `id` masing-masing *section* secara tepat. Tambahkan `scroll-behavior: smooth;` pada tag HTML agar perpindahannya mulus.
 - [ ] **Cek Tampilan Mobile:** Lakukan *testing* responsif di ukuran layar *handphone*. Jika ada teks yang menabrak pinggir layar, sesuaikan dengan penambahan kelas seperti `md:text-5xl text-3xl`.
+- [ ] **Buat Background Hero Khusus Mobile:** Gambar `hero-bg-118.png` saat ini menggunakan pengaturan `bg-cover`. Pada layar *mobile* yang memanjang ke bawah, efek cahaya *cyan* di pinggir gambar akan terpotong habis. Perlu mendesain gambar alternatif khusus HP (misal: `hero-bg-mobile.png` beresolusi ~1080x2400px) dan mengaturnya di `HeroSection.tsx` menggunakan kelas responsif (`bg-[url('/hero-bg-mobile.png')] md:bg-[url('/hero-bg-118.png')]`).
 
 ---
 

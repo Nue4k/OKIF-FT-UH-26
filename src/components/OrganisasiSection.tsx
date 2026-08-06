@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import BaseSection from './BaseSection';
 
 export default function OrganisasiSection() {
@@ -41,10 +42,12 @@ export default function OrganisasiSection() {
             
             {/* Photo (Aspect 2:3) */}
             <div className="relative z-10 w-48 md:w-64 lg:w-72 aspect-[2/3] flex flex-col items-center justify-end">
-              <img 
+              <Image 
                 src="/ketua.png" 
                 alt="Ketua DMMIF" 
-                className="w-full h-full object-cover mask-image-bottom drop-shadow-2xl"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover mask-image-bottom drop-shadow-2xl"
                 style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)' }}
               />
               {/* Mobile Name Tag (Visible only on small screens) */}
@@ -65,10 +68,11 @@ export default function OrganisasiSection() {
             
             {/* Photo (Aspect 2:3) */}
             <div className="relative z-10 w-48 md:w-64 lg:w-72 aspect-[2/3] flex flex-col items-center justify-end">
-              <img 
+              <Image 
                 src="/ketua.png" 
                 alt="Ketua Umum" 
-                className="w-full h-full object-cover mask-image-bottom drop-shadow-2xl -scale-x-100"
+                fill
+                className="object-cover mask-image-bottom drop-shadow-2xl -scale-x-100"
                 style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)' }}
               />
               {/* Mobile Name Tag (Visible only on small screens) */}
@@ -97,8 +101,9 @@ export default function OrganisasiSection() {
         <div className="flex flex-col lg:flex-row gap-12 relative z-10 items-center">
           
           {/* Left: Image */}
-          <div className="w-full lg:w-[45%] flex justify-center">
-            <img src="https://placehold.co/547x365/000/FFF?text=Foto+Kegiatan" alt="Kegiatan" className="w-full aspect-[3/2] rounded-3xl object-cover shadow-lg border border-white/10" />
+          <div className="w-full lg:w-[45%] flex justify-center relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg border border-white/10">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="https://placehold.co/547x365/000/FFF?text=Foto+Kegiatan" alt="Kegiatan" className="w-full h-full object-cover" />
           </div>
 
           {/* Right: Content */}

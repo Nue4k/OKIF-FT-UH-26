@@ -1,6 +1,5 @@
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
-import StatsSection from '@/components/StatsSection';
 import PrestasiSection from '@/components/PrestasiSection';
 import OrganisasiSection from '@/components/OrganisasiSection';
 import ProgramKerjaSection from '@/components/ProgramKerjaSection';
@@ -14,7 +13,6 @@ export default function Home() {
       <div className="relative z-10 w-full flex flex-col">
         <Navbar />
         <HeroSection />
-        <StatsSection />
         <PrestasiSection />
         <OrganisasiSection />
         <ProgramKerjaSection />

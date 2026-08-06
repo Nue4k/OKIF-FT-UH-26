@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import BaseSection from './BaseSection';
 
 export default function PrestasiSection() {
@@ -10,7 +11,7 @@ export default function PrestasiSection() {
   ];
 
   return (
-    <BaseSection id="prestasi" variant="transparent" className="py-32 md:py-48 min-h-screen relative flex flex-col justify-center">
+    <BaseSection id="prestasi" variant="transparent" className="pt-8 pb-32 md:pt-12 md:pb-48 relative flex flex-col justify-center">
       
       {/* Title */}
       <div className="text-center mb-16 flex flex-col items-center gap-4">
@@ -29,10 +30,12 @@ export default function PrestasiSection() {
             {/* Image Card Container */}
             <div className="relative z-10 w-full aspect-[3/4] flex justify-center hover:scale-105 transition-transform duration-300">
               {item.image ? (
-                <img 
+                <Image 
                   src={item.image} 
-                  alt={item.nama} 
-                  className="w-full h-full object-contain drop-shadow-2xl"
+                  alt={item.nama}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  className="object-contain drop-shadow-2xl"
                 />
               ) : (
                 <div 
