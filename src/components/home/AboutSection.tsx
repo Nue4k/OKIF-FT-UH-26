@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import BaseSection from './BaseSection';
+import BaseSection from '@/components/ui/BaseSection';
 
 export default function AboutSection() {
   return (

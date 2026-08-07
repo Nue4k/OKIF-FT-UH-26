@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseSection from './BaseSection';
+import BaseSection from '@/components/ui/BaseSection';
 
 export default function HeroSection() {
   return (

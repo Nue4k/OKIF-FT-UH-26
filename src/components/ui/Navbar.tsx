@@ -2,16 +2,17 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Navbar() {
   const [activeLink, setActiveLink] = useState('Beranda');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: 'Beranda', href: '#beranda' },
-    { label: 'Tentang Kami', href: '#tentang-kami' },
-    { label: 'Formatif', href: '#formatif' },
-    { label: 'Berita', href: '#berita' },
+    { label: 'Beranda', href: '/' },
+    { label: 'Tentang Kami', href: '/tentang-kami' },
+    { label: 'Formatif', href: '/#formatif' },
+    { label: 'Berita', href: '/#berita' },
   ];
 
   return (
@@ -39,7 +40,7 @@ export default function Navbar() {
           {navLinks.map((link) => {
             const isActive = activeLink === link.label;
             return (
-              <a 
+              <Link 
                 key={link.label} 
                 href={link.href}
                 onClick={() => setActiveLink(link.label)}
@@ -50,7 +51,7 @@ export default function Navbar() {
                 }`}
               >
                 {link.label}
-              </a>
+              </Link>
             );
           })}
         </div>
@@ -84,7 +85,7 @@ export default function Navbar() {
           {navLinks.map((link) => {
             const isActive = activeLink === link.label;
             return (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 onClick={() => {
@@ -98,7 +99,7 @@ export default function Navbar() {
                 }`}
               >
                 {link.label}
-              </a>
+              </Link>
             );
           })}
           <div className="pt-2">

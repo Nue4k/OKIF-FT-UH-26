@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import BaseSection from './BaseSection';
-import HorizontalScrollContainer from './HorizontalScrollContainer';
+import BaseSection from '@/components/ui/BaseSection';
+import HorizontalScrollContainer from '@/components/ui/HorizontalScrollContainer';
 
 export default function PrestasiSection() {
   const prestasiData = [

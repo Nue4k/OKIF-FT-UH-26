@@ -1,11 +1,11 @@
-import Navbar from '@/components/Navbar';
-import HeroSection from '@/components/HeroSection';
-import PrestasiSection from '@/components/PrestasiSection';
-import AboutSection from '@/components/AboutSection';
-import OrganisasiSection from '@/components/OrganisasiSection';
-import ProgramKerjaSection from '@/components/ProgramKerjaSection';
-import FormatifSection from '@/components/FormatifSection';
-import PengabdianSection from '@/components/PengabdianSection';
+import Navbar from '@/components/ui/Navbar';
+import HeroSection from '@/components/home/HeroSection';
+import PrestasiSection from '@/components/home/PrestasiSection';
+import AboutSection from '@/components/home/AboutSection';
+import OrganisasiSection from '@/components/home/OrganisasiSection';
+import ProgramKerjaSection from '@/components/home/ProgramKerjaSection';
+import FormatifSection from '@/components/home/FormatifSection';
+import PengabdianSection from '@/components/home/PengabdianSection';
 
 export default function Home() {
   return (

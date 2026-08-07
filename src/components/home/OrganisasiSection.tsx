@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import BaseSection from './BaseSection';
+import Link from 'next/link';
+import BaseSection from '@/components/ui/BaseSection';
 
 export default function OrganisasiSection() {
   return (
@@ -33,9 +34,11 @@ export default function OrganisasiSection() {
       <div className="relative z-10 flex items-center justify-between w-full max-w-[1600px] mx-auto px-4 md:px-12 lg:px-24">
 
         {/* Left Arrow */}
-        <button className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-b from-[#0C35E9] to-[#1486F6] rounded-xl border-2 border-[#1486F6] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform z-30 flex-shrink-0">
-          <span className="text-white text-2xl font-bold">&lt;</span>
-        </button>
+        <Link href="/tentang-kami?view=dmmif" className="z-30 flex-shrink-0">
+          <button className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-b from-[#0C35E9] to-[#1486F6] rounded-xl border-2 border-[#1486F6] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform">
+            <span className="text-white text-2xl font-bold">&lt;</span>
+          </button>
+        </Link>
 
         {/* Center Container for Leaders */}
         <div className="flex flex-col md:flex-row flex-1 justify-center items-center gap-10 md:gap-0 relative mt-12">
@@ -98,9 +101,11 @@ export default function OrganisasiSection() {
         </div>
 
         {/* Right Arrow */}
-        <button className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-b from-[#0C35E9] to-[#1486F6] rounded-xl border-2 border-[#1486F6] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform z-30 flex-shrink-0">
-          <span className="text-white text-2xl font-bold">&gt;</span>
-        </button>
+        <Link href="/tentang-kami?view=hmif" className="z-30 flex-shrink-0">
+          <button className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-b from-[#0C35E9] to-[#1486F6] rounded-xl border-2 border-[#1486F6] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform">
+            <span className="text-white text-2xl font-bold">&gt;</span>
+          </button>
+        </Link>
 
       </div>
 

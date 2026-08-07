@@ -1,6 +1,6 @@
 import React from 'react';
-import BaseSection from './BaseSection';
-import NewsCard from './NewsCard';
+import BaseSection from '@/components/ui/BaseSection';
+import NewsCard from '@/components/ui/NewsCard';
 
 export default function PengabdianSection() {
   const dummyNews = [
