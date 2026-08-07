@@ -12,9 +12,9 @@ export default function ProgramKerjaSection() {
   ];
 
   return (
-    <BaseSection id="proker" variant="transparent" className="py-32 md:py-48 min-h-screen relative flex flex-col justify-center">
+    <BaseSection id="proker" variant="transparent" className="!pt-[25px] !pb-[32px] relative flex flex-col">
       
-      <div className="flex flex-col items-center text-center mb-16">
+      <div className="w-full flex flex-col items-start text-left mb-10">
         <div className="bg-gradient-to-b from-[#0C35E9] to-[#1486F6] text-white font-bold text-sm md:text-lg px-6 py-2 rounded-xl inline-block mb-6 shadow-lg">
           PROGRAM KERJA DAN DESKRIPSI KERJA
         </div>
@@ -27,7 +27,7 @@ export default function ProgramKerjaSection() {
       </div>
 
       {/* Kompartemen Tabs */}
-      <HorizontalScrollContainer className="justify-start gap-4 w-full max-w-5xl mb-12 pb-4 px-4">
+      <HorizontalScrollContainer className="justify-start gap-4 w-full mb-12 pb-4">
         {kompartemen.map((item, index) => (
           <button 
             key={index} 

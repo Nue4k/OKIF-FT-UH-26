@@ -1,9 +1,11 @@
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import PrestasiSection from '@/components/PrestasiSection';
+import AboutSection from '@/components/AboutSection';
 import OrganisasiSection from '@/components/OrganisasiSection';
 import ProgramKerjaSection from '@/components/ProgramKerjaSection';
-import NewsSection from '@/components/NewsSection';
+import FormatifSection from '@/components/FormatifSection';
+import PengabdianSection from '@/components/PengabdianSection';
 
 export default function Home() {
   return (
@@ -14,9 +16,11 @@ export default function Home() {
         <Navbar />
         <HeroSection />
         <PrestasiSection />
+        <AboutSection />
         <OrganisasiSection />
         <ProgramKerjaSection />
-        <NewsSection />
+        <FormatifSection />
+        <PengabdianSection />
       </div>
     </main>
   );
