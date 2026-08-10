@@ -16,7 +16,7 @@ export default function HmifProgramKerja() {
         </div>
 
         {/* Bottom Box: Deskripsi Kerja */}
-        <div className="w-full bg-gradient-to-b from-[#0C35E9]/40 via-[#1486F6]/40 to-[#050170]/40 rounded-[32px] border-2 border-[#1486F6] p-8 md:p-10 flex flex-col md:flex-row gap-6 shadow-[0_15px_25px_rgba(0,0,0,0.3)]">
+        <div className="w-full bg-gradient-to-b from-[#0C35E9]/40 via-[#1486F6]/40 to-[#050170]/40 rounded-[32px] border-2 border-white/80 p-8 md:p-10 flex flex-col md:flex-row gap-6 shadow-[0_15px_25px_rgba(0,0,0,0.3)]">
           <div className="md:w-1/4">
             <h3 className="text-3xl font-bold text-white">Deskripsi Kerja</h3>
           </div>

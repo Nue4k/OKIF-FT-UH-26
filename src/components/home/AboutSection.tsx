@@ -7,27 +7,29 @@ export default function AboutSection() {
     <BaseSection
       id="tentang"
       variant="transparent"
-      className="py-16 md:py-24 relative flex flex-col justify-center"
+      className="pt-12 pb-16 md:pt-20 md:pb-24 relative flex flex-col justify-center"
       containerClassName="!max-w-full !px-0 w-full"
     >
       {/* Unconstrained background glow from group-113.png aligned with About Card */}
-      <div className="absolute top-1/2 -translate-y-1/2 left-0 w-full h-[1400px] md:h-[1650px] pointer-events-none z-0 overflow-visible">
+      <div className="absolute top-[38%] -translate-y-1/2 left-0 w-full h-[1200px] md:h-[1450px] pointer-events-none z-0 overflow-visible">
         <img
           src="/group-113.png"
           alt=""
           className="w-full h-full object-cover object-left opacity-100"
+          style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, black 75%, transparent 100%)', maskImage: 'linear-gradient(to right, black 0%, black 75%, transparent 100%)' }}
         />
       </div>
 
       {/* About Box (Tentang Kami OKIF FT-UH) Wrapper */}
       <div className="relative w-full max-w-[1360px] mx-auto z-10 px-4 md:px-6">
 
-        {/* Outer Card Box with White Border, Black Glow on Left & White Glow on Right, Top & Bottom */}
-        <div className="w-full p-[2px] rounded-[20px] bg-gradient-to-r from-white via-[#040659] via-50% to-white shadow-[-25px_0_45px_rgba(0,0,0,0.95),20px_0_40px_rgba(255,255,255,0.5),0_-15px_30px_rgba(255,255,255,0.35),0_15px_30px_rgba(255,255,255,0.35)] relative z-10">
-          <div className="w-full h-full bg-gradient-to-b from-[#090CBD] via-[#06088B] to-[#040659] rounded-[18px] p-8 md:p-12 relative overflow-hidden">
+        {/* Outer Card Box with White Border, Ambient Glow */}
+        <div className="w-full p-[2px] rounded-[24px] bg-gradient-to-r from-white/90 via-[#040659] via-50% to-white/90 shadow-[-20px_0_40px_rgba(0,0,0,0.85),20px_0_40px_rgba(20,134,246,0.4),0_0_35px_rgba(255,255,255,0.4)] relative z-10">
+          <div className="w-full h-full bg-gradient-to-b from-[#090CBD] via-[#06088B] to-[#040659] rounded-[22px] p-8 md:p-12 relative overflow-hidden">
 
-            {/* Glow effect inside box */}
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-[#1486F6]/15 blur-[80px] pointer-events-none"></div>
+            {/* Enhanced Glow effects inside box */}
+            <div className="absolute top-0 right-0 w-3/5 h-full bg-[#1486F6]/25 blur-[90px] pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-2/5 h-full bg-[#0C35E9]/25 blur-[90px] pointer-events-none"></div>
 
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 relative z-10 items-center">
 

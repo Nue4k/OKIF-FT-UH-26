@@ -6,11 +6,14 @@ export default function HeroSection() {
     <BaseSection
       id="beranda"
       variant="transparent"
-      className="pt-32 pb-32 md:pb-48 flex flex-col justify-center relative overflow-hidden bg-[url('/hero-bg-118.png')] bg-cover bg-[center_-50px] bg-no-repeat"
+      className="pt-32 pb-32 md:pb-48 flex flex-col justify-center relative overflow-hidden isolate"
       containerClassName="text-center gap-6"
     >
-
-      {/* The background image hero-bg-final.png now handles all the custom inwardly-tapering cyan glowing light */}
+      {/* Background Image with Smooth Bottom Fade (No horizontal line cutoffs) */}
+      <div 
+        className="absolute inset-0 -z-10 bg-[url('/hero-bg-118.png')] bg-cover bg-[center_-50px] bg-no-repeat pointer-events-none"
+        style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)' }}
+      />
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[60vh] md:min-h-[75vh] pt-12 md:pt-20 max-w-5xl mx-auto w-full">
         <h1 className="text-[100px] font-black text-white tracking-wide leading-none mb-6 drop-shadow-md">

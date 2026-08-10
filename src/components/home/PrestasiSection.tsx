@@ -9,18 +9,22 @@ export default function PrestasiSection() {
     { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: '/Mapres.png' },
     { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: '/Mapres.png' },
     { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: '/Mapres.png' },
+    { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: '/Mapres.png' },
+    { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: '/Mapres.png' },
+    { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: '/Mapres.png' },
+    { nama: 'A. Tyas Nur Atda', prestasi: 'Juara 1 GEMASTIK', image: '/Mapres.png' },
   ];
 
   return (
     <BaseSection
       id="prestasi"
       variant="transparent"
-      className="pt-8 pb-32 md:pt-12 md:pb-48 relative flex flex-col justify-center overflow-hidden"
+      className="pt-8 pb-16 md:pt-12 md:pb-24 relative flex flex-col justify-center overflow-visible"
       containerClassName="!max-w-full !px-0 w-full"
     >
 
       {/* Title */}
-      <div className="text-center mb-6 flex flex-col items-center gap-4 px-4">
+      <div className="text-center mb-1 flex flex-col items-center gap-4 px-4">
         <div className="bg-gradient-to-b from-[#0C35E9] to-[#1486F6] text-white font-bold text-[18px] px-6 py-2 rounded-xl inline-block">
           MAHASISWA BERPRESTASI
         </div>
@@ -30,11 +34,11 @@ export default function PrestasiSection() {
       </div>
 
       {/* Slidable Cards Container (Edge-to-Edge) */}
-      <HorizontalScrollContainer className="w-full gap-10 md:gap-[70px] justify-start items-center py-4 px-8 md:px-16">
+      <HorizontalScrollContainer className="w-full gap-6 md:gap-10 justify-start items-center pt-0 pb-4 -mt-2 px-6 md:px-12">
         {prestasiData.map((item, index) => (
-          <div key={index} className="flex-shrink-0 flex flex-col items-center relative group w-[380px]">
+          <div key={index} className="flex-shrink-0 flex flex-col items-center relative group w-[260px] sm:w-[280px] md:w-[300px]">
             {/* Image Card Container */}
-            <div className="relative z-10 w-[380px] h-[550px] flex justify-center hover:scale-105 transition-transform duration-300">
+            <div className="relative z-10 w-[260px] sm:w-[280px] md:w-[300px] h-[380px] sm:h-[410px] md:h-[440px] flex justify-center hover:scale-105 transition-transform duration-300">
               {item.image ? (
                 <Image
                   src={item.image}
@@ -60,13 +64,12 @@ export default function PrestasiSection() {
       </HorizontalScrollContainer>
 
       {/* Dots Indicator */}
-      <div className="relative z-20 flex justify-center items-center gap-3 mt-12">
-        {[1, 2, 3, 4, 5].map((dot, i) => (
-          <div 
-            key={i} 
-            className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${
-              i === 0 ? 'bg-cyan-400 shadow-[0_0_12px_#22d3ee] scale-110' : 'bg-white/70 hover:bg-white'
-            }`}
+      <div className="relative z-20 flex justify-center items-center gap-2.5 mt-4">
+        {prestasiData.map((_, i) => (
+          <div
+            key={i}
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === 0 ? 'bg-cyan-400 shadow-[0_0_10px_#22d3ee] scale-110' : 'bg-white/70 hover:bg-white'
+              }`}
           />
         ))}
       </div>
