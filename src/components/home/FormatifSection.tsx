@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import BaseSection from '@/components/ui/BaseSection';
 import FormatifCard from '@/components/ui/FormatifCard';
 
@@ -50,9 +51,11 @@ export default function FormatifSection() {
         ))}
       </div>
 
-      <button className="px-8 py-3 bg-white text-[#0C35E9] font-bold text-lg rounded-2xl border-2 border-[#0C35E9] hover:bg-[#0C35E9] hover:text-white transition-colors shadow-lg relative z-10">
-        LIHAT LAINNYA
-      </button>
+      <Link href="/formatif" className="relative z-10">
+        <button className="px-8 py-3 bg-white text-[#0C35E9] font-bold text-lg rounded-2xl border-2 border-[#0C35E9] hover:bg-[#0C35E9] hover:text-white transition-colors shadow-lg">
+          LIHAT LAINNYA
+        </button>
+      </Link>
 
       {/* Soft Dark Boundary Shadow above the white section (Exact Figma/Design Spec) */}
       <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-black/35 via-black/10 to-transparent pointer-events-none z-10" />

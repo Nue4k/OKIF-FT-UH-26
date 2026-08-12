@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import BaseSection from '@/components/ui/BaseSection';
 import NewsCard from '@/components/ui/NewsCard';
 
@@ -92,9 +93,11 @@ export default function PengabdianSection() {
         ))}
       </div>
 
-      <button className="px-8 py-3 bg-white text-[#0C35E9] font-bold text-lg rounded-2xl border-2 border-[#0C35E9] hover:bg-[#0C35E9] hover:text-white transition-colors shadow-lg">
-        LIHAT LAINNYA
-      </button>
+      <Link href="/berita">
+        <button className="px-8 py-3 bg-white text-[#0C35E9] font-bold text-lg rounded-2xl border-2 border-[#0C35E9] hover:bg-[#0C35E9] hover:text-white transition-colors shadow-lg">
+          LIHAT LAINNYA
+        </button>
+      </Link>
 
     </BaseSection>
   );

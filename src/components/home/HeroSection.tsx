@@ -1,7 +1,29 @@
+'use client';
+
 import React from 'react';
 import BaseSection from '@/components/ui/BaseSection';
 
 export default function HeroSection() {
+  const handleScrollToTentangKami = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.getElementById('tentang-kami');
+    if (el) {
+      const navbarHeight = 100;
+      const elementRect = el.getBoundingClientRect();
+      const absoluteElementTop = elementRect.top + window.scrollY;
+      const visibleHeight = window.innerHeight - navbarHeight;
+      const targetY =
+        absoluteElementTop - navbarHeight - (visibleHeight - elementRect.height) / 2;
+
+      window.scrollTo({
+        top: Math.max(0, targetY),
+        behavior: 'smooth',
+      });
+    } else {
+      window.location.href = '/#tentang-kami';
+    }
+  };
+
   return (
     <BaseSection
       id="beranda"
@@ -10,9 +32,14 @@ export default function HeroSection() {
       containerClassName="text-center gap-6"
     >
       {/* Background Image with Smooth Bottom Fade (No horizontal line cutoffs) */}
-      <div 
+      <div
         className="absolute inset-0 -z-10 bg-[url('/hero-bg-118.png')] bg-cover bg-[center_-50px] bg-no-repeat pointer-events-none"
-        style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)' }}
+        style={{
+          WebkitMaskImage:
+            'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
+          maskImage:
+            'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
+        }}
       />
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[60vh] md:min-h-[75vh] pt-12 md:pt-20 max-w-5xl mx-auto w-full">
@@ -21,11 +48,16 @@ export default function HeroSection() {
         </h1>
 
         <p className="text-xl md:text-[26px] text-white/90 font-normal leading-relaxed max-w-5xl mb-12 px-4 text-center">
-          Organisasi Kemahasiswaan Informatika Fakultas Teknik Universitas Hasanuddin - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Organisasi Kemahasiswaan Informatika Fakultas Teknik Universitas
+          Hasanuddin - Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
 
-        {/* Profil Organisasi Button with fading neon border */}
-        <button className="relative p-[1.5px] rounded-[12px] bg-gradient-to-b from-white via-white/20 to-transparent shadow-[0_-5px_20px_-5px_rgba(255,255,255,0.3)] group hover:-translate-y-1 transition-all duration-300">
+        {/* Profil Organisasi Button with fading neon border (scroll centered below navbar) */}
+        <button
+          onClick={handleScrollToTentangKami}
+          className="relative p-[1.5px] rounded-[12px] bg-gradient-to-b from-white via-white/20 to-transparent shadow-[0_-5px_20px_-5px_rgba(255,255,255,0.3)] group hover:-translate-y-1 transition-all duration-300"
+        >
           <div className="px-12 py-4 bg-gradient-to-b from-[#080A8F] to-[#040659] rounded-[10.5px] text-white font-semibold text-lg md:text-[20px] shadow-[inset_0_10px_20px_-10px_rgba(93,244,239,0.5)] group-hover:brightness-110 transition-all duration-300">
             Profil Organisasi
           </div>
@@ -37,18 +69,23 @@ export default function HeroSection() {
         {[1, 2, 3].map((item, index) => (
           <div
             key={index}
-            className={`w-full max-w-[356px] h-[310px] rounded-[32px] p-[1.5px] bg-gradient-to-b from-white via-white/10 to-transparent shadow-[0_-5px_20px_-5px_rgba(255,255,255,0.2)] transform transition-transform duration-300 ${index === 1 ? 'md:-translate-y-8' : ''
-              } hover:-translate-y-2`}
+            className={`w-full max-w-[356px] h-[310px] rounded-[32px] p-[1.5px] bg-gradient-to-b from-white via-white/10 to-transparent shadow-[0_-5px_20px_-5px_rgba(255,255,255,0.2)] transform transition-transform duration-300 ${
+              index === 1 ? 'md:-translate-y-8' : ''
+            } hover:-translate-y-2`}
           >
             <div className="w-full h-full rounded-[30.5px] bg-gradient-to-b from-[#080A8F] to-[#040659] flex flex-col items-center justify-center p-2 shadow-[inset_0_15px_40px_-10px_rgba(20,134,246,0.8)]">
               <h2
                 className="text-[128px] font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#5DF4EF] to-[#1486F6]"
-                style={{ filter: 'drop-shadow(0px 0px 10px rgba(93, 244, 239, 0.6))' }}
+                style={{
+                  filter: 'drop-shadow(0px 0px 10px rgba(93, 244, 239, 0.6))',
+                }}
               >
                 63
               </h2>
               <p className="text-white font-bold text-[42px] text-center leading-tight mt-1">
-                Pengurus<br />Aktif
+                Pengurus
+                <br />
+                Aktif
               </p>
             </div>
           </div>
