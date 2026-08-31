@@ -69,9 +69,8 @@ export default function HeroSection() {
         {[1, 2, 3].map((item, index) => (
           <div
             key={index}
-            className={`w-full max-w-[356px] h-[310px] rounded-[32px] p-[1.5px] bg-gradient-to-b from-white via-white/10 to-transparent shadow-[0_-5px_20px_-5px_rgba(255,255,255,0.2)] transform transition-transform duration-300 ${
-              index === 1 ? 'md:-translate-y-8' : ''
-            } hover:-translate-y-2`}
+            className={`w-full max-w-[356px] h-[310px] rounded-[32px] p-[1.5px] bg-gradient-to-b from-white via-white/10 to-transparent shadow-[0_-5px_20px_-5px_rgba(255,255,255,0.2)] transform transition-transform duration-300 ${index === 1 ? 'md:-translate-y-8' : ''
+              } hover:-translate-y-2`}
           >
             <div className="w-full h-full rounded-[30.5px] bg-gradient-to-b from-[#080A8F] to-[#040659] flex flex-col items-center justify-center p-2 shadow-[inset_0_15px_40px_-10px_rgba(20,134,246,0.8)]">
               <h2

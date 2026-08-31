@@ -30,14 +30,23 @@ export default function FormatifSection() {
 
   return (
     <BaseSection id="formatif" variant="transparent" className="!pt-[32px] !pb-[64px] relative flex flex-col items-center overflow-visible isolate" containerClassName="!max-w-full !px-4 md:!px-8 w-full">
-      {/* Unconstrained Background Glow (group114.png) - Shifted down, smooth top mask fade */}
-      <div className="absolute top-[78%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] max-w-[1920px] h-[1200px] md:h-[1600px] pointer-events-none -z-20 overflow-visible">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/group114.png"
-          alt=""
-          className="w-full h-full object-cover opacity-100"
-          style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 100%)', maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 100%)' }}
+      {/* Pure CSS Radial Glow - 100% Exact Figma Specs: Group 114 (Pure Natural Fade, No Mask) */}
+      <div className="absolute top-[85%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] md:w-[1138px] md:h-[1138px] pointer-events-none -z-20 overflow-visible flex items-center justify-center">
+        <div 
+          className="w-full h-full rounded-full blur-[60px] md:blur-[100px]"
+          style={{
+            background: `
+              radial-gradient(
+                circle at 50% 50%,
+                #FFFFFF 0%,
+                #FFFFFF 35%,
+                #5DF4EF 60%,
+                rgba(12, 53, 233, 0.6) 75%,
+                rgba(12, 53, 233, 0.15) 88%,
+                transparent 100%
+              )
+            `
+          }}
         />
       </div>
 

@@ -37,18 +37,23 @@ export default function AboutSection() {
       className="pt-12 pb-16 md:pt-20 md:pb-24 relative flex flex-col justify-center"
       containerClassName="!max-w-full !px-0 w-full"
     >
-      {/* Unconstrained background glow from group-113.png aligned with About Card */}
-      <div className="absolute top-[38%] -translate-y-1/2 left-0 w-full h-[1200px] md:h-[1450px] pointer-events-none z-0 overflow-visible">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/group-113.png"
-          alt=""
-          className="w-full h-full object-cover object-left opacity-100"
+      {/* Pure CSS Radial Glow - Cone Tapering towards center (Slightly smaller far-left size) */}
+      <div className="absolute top-[50%] -translate-y-1/2 left-[-300px] md:left-[-500px] w-[1000px] h-[750px] md:w-[1900px] md:h-[1250px] pointer-events-none z-0 overflow-visible flex items-center justify-center">
+        <div 
+          className="w-full h-full rounded-full blur-[60px] md:blur-[100px]"
           style={{
-            WebkitMaskImage:
-              'linear-gradient(to right, black 0%, black 75%, transparent 100%)',
-            maskImage:
-              'linear-gradient(to right, black 0%, black 75%, transparent 100%)',
+            background: `
+              radial-gradient(
+                ellipse 100% 62% at 22% 50%,
+                #FFFFFF 0%,
+                #E0FBFF 16%,
+                #5DF4EF 36%,
+                rgba(20, 134, 246, 0.6) 54%,
+                rgba(12, 53, 233, 0.18) 72%,
+                rgba(12, 53, 233, 0) 85%,
+                transparent 100%
+              )
+            `
           }}
         />
       </div>

@@ -14,25 +14,45 @@ export default function ProgramKerjaSection() {
   return (
     <BaseSection id="proker" variant="transparent" className="pt-0 md:pt-2 -mt-8 md:-mt-14 !pb-[32px] relative flex flex-col isolate">
 
-      {/* Left Half-Circle Glow (group114.png - Edge Masked to Transparent) */}
-      <div className="absolute top-1/2 -left-[500px] md:-left-[850px] -translate-y-1/2 w-[900px] md:w-[1400px] h-[1050px] md:h-[1500px] pointer-events-none -z-20 overflow-visible opacity-100">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/group114.png"
-          alt=""
-          className="w-full h-full object-cover object-right"
-          style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, black 50%, transparent 95%)', maskImage: 'linear-gradient(to right, black 0%, black 50%, transparent 95%)' }}
+      {/* Left Light Glow - 100% Exact Figma Specs: Group 111 */}
+      {/* Ellipse 21 (932px, #0C35E9) | Ellipse 22 (746px, #5DF4EF) | Ellipse 23 (505px, #FFFFFF) */}
+      <div className="absolute top-1/2 -left-[500px] md:-left-[750px] -translate-y-1/2 w-[600px] h-[600px] md:w-[932px] md:h-[932px] pointer-events-none -z-20 overflow-visible flex items-center justify-center">
+        <div 
+          className="w-full h-full rounded-full blur-[60px] md:blur-[90px]"
+          style={{
+            background: `
+              radial-gradient(
+                circle at 50% 50%,
+                #FFFFFF 0%,
+                #FFFFFF 42%,
+                #5DF4EF 72%,
+                rgba(12, 53, 233, 0.75) 88%,
+                rgba(12, 53, 233, 0) 98%,
+                transparent 100%
+              )
+            `
+          }}
         />
       </div>
 
-      {/* Right Half-Circle Glow (group114.png - Edge Masked to Transparent) */}
-      <div className="absolute top-1/2 -right-[500px] md:-right-[850px] -translate-y-1/2 w-[900px] md:w-[1400px] h-[1050px] md:h-[1500px] pointer-events-none -z-20 overflow-visible opacity-100">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/group114.png"
-          alt=""
-          className="w-full h-full object-cover object-left"
-          style={{ WebkitMaskImage: 'linear-gradient(to left, black 0%, black 50%, transparent 95%)', maskImage: 'linear-gradient(to left, black 0%, black 50%, transparent 95%)' }}
+      {/* Right Light Glow - 100% Exact Figma Specs: Group 116 */}
+      {/* Ellipse 21 (932px, #0C35E9) | Ellipse 22 (746px, #5DF4EF) | Ellipse 23 (505px, #FFFFFF) */}
+      <div className="absolute top-1/2 -right-[500px] md:-right-[750px] -translate-y-1/2 w-[600px] h-[600px] md:w-[932px] md:h-[932px] pointer-events-none -z-20 overflow-visible flex items-center justify-center">
+        <div 
+          className="w-full h-full rounded-full blur-[60px] md:blur-[90px]"
+          style={{
+            background: `
+              radial-gradient(
+                circle at 50% 50%,
+                #FFFFFF 0%,
+                #FFFFFF 42%,
+                #5DF4EF 72%,
+                rgba(12, 53, 233, 0.75) 88%,
+                rgba(12, 53, 233, 0) 98%,
+                transparent 100%
+              )
+            `
+          }}
         />
       </div>
 
