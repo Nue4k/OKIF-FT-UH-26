@@ -1,7 +1,9 @@
 import React from 'react';
+import Link from 'next/link';
 import { BeritaItem } from './BeritaGridCard';
 
 export default function BeritaHorizontalCard({
+  id = 1,
   author = 'Hanzalah',
   date = '27 Juni 2026',
   title,
@@ -49,9 +51,12 @@ export default function BeritaHorizontalCard({
 
         {/* BACA Button */}
         <div className="flex justify-end pt-1">
-          <button className="px-6 py-1.5 rounded-xl border-2 border-[#0C35E9] text-[#0C35E9] font-bold text-sm tracking-wide hover:bg-[#0C35E9] hover:text-white transition-all duration-300">
+          <Link
+            href="/baca"
+            className="px-6 py-1.5 rounded-xl border-2 border-[#0C35E9] text-[#0C35E9] font-bold text-sm tracking-wide hover:bg-[#0C35E9] hover:text-white transition-all duration-300"
+          >
             BACA
-          </button>
+          </Link>
         </div>
       </div>
     </div>

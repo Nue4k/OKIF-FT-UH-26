@@ -8,7 +8,10 @@ import { usePathname } from 'next/navigation';
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const isBlurNavbar = pathname === '/berita' || pathname === '/formatif';
+  const isBlurNavbar =
+    pathname?.startsWith('/berita') ||
+    pathname?.startsWith('/formatif') ||
+    pathname?.startsWith('/baca');
 
   const navLinks = [
     { label: 'Beranda', href: '/' },
@@ -18,8 +21,8 @@ export default function Navbar() {
   ];
 
   const getIsActive = (link: { label: string; href: string }) => {
-    if (link.href === '/formatif') return pathname === '/formatif';
-    if (link.href === '/berita') return pathname === '/berita';
+    if (link.href === '/formatif') return pathname?.startsWith('/formatif');
+    if (link.href === '/berita') return pathname?.startsWith('/berita') || pathname?.startsWith('/baca');
     if (link.href === '/tentang-kami') return pathname?.startsWith('/tentang-kami');
     if (link.href === '/') return pathname === '/';
     return false;
@@ -70,11 +73,16 @@ export default function Navbar() {
         </div>
 
         {/* Recursion 2.0 CTA Button */}
-        <button className="hidden md:flex px-[24px] py-[12px] bg-gradient-to-r from-[#5EF9F1] to-[#00A6FD] rounded-[10px] shadow-[0_6px_16px_rgba(0,166,253,0.4),inset_0_-4px_4px_rgba(0,0,0,0.2)] hover:brightness-110 hover:shadow-[0_8px_20px_rgba(94,249,241,0.5)] transition-all active:translate-y-0.5">
+        <a
+          href="https://www.recursion.id/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden md:flex items-center justify-center px-[24px] py-[12px] bg-gradient-to-r from-[#5EF9F1] to-[#00A6FD] rounded-[10px] shadow-[0_6px_16px_rgba(0,166,253,0.4),inset_0_-4px_4px_rgba(0,0,0,0.2)] hover:brightness-110 hover:shadow-[0_8px_20px_rgba(94,249,241,0.5)] transition-all active:translate-y-0.5"
+        >
           <span className="text-[#080A8F] text-[22px] font-bold leading-none">
             Recursion 2.0
           </span>
-        </button>
+        </a>
 
         {/* Mobile Menu Button */}
         <button 
@@ -115,9 +123,14 @@ export default function Navbar() {
             );
           })}
           <div className="pt-2">
-            <button className="w-full py-[12px] bg-gradient-to-r from-[#5EF9F1] to-[#00A6FD] rounded-[10px] shadow-[0_6px_16px_rgba(0,166,253,0.4)] text-[#080A8F] text-[20px] font-bold">
+            <a
+              href="https://www.recursion.id/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-[12px] bg-gradient-to-r from-[#5EF9F1] to-[#00A6FD] rounded-[10px] shadow-[0_6px_16px_rgba(0,166,253,0.4)] text-[#080A8F] text-[20px] font-bold flex items-center justify-center text-center"
+            >
               Recursion 2.0
-            </button>
+            </a>
           </div>
         </div>
       )}

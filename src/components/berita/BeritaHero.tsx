@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import BaseSection from '@/components/ui/BaseSection';
 
 interface BeritaHeroProps {
@@ -52,9 +53,12 @@ export default function BeritaHero({
 
         {/* BACA Button (Figma spec: Lato Regular 17px, text #FFFFFF) */}
         <div className="pt-2">
-          <button className="px-6 py-1.5 rounded-[10px] border-2 border-white text-white font-normal text-[17px] uppercase hover:bg-white hover:text-[#080A8F] transition-all duration-300 shadow-md">
+          <Link
+            href="/baca"
+            className="px-6 py-1.5 rounded-[10px] border-2 border-white text-white font-normal text-[17px] uppercase hover:bg-white hover:text-[#080A8F] transition-all duration-300 shadow-md inline-block"
+          >
             BACA
-          </button>
+          </Link>
         </div>
       </div>
     </BaseSection>

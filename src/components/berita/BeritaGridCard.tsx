@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export interface BeritaItem {
   id?: string | number;
@@ -10,6 +11,7 @@ export interface BeritaItem {
 }
 
 export default function BeritaGridCard({
+  id = 1,
   author = 'Hanzalah',
   date = '27 Juni 2026',
   title,
@@ -57,9 +59,12 @@ export default function BeritaGridCard({
 
         {/* BACA Button */}
         <div className="flex justify-end pt-2">
-          <button className="px-6 py-1.5 rounded-xl border-2 border-[#0C35E9] text-[#0C35E9] font-bold text-sm tracking-wide hover:bg-[#0C35E9] hover:text-white transition-all duration-300">
+          <Link
+            href="/baca"
+            className="px-6 py-1.5 rounded-xl border-2 border-[#0C35E9] text-[#0C35E9] font-bold text-sm tracking-wide hover:bg-[#0C35E9] hover:text-white transition-all duration-300"
+          >
             BACA
-          </button>
+          </Link>
         </div>
       </div>
     </div>
