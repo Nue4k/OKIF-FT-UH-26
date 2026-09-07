@@ -1,5 +1,6 @@
 export interface Berita {
   id?: string;
+  slug: string;
   author: string;
   date: string;
   title: string;
@@ -11,6 +12,7 @@ export interface Berita {
 
 export interface Formatif {
   id?: string;
+  slug: string;
   author: string;
   date: string;
   title: string;
