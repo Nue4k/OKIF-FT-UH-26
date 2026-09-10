@@ -21,9 +21,15 @@ export async function POST(request: NextRequest) {
       return errorResponse("No file uploaded", "BAD_REQUEST", 400);
     }
 
-    // 2. Validasi Tipe File (Hanya gambar)
-    if (!file.type.startsWith("image/")) {
-      return errorResponse("File must be an image", "BAD_REQUEST", 400);
+    // 2. Validasi Tipe File Ekstra Ketat (Mencegah Spoofing)
+    const allowedMimeTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+    if (!allowedMimeTypes.includes(file.type)) {
+      return errorResponse("Hanya file gambar (JPG, PNG, WEBP, GIF) yang diizinkan", "BAD_REQUEST", 400);
+    }
+
+    const fileName = file.name.toLowerCase();
+    if (!fileName.match(/\.(jpg|jpeg|png|webp|gif)$/)) {
+      return errorResponse("Ekstensi file tidak valid", "BAD_REQUEST", 400);
     }
 
     // 3. Validasi Ukuran File (Max 32MB)
