@@ -6,6 +6,7 @@ export interface Berita {
   title: string;
   description: string;
   image: string;
+  status?: "DRAFT" | "PUBLISHED";
   createdAt?: number;
   updatedAt?: number;
 }
@@ -18,6 +19,7 @@ export interface Formatif {
   title: string;
   description: string;
   image: string;
+  status?: "DRAFT" | "PUBLISHED";
   createdAt?: number;
   updatedAt?: number;
 }
@@ -26,8 +28,9 @@ export interface Prestasi {
   id?: string;
   nama: string;
   prestasi: string;
-  image: string;
-  // Field tambahan untuk backend
+  deskripsi?: string;
+  image?: string;
+  status?: "DRAFT" | "PUBLISHED";
   createdAt?: number;
   updatedAt?: number;
 }

@@ -6,7 +6,10 @@ import { Berita } from "../../../../types/models";
 
 export async function GET() {
   try {
-    const data = await beritaService.getAll();
+    const session = await verifySessionCookie();
+    const isAdmin = !!session;
+    
+    const data = await beritaService.getAll(isAdmin);
     return successResponse(data, "Berita retrieved successfully");
   } catch (error) {
     console.error("Error fetching berita:", error);

@@ -6,7 +6,10 @@ import { Prestasi } from "../../../../types/models";
 
 export async function GET() {
   try {
-    const data = await prestasiService.getAll();
+    const session = await verifySessionCookie();
+    const isAdmin = !!session;
+    
+    const data = await prestasiService.getAll(isAdmin);
     return successResponse(data, "Prestasi retrieved successfully");
   } catch (error) {
     console.error("Error fetching prestasi:", error);

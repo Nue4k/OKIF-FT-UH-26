@@ -6,7 +6,10 @@ import { Formatif } from "../../../../types/models";
 
 export async function GET() {
   try {
-    const data = await formatifService.getAll();
+    const session = await verifySessionCookie();
+    const isAdmin = !!session;
+    
+    const data = await formatifService.getAll(isAdmin);
     return successResponse(data, "Formatif retrieved successfully");
   } catch (error) {
     console.error("Error fetching formatif:", error);
