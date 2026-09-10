@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import { verifySessionCookie } from "@/lib/auth";
 import { prestasiService } from "@/services/prestasi.service";
 import { successResponse, errorResponse } from "@/lib/api-response";
-import { Prestasi } from "../../../../../types/models";
+import { Prestasi } from "../../../../types/models";
 
 export async function GET() {
   try {

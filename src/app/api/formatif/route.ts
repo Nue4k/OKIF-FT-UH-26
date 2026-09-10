@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import { verifySessionCookie } from "@/lib/auth";
 import { formatifService } from "@/services/formatif.service";
 import { successResponse, errorResponse } from "@/lib/api-response";
-import { Formatif } from "../../../../../types/models";
+import { Formatif } from "../../../../types/models";
 
 export async function GET() {
   try {

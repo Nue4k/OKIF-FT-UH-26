@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import { verifySessionCookie } from "@/lib/auth";
 import { beritaService } from "@/services/berita.service";
 import { successResponse, errorResponse } from "@/lib/api-response";
-import { Berita } from "../../../../../types/models";
+import { Berita } from "../../../../types/models";
 
 export async function GET() {
   try {
