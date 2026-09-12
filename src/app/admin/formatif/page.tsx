@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { FileStack, Plus, Pencil, Trash2, X, UploadCloud } from "lucide-react";
 import { Formatif } from "../../../../types/models";
 import ImageUploadCrop from "@/components/ui/image-upload-crop";
+import RichTextEditor from "@/components/ui/RichTextEditor";
 
 export default function FormatifPage() {
   const [formatifList, setFormatifList] = useState<Formatif[]>([]);
@@ -245,7 +246,7 @@ export default function FormatifPage() {
             
             <div className="p-6 overflow-y-auto">
               <form id="formatif-form" onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-5">
+                <div className="space-y-5 col-span-1 md:col-span-2">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">Judul Formatif *</label>
                       <input
@@ -294,20 +295,16 @@ export default function FormatifPage() {
                     </select>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">Deskripsi *</label>
-                    <textarea
-                      required
-                      rows={6}
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                      className="w-full px-4 py-3 bg-white/60 border border-white/60 rounded-2xl focus:ring-2 focus:ring-okif-secondary outline-none resize-none shadow-sm text-slate-800 placeholder-slate-400"
-                      placeholder="Tulis deskripsi formatif di sini..."
-                    ></textarea>
+                  <div className="col-span-1 md:col-span-2">
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Isi Formatif *</label>
+                    <RichTextEditor
+                      content={description}
+                      onChange={setDescription}
+                    />
                   </div>
                 </div>
 
-                <div>
+                <div className="col-span-1 md:col-span-2">
                   <ImageUploadCrop
                     aspectRatio={16 / 9}
                     label="Gambar (16:9) *"

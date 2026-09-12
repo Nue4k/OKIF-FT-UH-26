@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { FileText, Plus, Pencil, Trash2, X, UploadCloud } from "lucide-react";
 import { Berita } from "../../../../types/models";
 import ImageUploadCrop from "@/components/ui/image-upload-crop";
+import RichTextEditor from "@/components/ui/RichTextEditor";
 
 export default function BeritaPage() {
   const [berita, setBerita] = useState<Berita[]>([]);
@@ -255,8 +256,7 @@ export default function BeritaPage() {
             </div>
             <div className="p-6 overflow-y-auto">
               <form id="berita-form" onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Kolom Kiri */}
-                <div className="space-y-5">
+                <div className="space-y-5 col-span-1 md:col-span-2">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">Judul Berita *</label>
                       <input
@@ -304,21 +304,17 @@ export default function BeritaPage() {
                     </select>
                   </div>
 
-                  <div>
+                  <div className="col-span-1 md:col-span-2">
                     <label className="block text-sm font-medium text-slate-700 mb-1">Isi Berita *</label>
-                    <textarea
-                      required
-                      rows={6}
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                      className="w-full px-4 py-3 bg-white/60 border border-white/60 rounded-2xl focus:ring-2 focus:ring-okif-secondary outline-none resize-none shadow-sm text-slate-800 placeholder-slate-400"
-                      placeholder="Tulis konten berita di sini..."
-                    ></textarea>
+                    <RichTextEditor
+                      content={description}
+                      onChange={setDescription}
+                    />
                   </div>
                 </div>
 
                 {/* Kolom Kanan: Gambar */}
-                <div>
+                <div className="col-span-1 md:col-span-2">
                   <ImageUploadCrop
                     aspectRatio={16 / 9}
                     label="Cover Berita (16:9) *"
