@@ -6,8 +6,9 @@ import { Formatif } from "../../../../../types/models";
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await verifySessionCookie();
   if (!session) {
     return errorResponse("Unauthorized", "UNAUTHORIZED", 401);
@@ -15,7 +16,7 @@ export async function PUT(
 
   try {
     const body: Partial<Formatif> = await request.json();
-    await formatifService.update(params.id, body);
+    await formatifService.update(id, body);
     return successResponse(null, "Formatif updated successfully");
   } catch (error) {
     console.error("Error updating formatif:", error);
@@ -25,15 +26,16 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await verifySessionCookie();
   if (!session) {
     return errorResponse("Unauthorized", "UNAUTHORIZED", 401);
   }
 
   try {
-    await formatifService.delete(params.id);
+    await formatifService.delete(id);
     return successResponse(null, "Formatif deleted successfully");
   } catch (error) {
     console.error("Error deleting formatif:", error);

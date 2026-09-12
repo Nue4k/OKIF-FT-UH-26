@@ -14,7 +14,7 @@ export interface Berita {
 export interface Formatif {
   id?: string;
   slug: string;
-  author: string;
+  speaker: string;
   date: string;
   title: string;
   description: string;

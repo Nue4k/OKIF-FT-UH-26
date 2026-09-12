@@ -11,7 +11,7 @@ export default function OrganisasiSection() {
       className="pt-12 md:pt-20 !pb-[80px] md:!pb-[120px] relative flex flex-col isolate"
       containerClassName="!max-w-full !px-0 w-full"
     >
-      {/* Right-angled Trapezium Background (Pure Box Color - No Mask Effects) */}
+      {/* Background Trapezium */}
       <div
         className="absolute top-0 bottom-[70px] md:bottom-[100px] left-[32%] right-[-50vw] -z-20 bg-gradient-to-r from-[#0021B0]/25 via-[#1486F6]/15 to-transparent transform skew-x-[-28deg] origin-bottom-left rounded-tl-[80px] pointer-events-none"
       ></div>
@@ -39,22 +39,22 @@ export default function OrganisasiSection() {
           </button>
         </Link>
 
-        {/* Center Container for Leaders */}
+        {/* Center Container */}
         <div className="flex flex-col md:flex-row flex-1 justify-center items-center relative z-20 mt-0 px-2 md:px-6 gap-20 md:gap-40 lg:gap-80 max-w-[1820px] mx-auto">
 
-          {/* Leader 1 (Left) */}
+          {/* Leader 1 */}
           <div className="relative z-20 w-full md:w-1/2 flex justify-center md:justify-end">
 
-            {/* Photo (Exact Figma Spec: 442px x 609px scaled) */}
+            {/* Photo */}
             <div className="relative z-10 w-64 md:w-[350px] lg:w-[410px] h-[350px] md:h-[490px] lg:h-[575px] flex flex-col items-center justify-end">
 
-              {/* Name Tag Box (DMMIF - Upper Gap) */}
+              {/* Name Tag */}
               <div className="hidden md:flex absolute left-[39.5%] top-[40%] -translate-y-1/2 w-[380px] lg:w-[500px] h-[75px] lg:h-[95px] bg-gradient-to-r from-[#0C35E9] via-[#0C35E9]/90 to-transparent pl-34 lg:pl-[200px] pr-4 flex-col justify-center text-left rounded-[20px] -z-10 pointer-events-none">
                 <h4 className="text-lg md:text-[26px] lg:text-[31px] font-black text-white leading-tight [text-shadow:0_0_15px_rgba(255,255,255,0.9),0_0_30px_rgba(20,134,246,0.8)]">A. Tyas Nur Atda</h4>
                 <p className="text-sm md:text-[18px] lg:text-[23px] font-normal text-white leading-snug">Ketua DMMIF FT-UH</p>
               </div>
 
-              {/* Photo Image Wrapper (Explicit z-10) */}
+              {/* Photo Wrapper */}
               <div className="relative z-10 w-full h-full">
                 <Image
                   src="/ketua.png"
@@ -66,7 +66,7 @@ export default function OrganisasiSection() {
                 />
               </div>
 
-              {/* Mobile Name Tag (Visible only on small screens) */}
+              {/* Mobile Tag */}
               <div className="md:hidden mt-4 text-center w-full">
                 <h4 className="text-2xl font-black text-white [text-shadow:0_0_15px_rgba(255,255,255,0.9),0_0_30px_rgba(20,134,246,0.8)]">A. Tyas Nur Atda</h4>
                 <p className="text-lg font-normal text-white">Ketua DMMIF FT-UH</p>
@@ -74,19 +74,19 @@ export default function OrganisasiSection() {
             </div>
           </div>
 
-          {/* Leader 2 (Right) */}
+          {/* Leader 2 */}
           <div className="relative z-20 w-full md:w-1/2 flex justify-center md:justify-start py-8 md:py-0">
 
-            {/* Photo (Exact Figma Spec: 442px x 609px scaled) */}
+            {/* Photo */}
             <div className="relative z-10 w-64 md:w-[350px] lg:w-[410px] h-[350px] md:h-[490px] lg:h-[575px] flex flex-col items-center justify-end">
 
-              {/* Name Tag (HMIF - Lower Gap, w-max text-left) */}
+              {/* Name Tag */}
               <div className="hidden md:block absolute right-[65%] top-[66%] -translate-y-1/2 bg-gradient-to-l from-[#0C35E9] via-[#0C35E9]/90 to-transparent pl-8 lg:pl-12 pr-32 lg:pr-[150px] py-3.5 lg:py-4.5 -z-10 w-max text-left rounded-l-2xl pointer-events-none">
                 <h4 className="text-lg md:text-[26px] lg:text-[30px] font-black text-white leading-tight [text-shadow:0_0_15px_rgba(255,255,255,0.9),0_0_30px_rgba(20,134,246,0.8)]">A. Tyas Nur Atda</h4>
                 <p className="text-sm md:text-[18px] lg:text-[22px] font-normal text-white leading-snug">Ketua Umum HMIF FT-UH</p>
               </div>
 
-              {/* Photo Image Wrapper (Explicit z-10) */}
+              {/* Photo Wrapper */}
               <div className="relative z-10 w-full h-full">
                 <Image
                   src="/ketua.png"
@@ -96,7 +96,7 @@ export default function OrganisasiSection() {
                   style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)' }}
                 />
               </div>
-              {/* Mobile Name Tag (Visible only on small screens) */}
+              {/* Mobile Tag */}
               <div className="md:hidden mt-4 text-center w-full">
                 <h4 className="text-2xl font-black text-white [text-shadow:0_0_15px_rgba(255,255,255,0.9),0_0_30px_rgba(20,134,246,0.8)]">A. Tyas Nur Atda</h4>
                 <p className="text-lg font-normal text-white">Ketua Umum HMIF FT-UH</p>

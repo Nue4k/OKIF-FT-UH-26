@@ -1,7 +1,14 @@
 import { NextRequest } from "next/server";
 import { verifySessionCookie } from "@/lib/auth";
-import { adminStorage } from "@/lib/firebase-admin";
 import { successResponse, errorResponse } from "@/lib/api-response";
+import { v2 as cloudinary } from "cloudinary";
+
+// Konfigurasi Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // Batas ukuran file 32 MB
 const MAX_FILE_SIZE = 32 * 1024 * 1024; 
@@ -41,25 +48,23 @@ export async function POST(request: NextRequest) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    // 5. Buat nama file unik
-    const timestamp = Date.now();
-    const cleanFileName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, ""); // Hapus karakter aneh
-    const uniqueFileName = `uploads/${timestamp}-${cleanFileName}`;
-
-    // 6. Dapatkan referensi bucket Firebase Storage
-    const bucket = adminStorage.bucket();
-    const fileRef = bucket.file(uniqueFileName);
-
-    // 7. Simpan file ke Firebase Storage
-    await fileRef.save(buffer, {
-      metadata: {
-        contentType: file.type,
-      },
-      public: true, // Jadikan file dapat diakses publik
+    // 5. Upload ke Cloudinary dengan Auto-Compress (Future Proofing)
+    const publicUrl = await new Promise<string>((resolve, reject) => {
+      cloudinary.uploader.upload_stream(
+        { 
+          folder: "okif26_uploads",
+          format: "webp", // Paksa ubah ke format WebP (sangat kecil & cepat)
+          transformation: [
+            { width: 1280, crop: "limit" }, // Cegah upload gambar raksasa (max width 1280px)
+            { quality: "auto" } // Biarkan AI Cloudinary menentukan kompresi terbaik tanpa pecah
+          ]
+        },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result!.secure_url);
+        }
+      ).end(buffer);
     });
-
-    // 8. Dapatkan public URL
-    const publicUrl = `https://storage.googleapis.com/${bucket.name}/${uniqueFileName}`;
 
     return successResponse({ url: publicUrl }, "File uploaded successfully", 201);
   } catch (error: any) {

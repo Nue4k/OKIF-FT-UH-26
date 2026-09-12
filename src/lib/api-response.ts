@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 export type ApiResponse<T = any> = {
   status: "success" | "error";
+  success: boolean;
   message?: string;
   data?: T;
   error?: string;
@@ -24,6 +25,7 @@ export function successResponse<T>(
 ) {
   const payload: ApiResponse<T> = {
     status: "success",
+    success: true,
     message,
   };
 
@@ -46,6 +48,7 @@ export function errorResponse(
 ) {
   const payload: ApiResponse = {
     status: "error",
+    success: false,
     message,
   };
 

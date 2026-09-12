@@ -6,10 +6,11 @@ import { Prestasi } from "../../../../../types/models";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const data = await prestasiService.getById(params.id);
+    const { id } = await params;
+    const data = await prestasiService.getById(id);
     if (!data) {
       return errorResponse("Prestasi not found", "NOT_FOUND", 404);
     }
@@ -22,8 +23,9 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await verifySessionCookie();
   if (!session) {
     return errorResponse("Unauthorized", "UNAUTHORIZED", 401);
@@ -31,7 +33,7 @@ export async function PUT(
 
   try {
     const body: Partial<Prestasi> = await request.json();
-    await prestasiService.update(params.id, body);
+    await prestasiService.update(id, body);
     return successResponse(null, "Prestasi updated successfully");
   } catch (error) {
     console.error("Error updating prestasi:", error);
@@ -41,15 +43,16 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await verifySessionCookie();
   if (!session) {
     return errorResponse("Unauthorized", "UNAUTHORIZED", 401);
   }
 
   try {
-    await prestasiService.delete(params.id);
+    await prestasiService.delete(id);
     return successResponse(null, "Prestasi deleted successfully");
   } catch (error) {
     console.error("Error deleting prestasi:", error);

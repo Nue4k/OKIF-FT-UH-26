@@ -4,10 +4,11 @@ import { successResponse, errorResponse } from "@/lib/api-response";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const data = await formatifService.getBySlug(params.slug);
+    const { slug } = await params;
+    const data = await formatifService.getBySlug(slug);
     if (!data) {
       return errorResponse("Formatif not found", "NOT_FOUND", 404);
     }

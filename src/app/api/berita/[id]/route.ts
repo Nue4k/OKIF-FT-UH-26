@@ -6,8 +6,9 @@ import { Berita } from "../../../../../types/models";
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await verifySessionCookie();
   if (!session) {
     return errorResponse("Unauthorized", "UNAUTHORIZED", 401);
@@ -15,7 +16,7 @@ export async function PUT(
 
   try {
     const body: Partial<Berita> = await request.json();
-    await beritaService.update(params.id, body);
+    await beritaService.update(id, body);
     return successResponse(null, "Berita updated successfully");
   } catch (error) {
     console.error("Error updating berita:", error);
@@ -25,15 +26,16 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await verifySessionCookie();
   if (!session) {
     return errorResponse("Unauthorized", "UNAUTHORIZED", 401);
   }
 
   try {
-    await beritaService.delete(params.id);
+    await beritaService.delete(id);
     return successResponse(null, "Berita deleted successfully");
   } catch (error) {
     console.error("Error deleting berita:", error);
