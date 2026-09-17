@@ -48,7 +48,7 @@ export default function FormatifFeaturedCard({
         {/* BACA Button (Aligned Left under content) */}
         <div className="flex justify-start pt-2">
           <Link
-            href="/baca"
+            href={`/formatif/${slug || ""}`}
             className="px-6 py-1.5 rounded-xl border-2 border-[#0C35E9] text-[#0C35E9] font-bold text-sm tracking-wide hover:bg-[#0C35E9] hover:text-white transition-all duration-300"
           >
             BACA

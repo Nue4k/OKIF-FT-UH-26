@@ -1,6 +1,7 @@
 import { adminDb } from "@/lib/firebase-admin";
 import { Formatif } from "../../types/models";
 import { generateSlug } from "@/lib/utils/slugify";
+import { deleteImageFromCloudinary } from "@/lib/cloudinary-server";
 
 const COLLECTION_NAME = "formatif";
 const collection = adminDb.collection(COLLECTION_NAME);
@@ -73,6 +74,14 @@ export const formatifService = {
   },
 
   async update(id: string, data: Partial<Formatif>): Promise<void> {
+    const doc = await collection.doc(id).get();
+    const oldData = doc.data() as Formatif | undefined;
+    
+    // Jika gambar diupdate dan gambar lamanya ada, hapus gambar lama dari Cloudinary
+    if (data.image && oldData?.image && data.image !== oldData.image) {
+      await deleteImageFromCloudinary(oldData.image);
+    }
+
     const updateData: any = {
       ...data,
       updatedAt: Date.now()
@@ -81,6 +90,15 @@ export const formatifService = {
   },
 
   async delete(id: string): Promise<void> {
+    const doc = await collection.doc(id).get();
+    const data = doc.data() as Formatif | undefined;
+    
+    // Hapus gambar dari Cloudinary terlebih dahulu
+    if (data?.image) {
+      await deleteImageFromCloudinary(data.image);
+    }
+
+    // Baru hapus dari Firestore
     await collection.doc(id).delete();
   }
 };

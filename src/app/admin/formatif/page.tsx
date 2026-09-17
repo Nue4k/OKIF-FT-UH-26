@@ -297,9 +297,12 @@ export default function FormatifPage() {
 
                   <div className="col-span-1 md:col-span-2">
                     <label className="block text-sm font-medium text-slate-700 mb-1">Isi Formatif *</label>
-                    <RichTextEditor
-                      content={description}
-                      onChange={setDescription}
+                    <textarea
+                      required
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      className="w-full px-5 py-4 min-h-[300px] bg-white/60 border border-white/70 rounded-[1.5rem] focus:ring-2 focus:ring-okif-secondary focus:bg-white/80 outline-none shadow-[0_8px_30px_rgba(8,10,143,0.06)] text-slate-900 placeholder-slate-400 transition-all resize-y leading-relaxed"
+                      placeholder="Ketik isi formatif di sini. Pisahkan antar paragraf dengan tombol Enter..."
                     />
                   </div>
                 </div>

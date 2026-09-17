@@ -1,7 +1,6 @@
 // src/lib/firebase/config.ts
 
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getAnalytics, isSupported } from "firebase/analytics";
 
@@ -18,8 +17,7 @@ const firebaseConfig = {
 // Inisialisasi Firebase App (Memastikan hanya diinisialisasi 1 kali)
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-// Inisialisasi Database (Firestore) dan Auth (Login)
-const db = getFirestore(app);
+// Inisialisasi Auth (Login)
 const auth = getAuth(app);
 
 // Inisialisasi Analytics (Hanya berjalan di sisi Client/Browser)

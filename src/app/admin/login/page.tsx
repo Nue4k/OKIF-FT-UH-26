@@ -1,18 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebase/config";
-import { motion } from "framer-motion";
-import { Lock, Mail, Loader2, LogIn } from "lucide-react";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,99 +35,63 @@ export default function AdminLogin() {
         throw new Error("Gagal membuat sesi aman di server.");
       }
 
-      // 4. Redirect to Dashboard
-      router.push("/admin/dashboard");
-      router.refresh(); // Refresh to ensure middleware catches the new cookie
+      // 4. Redirect to Dashboard with a hard reload to ensure middleware catches the new cookie
+      window.location.href = "/admin/dashboard";
     } catch (err: any) {
       console.error(err);
       setError("Login gagal. Periksa kembali email dan password Anda.");
-    } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-600/20 rounded-full blur-[120px]" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px]" />
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-sm bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
+        <div className="text-center mb-6">
+          <h1 className="text-2xl font-bold text-slate-900 mb-1">Admin Login</h1>
+          <p className="text-slate-500 text-sm">Masuk untuk mengelola konten OKIF26</p>
+        </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-md relative z-10"
-      >
-        <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-800 rounded-2xl p-8 shadow-2xl">
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-blue-500/30">
-              <Lock className="w-8 h-8 text-blue-400" />
+        <form onSubmit={handleLogin} className="space-y-4">
+          {error && (
+            <div className="bg-red-50 text-red-600 border border-red-200 p-3 rounded-lg text-sm text-center">
+              {error}
             </div>
-            <h1 className="text-2xl font-bold text-white mb-2">Admin Portal</h1>
-            <p className="text-slate-400 text-sm">Masuk Admin OKIF26</p>
+          )}
+
+          <div className="space-y-1">
+            <label className="text-sm font-medium text-slate-700">Email</label>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full bg-white border border-slate-300 text-slate-900 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              placeholder="admin@okif26.com"
+            />
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-4">
-            {error && (
-              <motion.div 
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                className="bg-red-500/10 border border-red-500/50 text-red-400 p-3 rounded-lg text-sm text-center"
-              >
-                {error}
-              </motion.div>
-            )}
+          <div className="space-y-1">
+            <label className="text-sm font-medium text-slate-700">Password</label>
+            <input
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full bg-white border border-slate-300 text-slate-900 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              placeholder="••••••••"
+            />
+          </div>
 
-            <div className="space-y-1">
-              <label className="text-sm font-medium text-slate-300 ml-1">Email</label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-slate-950/50 border border-slate-800 text-white rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
-                  placeholder="admin"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-1">
-              <label className="text-sm font-medium text-slate-300 ml-1">Password</label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
-                <input
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-slate-950/50 border border-slate-800 text-white rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
-                  placeholder="••••••••"
-                />
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-medium rounded-xl py-3 px-4 flex items-center justify-center space-x-2 transition-all disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-blue-900/20 mt-6"
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>Sedang masuk...</span>
-                </>
-              ) : (
-                <>
-                  <LogIn className="w-5 h-5" />
-                  <span>Masuk</span>
-                </>
-              )}
-            </button>
-          </form>
-        </div>
-      </motion.div>
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-[#050170] text-white rounded-lg py-2.5 font-medium hover:bg-[#0C35E9] transition-colors disabled:opacity-70 flex justify-center mt-2"
+          >
+            {isLoading ? "Memproses..." : "Masuk"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

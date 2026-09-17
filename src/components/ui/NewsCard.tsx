@@ -8,6 +8,7 @@ interface NewsCardProps {
   title: string;
   description: string;
   image: string;
+  slug?: string;
 }
 
 export default function NewsCard({
@@ -59,7 +60,7 @@ export default function NewsCard({
         {/* BACA Button */}
         <div className="flex justify-end pt-1.5">
           <Link
-            href="/baca"
+            href={`/berita/${slug || ""}`}
             className="px-6 py-1.5 rounded-[12px] border-2 border-[#0C35E9] text-[#0C35E9] font-bold text-sm tracking-wide hover:bg-[#0C35E9] hover:text-white transition-all duration-300"
           >
             BACA

@@ -8,6 +8,7 @@ export default function FormatifHorizontalCard({
   title,
   description,
   image,
+  slug,
 }: FormatifItem) {
   return (
     <div className="w-full bg-white rounded-[24px] p-4 md:p-5 shadow-lg flex flex-col md:flex-row gap-5 items-stretch group hover:-translate-y-1 transition-all duration-300">
@@ -51,7 +52,7 @@ export default function FormatifHorizontalCard({
         {/* BACA Button */}
         <div className="flex justify-end pt-1">
           <Link
-            href="/baca"
+            href={`/formatif/${slug || ""}`}
             className="px-6 py-1.5 rounded-xl border-2 border-[#0C35E9] text-[#0C35E9] font-bold text-sm tracking-wide hover:bg-[#0C35E9] hover:text-white transition-all duration-300"
           >
             BACA

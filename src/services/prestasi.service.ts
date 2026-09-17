@@ -1,5 +1,6 @@
 import { adminDb } from "@/lib/firebase-admin";
 import { Prestasi } from "../../types/models";
+import { deleteImageFromCloudinary } from "@/lib/cloudinary-server";
 
 const COLLECTION_NAME = "prestasi";
 const collection = adminDb.collection(COLLECTION_NAME);
@@ -48,6 +49,14 @@ export const prestasiService = {
   },
 
   async update(id: string, data: Partial<Prestasi>): Promise<void> {
+    const doc = await collection.doc(id).get();
+    const oldData = doc.data() as Prestasi | undefined;
+    
+    // Jika gambar diupdate dan gambar lamanya ada, hapus gambar lama dari Cloudinary
+    if (data.image && oldData?.image && data.image !== oldData.image) {
+      await deleteImageFromCloudinary(oldData.image);
+    }
+
     const updateData: any = {
       ...data,
       updatedAt: Date.now()
@@ -56,6 +65,15 @@ export const prestasiService = {
   },
 
   async delete(id: string): Promise<void> {
+    const doc = await collection.doc(id).get();
+    const data = doc.data() as Prestasi | undefined;
+    
+    // Hapus gambar dari Cloudinary terlebih dahulu
+    if (data?.image) {
+      await deleteImageFromCloudinary(data.image);
+    }
+
+    // Baru hapus dari Firestore
     await collection.doc(id).delete();
   }
 };

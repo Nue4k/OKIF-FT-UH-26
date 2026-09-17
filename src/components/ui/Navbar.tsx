@@ -11,7 +11,7 @@ export default function Navbar() {
   const isBlurNavbar =
     pathname?.startsWith('/berita') ||
     pathname?.startsWith('/formatif') ||
-    pathname?.startsWith('/baca');
+    false;
 
   const navLinks = [
     { label: 'Beranda', href: '/' },
@@ -22,7 +22,7 @@ export default function Navbar() {
 
   const getIsActive = (link: { label: string; href: string }) => {
     if (link.href === '/formatif') return pathname?.startsWith('/formatif');
-    if (link.href === '/berita') return pathname?.startsWith('/berita') || pathname?.startsWith('/baca');
+    if (link.href === '/berita') return pathname?.startsWith('/berita') ;
     if (link.href === '/tentang-kami') return pathname?.startsWith('/tentang-kami');
     if (link.href === '/') return pathname === '/';
     return false;

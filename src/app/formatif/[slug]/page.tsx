@@ -3,21 +3,17 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Navbar from '@/components/ui/Navbar';
 import BackButton from '@/components/ui/BackButton';
-import { beritaService } from '@/services/berita.service';
 import { formatifService } from '@/services/formatif.service';
-import { Berita, Formatif } from '../../../../types/models';
+import { Formatif } from '../../../../types/models';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  let data: Berita | Formatif | null = await beritaService.getBySlug(slug);
-  if (!data) {
-    data = await formatifService.getBySlug(slug);
-  }
+  const data: Formatif | null = await formatifService.getBySlug(slug);
 
   if (!data) return { title: 'Not Found' };
 
   return {
-    title: `${data.title} - OKIF FT-UH`,
+    title: `${data.title} - Formatif OKIF FT-UH`,
     description: data.title,
     openGraph: {
       images: [data.image],
@@ -25,16 +21,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function BacaSlugPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function FormatifSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   
-  let data: any = await beritaService.getBySlug(slug);
-  let type = "BERITA";
-
-  if (!data) {
-    data = await formatifService.getBySlug(slug);
-    type = "FORMATIF";
-  }
+  const data: Formatif | null = await formatifService.getBySlug(slug);
 
   if (!data) {
     notFound();
@@ -66,7 +56,7 @@ export default async function BacaSlugPage({ params }: { params: Promise<{ slug:
 
         <div className="relative z-10 w-full max-w-[1360px] mx-auto px-6 md:px-12 lg:px-16 pb-10 md:pb-12 flex flex-col items-start gap-3">
           <span className="bg-[#0051FF] text-white text-xs md:text-sm font-bold tracking-wider px-3.5 py-1 rounded-[6px] uppercase shadow-sm">
-            {type}
+            FORMATIF
           </span>
           <h1 className="text-white text-2xl md:text-4xl lg:text-[44px] font-bold leading-snug lg:leading-[1.2] max-w-4xl drop-shadow-md">
             {data.title}
@@ -80,7 +70,7 @@ export default async function BacaSlugPage({ params }: { params: Promise<{ slug:
       {/* Artikel */}
       <section className="w-full bg-white py-10 md:py-14 px-6 md:px-8">
         <div className="w-full max-w-[880px] mx-auto flex flex-col">
-          <BackButton fallback={type === "BERITA" ? "/berita" : "/formatif"} />
+          <BackButton fallback="/formatif" />
 
           <p className="text-[#767676] text-xs md:text-sm font-normal mb-2">
             Diunggah {uploadDate}
@@ -90,14 +80,27 @@ export default async function BacaSlugPage({ params }: { params: Promise<{ slug:
           </h2>
 
           <div className="flex items-center gap-2 mb-8 text-[#767676] text-sm font-medium">
-            Oleh: <span className="text-[#0051FF] font-bold">{data.author || data.speaker}</span>
+            Oleh: <span className="text-[#0051FF] font-bold">{data.speaker || data.author}</span>
           </div>
 
-          {/* HTML Render from Tiptap */}
-          <div 
-            className="prose prose-lg max-w-none prose-p:text-[#2B2B2B] prose-p:text-[17px] prose-p:leading-[1.85] prose-p:text-justify prose-img:rounded-[20px] prose-img:w-full prose-img:my-8 prose-img:shadow-sm prose-headings:text-[#111827] prose-a:text-[#0051FF] prose-strong:text-[#111827]"
-            dangerouslySetInnerHTML={{ __html: data.description }}
-          />
+          {/* Plain Text Render with Inline Image */}
+          <div className="flex flex-col gap-6 text-[#2B2B2B] text-[17px] leading-[1.85] text-justify">
+            {(data.description || "").split(/\n+/).map((paragraph: string, index: number) => {
+              if (!paragraph.trim()) return null;
+              return (
+                <React.Fragment key={index}>
+                  <p>{paragraph}</p>
+                  {index === 1 && data.image && (
+                    <img
+                      src={data.image}
+                      alt={data.title}
+                      className="w-full rounded-[20px] my-4 shadow-sm object-cover"
+                    />
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </div>
         </div>
       </section>
     </main>
