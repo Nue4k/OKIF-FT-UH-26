@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-export interface BeritaItem {
+export interface FormatifItem {
   id?: string | number;
   author?: string;
   date?: string;
@@ -10,16 +10,15 @@ export interface BeritaItem {
   image: string;
 }
 
-export default function BeritaGridCard({
-  id = 1,
+export default function FormatifGridCard({
   author = 'Hanzalah',
   date = '27 Juni 2026',
   title,
   description,
   image,
-}: BeritaItem) {
+}: FormatifItem) {
   return (
-    <div className="w-full max-w-[360px] sm:max-w-none mx-auto h-full flex flex-col bg-white rounded-[18px] sm:rounded-[24px] shadow-lg overflow-hidden group hover:-translate-y-2 transition-all duration-300">
+    <div className="w-full max-w-[360px] sm:max-w-none mx-auto flex flex-col bg-white rounded-[18px] sm:rounded-[24px] shadow-lg overflow-hidden group hover:-translate-y-2 transition-all duration-300">
       {/* Top Image */}
       <div className="h-[160px] min-[360px]:h-[175px] sm:h-[210px] md:h-[150px] lg:h-[230px] w-full relative overflow-hidden rounded-t-[18px] sm:rounded-t-[24px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}

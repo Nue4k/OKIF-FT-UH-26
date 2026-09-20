@@ -9,6 +9,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/formatif',
+        destination: '/berita#formatif',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

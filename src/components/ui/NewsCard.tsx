@@ -18,22 +18,22 @@ export default function NewsCard({
   image = '/r54.png',
 }: NewsCardProps) {
   return (
-    <div className="w-full flex flex-col bg-white rounded-[24px] shadow-lg overflow-hidden group hover:-translate-y-2 transition-all duration-300">
+    <div className="w-full max-w-[360px] sm:max-w-none mx-auto flex flex-col bg-white rounded-[20px] sm:rounded-[24px] shadow-lg overflow-hidden group hover:-translate-y-2 transition-all duration-300">
       {/* Top Image */}
-      <div className="h-[210px] md:h-[230px] w-full relative overflow-hidden rounded-t-[24px]">
+      <div className="h-[185px] sm:h-[200px] md:h-[210px] lg:h-[230px] w-full relative overflow-hidden rounded-t-[20px] sm:rounded-t-[24px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover object-center rounded-t-[24px] group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover object-center rounded-t-[20px] sm:rounded-t-[24px] group-hover:scale-105 transition-transform duration-500"
         />
       </div>
 
       {/* Card Body */}
-      <div className="px-5 py-4 flex flex-col justify-between flex-1 gap-3 bg-white rounded-b-[24px]">
-        <div className="flex flex-col gap-2">
-          {/* Author & Date Meta (Figma spec: Lato Regular 12px, color #767676) */}
-          <div className="flex items-center gap-1.5 text-[12px] text-[#767676] font-normal">
+      <div className="px-4 py-3.5 sm:px-4 sm:py-3.5 md:px-5 md:py-4 flex flex-col justify-between flex-1 gap-2.5 sm:gap-3 bg-white rounded-b-[20px] sm:rounded-b-[24px]">
+        <div className="flex flex-col gap-1.5 sm:gap-2">
+          {/* Author & Date Meta */}
+          <div className="flex items-center gap-1.5 text-[11px] sm:text-[12px] text-[#767676] font-normal">
             <svg
               className="w-3.5 h-3.5 text-[#767676] fill-current shrink-0"
               viewBox="0 0 24 24"
@@ -45,22 +45,22 @@ export default function NewsCard({
             <span>{date}</span>
           </div>
 
-          {/* Title (Figma spec: Lato Bold, color #080A8F) */}
-          <h4 className="text-[#080A8F] text-xl md:text-[22px] font-bold leading-snug line-clamp-2">
+          {/* Title */}
+          <h4 className="text-[#080A8F] text-base sm:text-base md:text-[18px] lg:text-[22px] font-bold leading-snug line-clamp-2">
             {title}
           </h4>
 
-          {/* Description (Figma spec: Lato Regular 18px, color #080A8F) */}
-          <p className="text-[#080A8F] text-[18px] font-normal leading-relaxed line-clamp-3">
+          {/* Description */}
+          <p className="text-[#080A8F]/90 text-xs sm:text-xs md:text-sm lg:text-[15px] font-normal leading-relaxed line-clamp-3">
             {description}
           </p>
         </div>
 
         {/* BACA Button */}
-        <div className="flex justify-end pt-1.5">
+        <div className="flex justify-end pt-1">
           <Link
             href="/baca"
-            className="px-6 py-1.5 rounded-[12px] border-2 border-[#0C35E9] text-[#0C35E9] font-bold text-sm tracking-wide hover:bg-[#0C35E9] hover:text-white transition-all duration-300"
+            className="px-4 sm:px-5 md:px-5 lg:px-6 py-1 sm:py-1.5 rounded-[10px] sm:rounded-[12px] border-2 border-[#0C35E9] text-[#0C35E9] font-bold text-xs sm:text-xs md:text-sm tracking-wide hover:bg-[#0C35E9] hover:text-white transition-all duration-300"
           >
             BACA
           </Link>

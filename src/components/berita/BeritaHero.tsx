@@ -19,8 +19,8 @@ export default function BeritaHero({
     <BaseSection
       id="hero-berita"
       variant="transparent"
-      className="h-[730px] min-h-[730px] pt-28 md:pt-36 pb-16 md:pb-24 flex flex-col justify-end relative overflow-hidden isolate"
-      containerClassName="!max-w-[1360px] !px-4 text-white items-start"
+      className="w-full min-h-screen h-[100dvh] pt-20 sm:pt-24 md:pt-28 lg:pt-36 pb-10 sm:pb-14 md:pb-16 lg:pb-24 flex flex-col justify-end relative overflow-hidden isolate"
+      containerClassName="!max-w-[1360px] !px-4 sm:!px-8 md:!px-8 text-white items-start"
     >
       {/* Background Image */}
       <div className="absolute inset-0 -z-10">
@@ -35,27 +35,27 @@ export default function BeritaHero({
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 w-full flex flex-col items-start gap-3 md:gap-4">
+      <div className="relative z-10 w-full flex flex-col items-start gap-2.5 sm:gap-3 md:gap-4">
         {/* Badge Pill */}
-        <div className="bg-gradient-to-b from-[#0C35E9] to-[#1486F6] text-white font-bold text-[18px] px-5 py-2 rounded-[10px] inline-block shadow-md tracking-wider uppercase">
+        <div className="bg-gradient-to-b from-[#0C35E9] to-[#1486F6] text-white font-bold text-[11px] min-[360px]:text-xs sm:text-sm md:text-base lg:text-[18px] px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-xl inline-block shadow-md tracking-normal uppercase">
           {badge}
         </div>
 
-        {/* Title (Figma spec: Lato Black 64.43px, line-height 58px) */}
-        <h1 className="text-3xl md:text-5xl lg:text-[64.43px] font-black text-white uppercase leading-tight lg:leading-[58px] drop-shadow-lg max-w-5xl">
+        {/* Title */}
+        <h1 className="text-2xl min-[360px]:text-[28px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[64.43px] font-black text-white uppercase leading-tight md:leading-tight lg:leading-[58px] drop-shadow-lg max-w-5xl">
           {title}
         </h1>
 
-        {/* Description (Figma spec: Lato Regular 18px, text #FFFFFF) */}
-        <p className="text-white text-base md:text-[18px] font-normal max-w-5xl leading-relaxed drop-shadow">
+        {/* Description */}
+        <p className="text-white text-xs min-[360px]:text-[13px] sm:text-sm md:text-base lg:text-[18px] font-normal max-w-5xl leading-relaxed drop-shadow line-clamp-3 sm:line-clamp-none">
           {description}
         </p>
 
-        {/* BACA Button (Figma spec: Lato Regular 17px, text #FFFFFF) */}
-        <div className="pt-2">
+        {/* BACA Button */}
+        <div className="pt-1 sm:pt-2">
           <Link
             href="/baca"
-            className="px-6 py-1.5 rounded-[10px] border-2 border-white text-white font-normal text-[17px] uppercase hover:bg-white hover:text-[#080A8F] transition-all duration-300 shadow-md inline-block"
+            className="px-5 py-1 sm:px-6 sm:py-1.5 rounded-[10px] sm:rounded-xl border-2 border-white text-white font-bold text-xs sm:text-sm md:text-base lg:text-[17px] uppercase hover:bg-white hover:text-[#080A8F] transition-all duration-300 shadow-md inline-block"
           >
             BACA
           </Link>
