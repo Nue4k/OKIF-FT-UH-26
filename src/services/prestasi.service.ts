@@ -10,17 +10,22 @@ export const prestasiService = {
    * Mengambil semua prestasi.
    */
   async getAll(isAdmin: boolean = false): Promise<Prestasi[]> {
-    let query: FirebaseFirestore.Query = collection.orderBy("createdAt", "desc");
+    let query: FirebaseFirestore.Query = collection;
     
     if (!isAdmin) {
       query = query.where("status", "==", "PUBLISHED");
     }
 
     const snapshot = await query.get();
-    return snapshot.docs.map(doc => ({
+    let results = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data(),
     })) as Prestasi[];
+
+    // Sort in memory to avoid requiring a composite index in Firebase
+    results.sort((a, b) => ((b.createdAt || 0) - (a.createdAt || 0)));
+
+    return results;
   },
 
   async getById(id: string): Promise<Prestasi | null> {

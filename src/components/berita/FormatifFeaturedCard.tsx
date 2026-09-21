@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 interface FormatifFeaturedCardProps {
+  slug?: string;
   author?: string;
   date?: string;
   title?: string;
@@ -15,6 +16,7 @@ export default function FormatifFeaturedCard({
   title = 'Lorem Ipsum Dolor Sit Amet',
   description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
   image = '/r54.png',
+  slug,
 }: FormatifFeaturedCardProps) {
   return (
     <div className="w-full max-w-[360px] md:max-w-none mx-auto bg-white rounded-[18px] sm:rounded-[24px] p-0 md:p-6 shadow-lg flex flex-col md:flex-row gap-0 md:gap-6 items-stretch group hover:-translate-y-1 transition-all duration-300 overflow-hidden md:overflow-visible">
@@ -58,7 +60,7 @@ export default function FormatifFeaturedCard({
         {/* BACA Button */}
         <div className="flex justify-end md:justify-start pt-1 sm:pt-2">
           <Link
-            href="/baca"
+            href={slug ? `/formatif/${slug}` : '#'}
             className="px-4 py-1 sm:px-6 sm:py-1.5 rounded-[10px] sm:rounded-xl border-2 border-[#0C35E9] text-[#0C35E9] font-bold text-xs sm:text-sm tracking-wide hover:bg-[#0C35E9] hover:text-white transition-all duration-300"
           >
             BACA

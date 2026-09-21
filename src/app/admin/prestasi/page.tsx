@@ -275,22 +275,12 @@ export default function PrestasiPage() {
                     </select>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">Deskripsi Tambahan (Opsional)</label>
-                    <textarea
-                      rows={4}
-                      value={deskripsi}
-                      onChange={(e) => setDeskripsi(e.target.value)}
-                      className="w-full px-4 py-3 bg-white/60 border border-white/60 rounded-2xl focus:ring-2 focus:ring-okif-secondary outline-none resize-none shadow-sm text-slate-800 placeholder-slate-400"
-                      placeholder="Deskripsi singkat..."
-                    ></textarea>
-                  </div>
                 </div>
 
                 <div>
                   <ImageUploadCrop
-                    aspectRatio={1 / 1}
-                    label="Foto Mahasiswa (1:1 / Persegi) - Opsional"
+                    aspectRatio={3 / 4}
+                    label="Foto Poster Mapres (3:4 / Potret) - Opsional"
                     defaultImage={existingImageUrl}
                     onCropSuccess={(blob, url) => {
                       setImageBlob(blob);
@@ -298,7 +288,7 @@ export default function PrestasiPage() {
                     }}
                   />
                   <p className="text-xs text-slate-500 mt-2">
-                    Gunakan foto wajah yang jelas. Akan dipotong otomatis menjadi rasio 1:1.
+                    Gunakan foto yang jelas. Akan dipotong otomatis menjadi rasio 3:4.
                   </p>
                 </div>
               </form>

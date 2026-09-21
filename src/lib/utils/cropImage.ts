@@ -64,6 +64,6 @@ export default async function getCroppedImg(
   return new Promise((resolve) => {
     croppedCanvas.toBlob((file) => {
       resolve(file);
-    }, "image/jpeg", 0.9);
+    }, "image/webp", 0.9);
   });
 }

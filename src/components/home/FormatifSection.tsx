@@ -2,32 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 import BaseSection from '@/components/ui/BaseSection';
 import FormatifCard from '@/components/ui/FormatifCard';
+import { Formatif } from '../../../types/models';
 
-export default function FormatifSection() {
-  const dummyNews = [
-    {
-      date: '7 Juni 2026',
-      tag: 'Formatif #1',
-      title: 'Lorem Ipsum Dolor Sit Amet',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-      image: '/r54.png'
-    },
-    {
-      date: '7 Juni 2026',
-      tag: 'Formatif #1',
-      title: 'Lorem Ipsum Dolor Sit Amet',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-      image: '/r54.png'
-    },
-    {
-      date: '7 Juni 2026',
-      tag: 'Formatif #1',
-      title: 'Lorem Ipsum Dolor Sit Amet',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-      image: '/r54.png'
-    }
-  ];
+interface FormatifSectionProps {
+  formatifList?: Formatif[];
+}
 
+export default function FormatifSection({ formatifList }: FormatifSectionProps) {
   return (
     <BaseSection id="formatif" variant="transparent" className="!pt-[32px] !pb-[96px] md:!pb-[130px] relative flex flex-col items-center overflow-visible isolate" containerClassName="!max-w-full !px-4 md:!px-8 w-full">
       {/* Pure CSS Radial Glow - 100% Exact Figma Specs: Group 114 (Pure Natural Fade, No Mask) */}
@@ -54,10 +35,27 @@ export default function FormatifSection() {
         <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-5xl font-black text-white uppercase">HASIL FORMATIF</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 md:gap-y-28 gap-x-6 md:gap-x-8 w-full max-w-[1360px] mx-auto mb-24 sm:mb-28 md:mb-32 lg:mb-40 px-4 sm:px-6 md:px-8 relative z-10">
-        {dummyNews.map((news, idx) => (
-          <FormatifCard key={`formatif-${idx}`} {...news} />
-        ))}
+      <div className="w-full max-w-[1360px] mx-auto mb-24 sm:mb-28 md:mb-32 lg:mb-40 px-4 sm:px-6 md:px-8 relative z-10">
+        {!formatifList || formatifList.length === 0 ? (
+          <div className="flex flex-col items-center justify-center min-h-[150px] md:min-h-[200px] text-center w-full">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-300">Belum ada hasil formatif yang tersedia saat ini.</h2>
+          </div>
+        ) : (
+          <div className="flex flex-wrap justify-center gap-y-24 md:gap-y-28 gap-x-6 md:gap-x-8 w-full items-stretch">
+            {formatifList.slice(0, 3).map((item, idx) => (
+              <div key={`formatif-${item.id || idx}`} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-2rem)] max-w-[433px] flex">
+                <FormatifCard 
+                  date={item.date || 'Tidak ada tanggal'}
+                  tag={`Formatif #${idx + 1}`}
+                  title={item.title}
+                  description={item.description ? (item.description.length > 100 ? item.description.substring(0, 100) + '...' : item.description) : ''}
+                  image={item.image || '/r54.png'}
+                  href={`/formatif/${item.slug}`}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="relative z-20 flex justify-center w-full mt-4">

@@ -46,12 +46,15 @@ export default function FormatifCard({
           </span>
         </div>
 
-        {/* Title (Figma Spec: Lato Bold 35.94px on desktop, tailored for tablet and mobile) */}
-        <h4 className="w-full max-w-[347px] text-[18px] sm:text-[20px] md:text-[22px] lg:text-[35.94px] font-bold text-[#080A8F] leading-[22px] sm:leading-[25px] md:leading-[28px] lg:leading-[38px] tracking-normal line-clamp-2 flex items-center">
+        {/* Title */}
+        <h4 
+          className="w-full max-w-[347px] text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] font-bold text-[#080A8F] leading-tight tracking-normal line-clamp-2"
+          title={title}
+        >
           {title}
         </h4>
 
-        {/* Description (Figma Spec: Lato Regular 11px, Line Height Auto, 347x31px, #080A8F) */}
+        {/* Description */}
         <p className="w-full max-w-[347px] text-[11px] sm:text-[11px] md:text-xs lg:text-[11px] font-normal text-[#080A8F] leading-[15px] sm:leading-normal tracking-normal line-clamp-2">
           {description}
         </p>

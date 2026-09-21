@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 export interface FormatifItem {
   id?: string | number;
+  slug?: string;
   author?: string;
   date?: string;
   title: string;
@@ -16,6 +17,7 @@ export default function FormatifGridCard({
   title,
   description,
   image,
+  slug,
 }: FormatifItem) {
   return (
     <div className="w-full max-w-[360px] sm:max-w-none mx-auto flex flex-col bg-white rounded-[18px] sm:rounded-[24px] shadow-lg overflow-hidden group hover:-translate-y-2 transition-all duration-300">
@@ -59,7 +61,7 @@ export default function FormatifGridCard({
         {/* BACA Button */}
         <div className="flex justify-end pt-1">
           <Link
-            href="/baca"
+            href={slug ? `/formatif/${slug}` : '#'}
             className="px-4 py-1 sm:px-6 sm:py-1.5 md:px-4 md:py-1 lg:px-6 lg:py-1.5 rounded-[10px] sm:rounded-xl border-2 border-[#0C35E9] text-[#0C35E9] font-bold text-xs sm:text-sm md:text-xs lg:text-sm tracking-wide hover:bg-[#0C35E9] hover:text-white transition-all duration-300"
           >
             BACA

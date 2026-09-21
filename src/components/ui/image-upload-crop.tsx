@@ -63,7 +63,10 @@ export default function ImageUploadCrop({
 
       {/* Tampilan jika gambar sudah dipilih/dicrop */}
       {finalPreview && !imageSrc ? (
-        <div className="relative w-full overflow-hidden rounded-xl border-2 border-slate-200 aspect-video mb-4">
+        <div 
+          className="relative w-full overflow-hidden rounded-xl border-2 border-slate-200 mb-4 bg-slate-50"
+          style={{ aspectRatio: aspectRatio }}
+        >
           <img src={finalPreview} alt="Preview" className="w-full h-full object-cover" />
           <button
             type="button"
