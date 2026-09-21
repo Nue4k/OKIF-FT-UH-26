@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { FileStack, Plus, Pencil, Trash2, X, UploadCloud } from "lucide-react";
 import { Formatif } from "../../../../types/models";
 import ImageUploadCrop from "@/components/ui/image-upload-crop";
-import RichTextEditor from "@/components/ui/RichTextEditor";
 
 export default function FormatifPage() {
   const [formatifList, setFormatifList] = useState<Formatif[]>([]);

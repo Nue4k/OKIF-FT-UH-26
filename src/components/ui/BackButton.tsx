@@ -17,11 +17,11 @@ export default function BackButton({ fallback = '/berita' }: { fallback?: string
   return (
     <button
       onClick={handleBack}
-      className="inline-flex items-center gap-2 text-[#767676] hover:text-[#0051FF] font-semibold text-xs md:text-sm tracking-wider uppercase transition-colors mb-6 group w-fit cursor-pointer"
+      className="inline-flex items-center gap-1.5 sm:gap-2.5 text-[#555555] hover:text-[#0C35E9] font-bold text-xs sm:text-sm md:text-base lg:text-lg tracking-wider uppercase transition-all duration-200 mb-4 sm:mb-6 group w-fit cursor-pointer"
       type="button"
     >
       <svg
-        className="w-4 h-4 transition-transform group-hover:-translate-x-1"
+        className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 transition-transform group-hover:-translate-x-1.5"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"

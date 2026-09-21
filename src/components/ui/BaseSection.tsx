@@ -30,13 +30,16 @@ export default function BaseSection({
 
   const bgStyle = variantStyles[variant];
 
+  const hasPaddingY = className.includes('py-') || className.includes('pt-') || className.includes('pb-');
+  const defaultPaddingY = hasPaddingY ? '' : 'py-12 md:py-20';
+
   return (
     <section 
       id={id}
-      className={`w-full flex flex-col items-center justify-center py-16 md:py-24 relative ${bgStyle} ${className}`}
+      className={`w-full flex flex-col items-center justify-center relative ${bgStyle} ${defaultPaddingY} ${className}`}
     >
       {/* Inner container for max-width and consistent horizontal padding */}
-      <div className={`w-full max-w-7xl px-6 md:px-12 flex flex-col items-center ${containerClassName}`}>
+      <div className={`w-full max-w-7xl flex flex-col items-center ${containerClassName.includes('px-') ? '' : 'px-4 md:px-12'} ${containerClassName}`}>
         {children}
       </div>
     </section>

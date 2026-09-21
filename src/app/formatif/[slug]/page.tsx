@@ -80,7 +80,7 @@ export default async function FormatifSlugPage({ params }: { params: Promise<{ s
           </h2>
 
           <div className="flex items-center gap-2 mb-8 text-[#767676] text-sm font-medium">
-            Oleh: <span className="text-[#0051FF] font-bold">{data.speaker || data.author}</span>
+            Pembicara / Penulis: <span className="text-[#0051FF] font-bold">{data.speaker || 'HMIF FT-UH'}</span>
           </div>
 
           {/* Plain Text Render with Inline Image */}

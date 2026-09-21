@@ -29,7 +29,7 @@ export default function FormatifSection() {
   ];
 
   return (
-    <BaseSection id="formatif" variant="transparent" className="!pt-[32px] !pb-[64px] relative flex flex-col items-center overflow-visible isolate" containerClassName="!max-w-full !px-4 md:!px-8 w-full">
+    <BaseSection id="formatif" variant="transparent" className="!pt-[32px] !pb-[96px] md:!pb-[130px] relative flex flex-col items-center overflow-visible isolate" containerClassName="!max-w-full !px-4 md:!px-8 w-full">
       {/* Pure CSS Radial Glow - 100% Exact Figma Specs: Group 114 (Pure Natural Fade, No Mask) */}
       <div className="absolute top-[85%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] md:w-[1138px] md:h-[1138px] pointer-events-none -z-20 overflow-visible flex items-center justify-center">
         <div 
@@ -50,21 +50,23 @@ export default function FormatifSection() {
         />
       </div>
 
-      <div className="text-center mb-16 relative z-10">
-        <h2 className="text-4xl md:text-6xl font-black text-white">HASIL FORMATIF</h2>
+      <div className="text-center mb-10 md:mb-14 lg:mb-16 relative z-10 px-4">
+        <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-5xl font-black text-white uppercase">HASIL FORMATIF</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-28 gap-x-6 md:gap-x-8 w-full max-w-[1320px] mx-auto mb-36 relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 md:gap-y-28 gap-x-6 md:gap-x-8 w-full max-w-[1360px] mx-auto mb-24 sm:mb-28 md:mb-32 lg:mb-40 px-4 sm:px-6 md:px-8 relative z-10">
         {dummyNews.map((news, idx) => (
           <FormatifCard key={`formatif-${idx}`} {...news} />
         ))}
       </div>
 
-      <Link href="/formatif" className="relative z-10">
-        <button className="px-8 py-3 bg-white text-[#0C35E9] font-bold text-lg rounded-2xl border-2 border-[#0C35E9] hover:bg-[#0C35E9] hover:text-white transition-colors shadow-lg">
-          LIHAT LAINNYA
-        </button>
-      </Link>
+      <div className="relative z-20 flex justify-center w-full mt-4">
+        <Link href="/berita#formatif">
+          <button className="px-5 py-2 md:px-7 md:py-2.5 lg:px-8 lg:py-3 bg-white text-[#0C35E9] font-bold text-xs sm:text-sm md:text-base lg:text-lg rounded-xl md:rounded-2xl border-2 border-[#0C35E9] hover:bg-[#0C35E9] hover:text-white transition-colors shadow-lg cursor-pointer">
+            LIHAT LAINNYA
+          </button>
+        </Link>
+      </div>
 
       {/* Soft Dark Boundary Shadow above the white section (Exact Figma/Design Spec) */}
       <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-black/35 via-black/10 to-transparent pointer-events-none z-10" />

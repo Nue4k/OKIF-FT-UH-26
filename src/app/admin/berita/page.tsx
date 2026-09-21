@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { FileText, Plus, Pencil, Trash2, X, UploadCloud } from "lucide-react";
 import { Berita } from "../../../../types/models";
 import ImageUploadCrop from "@/components/ui/image-upload-crop";
-import RichTextEditor from "@/components/ui/RichTextEditor";
 
 export default function BeritaPage() {
   const [berita, setBerita] = useState<Berita[]>([]);
