@@ -257,14 +257,14 @@ export default function TentangKamiPage() {
   }, []);
 
   return (
-    <main className="flex flex-col min-h-screen bg-[#08117A] overflow-x-hidden relative">
+    <main className="flex flex-col min-h-screen bg-okif-darker overflow-x-hidden relative">
       <Navbar />
 
       {/* 1. Hero Section */}
       <BaseSection
         id="hero-tentang-kami"
         variant="transparent"
-        className="w-full min-h-screen h-[100dvh] pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-8 sm:pb-12 md:pb-16 lg:pb-20 flex flex-col justify-center items-center relative overflow-hidden isolate"
+        className="w-full min-h-screen h-dvh pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-8 sm:pb-12 md:pb-16 lg:pb-20 flex flex-col justify-center items-center relative overflow-hidden isolate"
         containerClassName="!max-w-[1360px] !px-4 text-white items-center justify-center text-center"
       >
         {/* Background Image */}
@@ -276,12 +276,12 @@ export default function TentangKamiPage() {
             className="w-full h-full object-cover object-center"
           />
           {/* Gradient Overlay matching Figma spec (#0C35E9 0% at top to #08117A 100% at bottom) */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0C35E9]/0 via-[#08117A]/60 to-[#08117A]" />
+          <div className="absolute inset-0 bg-linear-to-b from-okif-primary/0 via-okif-darker/60 to-okif-darker" />
         </div>
 
         {/* Centered Title */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-[1272px] mx-auto w-full px-3 sm:px-4">
-          <h1 className="text-xl min-[360px]:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[64.43px] font-black text-white uppercase leading-[28px] min-[360px]:leading-[34px] sm:leading-[40px] md:leading-[48px] lg:leading-[58px] xl:leading-[62px] tracking-[0%] drop-shadow-lg text-center">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-318 mx-auto w-full px-3 sm:px-4">
+          <h1 className="text-xl min-[360px]:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[64.43px] font-black text-white uppercase leading-7 min-[360px]:leading-8.5 sm:leading-10 md:leading-12 lg:leading-14.5 xl:leading-15.5 tracking-[0%] drop-shadow-lg text-center">
             ORGANISASI KEMAHASISWAAN
             <br />
             INFORMATIKA FT-UH PERIODE 2026
@@ -290,12 +290,12 @@ export default function TentangKamiPage() {
       </BaseSection>
 
       {/* Main Body Content */}
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-2.5 sm:px-4 md:px-6 mt-4 sm:mt-8 md:mt-10 lg:mt-24 pb-16 sm:pb-20 md:pb-24 lg:pb-32 flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-20">
+      <div className="relative z-10 w-full max-w-360 mx-auto px-2.5 sm:px-4 md:px-6 mt-4 sm:mt-8 md:mt-10 lg:mt-24 pb-16 sm:pb-20 md:pb-24 lg:pb-32 flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-20">
 
         {/* 2. Section: Dewan Musyawarah Mahasiswa Informatika FT-UH */}
         <section
           id="dmmif"
-          className="flex flex-col gap-3.5 sm:gap-5 md:gap-6 scroll-mt-[80px] sm:scroll-mt-[88px] md:scroll-mt-[100px] lg:scroll-mt-[120px]"
+          className="flex flex-col gap-3.5 sm:gap-5 md:gap-6 scroll-mt-20 sm:scroll-mt-22 md:scroll-mt-25 lg:scroll-mt-30"
         >
           <h2 className="px-3.5 sm:px-6 md:px-8 lg:px-14 text-lg min-[360px]:text-xl sm:text-2xl md:text-[28px] lg:text-[36px] xl:text-[48px] font-black text-white leading-snug tracking-normal">
             Dewan Musyawarah Mahasiswa Informatika FT-UH
@@ -308,7 +308,7 @@ export default function TentangKamiPage() {
         {/* 3. Section: Himpunan Mahasiswa Informatika FT-UH */}
         <section
           id="hmif"
-          className="flex flex-col gap-3.5 sm:gap-5 md:gap-6 scroll-mt-[80px] sm:scroll-mt-[88px] md:scroll-mt-[100px] lg:scroll-mt-[120px]"
+          className="flex flex-col gap-3.5 sm:gap-5 md:gap-6 scroll-mt-20 sm:scroll-mt-22 md:scroll-mt-25 lg:scroll-mt-30"
         >
           <h2 className="px-3.5 sm:px-6 md:px-8 lg:px-14 text-lg min-[360px]:text-xl sm:text-2xl md:text-[28px] lg:text-[36px] xl:text-[48px] font-black text-white leading-snug tracking-normal">
             Himpunan Mahasiswa Informatika FT-UH
@@ -334,9 +334,9 @@ export default function TentangKamiPage() {
                     setSelectedKompartemen(k.id);
                     e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                   }}
-                  className={`h-[34px] sm:h-[38px] md:h-[40px] lg:h-[42px] px-3 sm:px-4 md:px-5 lg:px-6 rounded-[12px] sm:rounded-[14px] md:rounded-[16px] text-[11px] min-[360px]:text-xs sm:text-xs md:text-sm lg:text-base font-extrabold tracking-wide transition-all duration-200 cursor-pointer shrink-0 whitespace-nowrap flex items-center justify-center ${isActive
-                    ? 'bg-[#080A8F] text-white border-[1.63px] border-white shadow-md'
-                    : 'bg-white text-[#080A8F] hover:bg-slate-50 border-[1.63px] border-[#080A8F]'
+                  className={`h-8.5 sm:h-9.5 md:h-10 lg:h-10.5 px-3 sm:px-4 md:px-5 lg:px-6 rounded-xl sm:rounded-[14px] md:rounded-2xl text-[11px] min-[360px]:text-xs sm:text-xs md:text-sm lg:text-base font-extrabold tracking-wide transition-all duration-200 cursor-pointer shrink-0 whitespace-nowrap flex items-center justify-center ${isActive
+                    ? 'bg-okif-dark text-white border-[1.63px] border-white shadow-md'
+                    : 'bg-white text-okif-dark hover:bg-slate-50 border-[1.63px] border-okif-dark'
                     }`}
                 >
                   {k.name}
@@ -348,7 +348,7 @@ export default function TentangKamiPage() {
           {/* Program Kerja Box */}
           {activeKompartemen.proker && activeKompartemen.proker.length > 0 && (
             <div
-              className="w-full rounded-[18px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[32px] border-[1.5px] sm:border-2 border-white px-4 sm:px-6 md:px-7 lg:px-[36px] py-3.5 sm:py-4 md:py-4 lg:py-[17px] backdrop-blur-md flex flex-col gap-2 sm:gap-2.5 shadow-lg transition-all duration-300"
+              className="w-full rounded-[18px] sm:rounded-3xl md:rounded-[28px] lg:rounded-4xl border-[1.5px] sm:border-2 border-white px-4 sm:px-6 md:px-7 lg:px-9 py-3.5 sm:py-4 md:py-4 lg:py-4.25 backdrop-blur-md flex flex-col gap-2 sm:gap-2.5 shadow-lg transition-all duration-300"
               style={{
                 background: 'linear-gradient(90deg, rgba(12, 53, 233, 0.69) 0%, rgba(8, 10, 143, 0.69) 100%)',
               }}
@@ -368,7 +368,7 @@ export default function TentangKamiPage() {
 
           {/* Deskripsi Kerja Box */}
           <div
-            className="w-full rounded-[18px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[32px] border-[1.5px] sm:border-2 border-white px-4 sm:px-6 md:px-7 lg:px-[36px] py-3.5 sm:py-4 md:py-4 lg:py-[17px] backdrop-blur-md flex flex-col gap-2 sm:gap-2.5 shadow-lg transition-all duration-300"
+            className="w-full rounded-[18px] sm:rounded-3xl md:rounded-[28px] lg:rounded-4xl border-[1.5px] sm:border-2 border-white px-4 sm:px-6 md:px-7 lg:px-9 py-3.5 sm:py-4 md:py-4 lg:py-4.25 backdrop-blur-md flex flex-col gap-2 sm:gap-2.5 shadow-lg transition-all duration-300"
             style={{
               background: 'linear-gradient(90deg, rgba(12, 53, 233, 0.69) 0%, rgba(8, 10, 143, 0.69) 100%)',
             }}

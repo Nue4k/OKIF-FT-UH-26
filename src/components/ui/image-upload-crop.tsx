@@ -21,7 +21,7 @@ export default function ImageUploadCrop({
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<{x: number, y: number, width: number, height: number} | null>(null);
   
   // Tampilan pratinjau hasil akhirnya (bisa dari parent atau dari hasil crop)
   const [finalPreview, setFinalPreview] = useState<string | null>(defaultImage || null);
@@ -37,7 +37,7 @@ export default function ImageUploadCrop({
     }
   };
 
-  const onCropComplete = useCallback((croppedArea: any, croppedAreaPixels: any) => {
+  const onCropComplete = useCallback((croppedArea: unknown, croppedAreaPixels: {x: number, y: number, width: number, height: number}) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 

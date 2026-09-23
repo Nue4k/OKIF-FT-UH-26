@@ -17,7 +17,7 @@ export const prestasiService = {
     }
 
     const snapshot = await query.get();
-    let results = snapshot.docs.map(doc => ({
+    const results = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data(),
     })) as Prestasi[];
@@ -62,7 +62,7 @@ export const prestasiService = {
       await deleteImageFromCloudinary(oldData.image);
     }
 
-    const updateData: any = {
+    const updateData: Record<string, unknown> = {
       ...data,
       updatedAt: Date.now()
     };

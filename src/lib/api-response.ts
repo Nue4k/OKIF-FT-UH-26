@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 
-export type ApiResponse<T = any> = {
+export type ApiResponse<T = unknown> = {
   status: "success" | "error";
   success: boolean;
   message?: string;
   data?: T;
   error?: string;
   code?: string;
-  meta?: any;
+  meta?: unknown;
 };
 
 /**
@@ -21,7 +21,7 @@ export function successResponse<T>(
   data?: T,
   message: string = "Success",
   statusCode: number = 200,
-  meta?: any
+  meta?: unknown
 ) {
   const payload: ApiResponse<T> = {
     status: "success",

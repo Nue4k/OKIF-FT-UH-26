@@ -19,9 +19,9 @@ export default function FormatifFeaturedCard({
   slug,
 }: FormatifFeaturedCardProps) {
   return (
-    <div className="w-full max-w-[360px] md:max-w-none mx-auto bg-white rounded-[18px] sm:rounded-[24px] p-0 md:p-6 shadow-lg flex flex-col md:flex-row gap-0 md:gap-6 items-stretch group hover:-translate-y-1 transition-all duration-300 overflow-hidden md:overflow-visible">
+    <div className="w-full max-w-90 md:max-w-none mx-auto bg-white rounded-[18px] sm:rounded-3xl p-0 md:p-6 shadow-lg flex flex-col md:flex-row gap-0 md:gap-6 items-stretch group hover:-translate-y-1 transition-all duration-300 overflow-hidden md:overflow-visible">
       {/* Left / Top Thumbnail Image */}
-      <div className="w-full md:w-[300px] lg:w-[450px] h-[165px] min-[360px]:h-[180px] sm:h-[210px] md:h-auto md:self-stretch md:min-h-[210px] shrink-0 rounded-t-[18px] md:rounded-[18px] overflow-hidden relative bg-gray-100">
+      <div className="w-full md:w-75 lg:w-112.5 h-41.25 min-[360px]:h-45 sm:h-52.5 md:h-auto md:self-stretch md:min-h-52.5 shrink-0 rounded-t-[18px] md:rounded-[18px] overflow-hidden relative bg-gray-100">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={image}
@@ -47,12 +47,12 @@ export default function FormatifFeaturedCard({
           </div>
 
           {/* Title */}
-          <h2 className="text-[#080A8F] text-base min-[360px]:text-[17px] sm:text-2xl md:text-2xl lg:text-[38px] font-bold leading-snug md:leading-tight lg:leading-[31px] line-clamp-2 md:line-clamp-none">
+          <h2 className="text-okif-dark text-base min-[360px]:text-[17px] sm:text-2xl md:text-2xl lg:text-[38px] font-bold leading-snug md:leading-tight lg:leading-7.75 line-clamp-2 md:line-clamp-none">
             {title}
           </h2>
 
           {/* Description Paragraph */}
-          <p className="text-[#080A8F]/90 text-xs sm:text-base md:text-sm lg:text-[16px] font-normal leading-relaxed line-clamp-3 md:line-clamp-5">
+          <p className="text-okif-dark/90 text-xs sm:text-base md:text-sm lg:text-[16px] font-normal leading-relaxed line-clamp-3 md:line-clamp-5">
             {description}
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function FormatifFeaturedCard({
         <div className="flex justify-end md:justify-start pt-1 sm:pt-2">
           <Link
             href={slug ? `/formatif/${slug}` : '#'}
-            className="px-4 py-1 sm:px-6 sm:py-1.5 rounded-[10px] sm:rounded-xl border-2 border-[#0C35E9] text-[#0C35E9] font-bold text-xs sm:text-sm tracking-wide hover:bg-[#0C35E9] hover:text-white transition-all duration-300"
+            className="px-4 py-1 sm:px-6 sm:py-1.5 rounded-[10px] sm:rounded-xl border-2 border-okif-primary text-okif-primary font-bold text-xs sm:text-sm tracking-wide hover:bg-okif-primary hover:text-white transition-all duration-300"
           >
             BACA
           </Link>

@@ -24,25 +24,25 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 transition-all duration-300">
       {/* Frosted glass blur background across all pages including homepage */}
-      <div className="absolute inset-0 transition-all duration-300 bg-[#0C35E9]/20 backdrop-blur-xl border-b border-white/20 shadow-lg pointer-events-none"></div>
+      <div className="absolute inset-0 transition-all duration-300 bg-okif-primary/20 backdrop-blur-xl border-b border-white/20 shadow-lg pointer-events-none"></div>
 
       {/* Container matching the 100px height on desktop, sleek 84px on tablet, 68px on mobile */}
-      <div className="w-full max-w-[1440px] mx-auto h-[68px] sm:h-[72px] md:h-[84px] lg:h-[100px] flex items-center justify-between px-5 sm:px-6 md:px-8 lg:px-[77px] relative z-10">
+      <div className="w-full max-w-360 mx-auto h-17 sm:h-18 md:h-21 lg:h-25 flex items-center justify-between px-5 sm:px-6 md:px-8 lg:px-19.25 relative z-10">
 
         {/* Logo Asset */}
-        <Link href="/" className="flex-shrink-0 flex items-center gap-4 group">
+        <Link href="/" className="shrink-0 flex items-center gap-4 group">
           <Image
             src="/hmif.png"
             alt="Logo OKIF FT-UH"
             width={74}
             height={75}
-            className="w-[44px] h-[44px] sm:w-[48px] sm:h-[48px] md:w-[56px] md:h-[57px] lg:w-[74px] lg:h-[75px] object-contain group-hover:scale-105 transition-transform duration-200"
+            className="w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14.25 lg:w-18.5 lg:h-18.75 object-contain group-hover:scale-105 transition-transform duration-200"
             priority
           />
         </Link>
 
         {/* Navigation Links (Visible on Tablet and Desktop) */}
-        <div className="hidden md:flex items-center gap-6 md:gap-12 lg:gap-[60px] absolute left-1/2 -translate-x-1/2">
+        <div className="hidden md:flex items-center gap-6 md:gap-12 lg:gap-15 absolute left-1/2 -translate-x-1/2">
           {navLinks.map((link) => {
             const isActive = getIsActive(link);
             return (
@@ -51,7 +51,7 @@ export default function Navbar() {
                 href={link.href}
                 className={`text-[16px] md:text-[18px] lg:text-[22px] transition-all duration-200 ${isActive
                     ? 'text-white font-black drop-shadow-[0_2px_4px_rgba(255,255,255,0.3)]'
-                    : 'text-[var(--color-okif-white-57)] font-normal hover:text-white'
+                    : 'text-(--color-okif-white-57) font-normal hover:text-white'
                   }`}
               >
                 {link.label}
@@ -65,9 +65,9 @@ export default function Navbar() {
           href="https://www.recursion.id/"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:flex items-center justify-center px-4 py-2 lg:px-[24px] lg:py-[12px] bg-gradient-to-r from-[#5EF9F1] to-[#00A6FD] rounded-[8px] lg:rounded-[10px] shadow-[0_6px_16px_rgba(0,166,253,0.4),inset_0_-4px_4px_rgba(0,0,0,0.2)] hover:brightness-110 hover:shadow-[0_8px_20px_rgba(94,249,241,0.5)] transition-all active:translate-y-0.5"
+          className="hidden md:flex items-center justify-center px-4 py-2 lg:px-6 lg:py-3 bg-linear-to-r from-[#5EF9F1] to-[#00A6FD] rounded-lg lg:rounded-[10px] shadow-[0_6px_16px_rgba(0,166,253,0.4),inset_0_-4px_4px_rgba(0,0,0,0.2)] hover:brightness-110 hover:shadow-[0_8px_20px_rgba(94,249,241,0.5)] transition-all active:translate-y-0.5"
         >
-          <span className="text-[#080A8F] text-[15px] lg:text-[22px] font-bold leading-none">
+          <span className="text-okif-dark text-[15px] lg:text-[22px] font-bold leading-none">
             Recursion 2.0
           </span>
         </a>
@@ -102,7 +102,7 @@ export default function Navbar() {
                 }}
                 className={`text-[18px] py-2 transition-colors ${isActive
                     ? 'text-white font-black'
-                    : 'text-[var(--color-okif-white-57)] font-normal hover:text-white'
+                    : 'text-(--color-okif-white-57) font-normal hover:text-white'
                   }`}
               >
                 {link.label}
@@ -114,7 +114,7 @@ export default function Navbar() {
               href="https://www.recursion.id/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-[12px] bg-gradient-to-r from-[#5EF9F1] to-[#00A6FD] rounded-[10px] shadow-[0_6px_16px_rgba(0,166,253,0.4)] text-[#080A8F] text-[18px] font-bold flex items-center justify-center text-center"
+              className="w-full py-3 bg-linear-to-r from-[#5EF9F1] to-[#00A6FD] rounded-[10px] shadow-[0_6px_16px_rgba(0,166,253,0.4)] text-okif-dark text-[18px] font-bold flex items-center justify-center text-center"
             >
               Recursion 2.0
             </a>

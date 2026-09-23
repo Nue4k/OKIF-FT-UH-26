@@ -21,7 +21,7 @@ const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
 
 // Inisialisasi Analytics (Hanya berjalan di sisi Client/Browser)
-let analytics: any;
+let analytics: unknown;
 if (typeof window !== "undefined") {
   isSupported().then((supported) => {
     if (supported) {

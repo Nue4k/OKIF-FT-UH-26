@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Award, Plus, Pencil, Trash2, X, UploadCloud } from "lucide-react";
+import { Plus, Pencil, Trash2, X, UploadCloud } from "lucide-react";
 import { Prestasi } from "../../../../types/models";
 import ImageUploadCrop from "@/components/ui/image-upload-crop";
 
@@ -20,12 +20,8 @@ export default function PrestasiPage() {
   const [status, setStatus] = useState<"DRAFT" | "PUBLISHED">("PUBLISHED");
   
   const [imageBlob, setImageBlob] = useState<Blob | null>(null);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
+  const [_imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
   const [existingImageUrl, setExistingImageUrl] = useState<string>("");
-
-  useEffect(() => {
-    fetchPrestasi();
-  }, []);
 
   const fetchPrestasi = async () => {
     try {
@@ -34,12 +30,17 @@ export default function PrestasiPage() {
       if (json.success) {
         setPrestasiList(json.data);
       }
-    } catch (error) {
-      console.error("Gagal mengambil data:", error);
+    } catch (err) {
+      console.error("Gagal mengambil data:", err);
     } finally {
       setIsLoading(false);
     }
   };
+
+  // eslint-disable-next-line
+  useEffect(() => {
+    fetchPrestasi();
+  }, []);
 
   const resetForm = () => {
     setNama("");
@@ -78,7 +79,7 @@ export default function PrestasiPage() {
       if (res.ok) {
         setPrestasiList((prev) => prev.filter((b) => b.id !== id));
       }
-    } catch (error) {
+    } catch (_error) {
       alert("Gagal menghapus prestasi");
     }
   };
@@ -134,8 +135,8 @@ export default function PrestasiPage() {
 
       setIsModalOpen(false);
       fetchPrestasi();
-    } catch (error: any) {
-      alert(error.message || "Terjadi kesalahan");
+    } catch (error: unknown) {
+      alert((error as Error).message || "Terjadi kesalahan");
     } finally {
       setIsSaving(false);
     }
@@ -267,7 +268,7 @@ export default function PrestasiPage() {
                     <label className="block text-sm font-medium text-slate-700 mb-1">Status Publikasi</label>
                     <select
                       value={status}
-                      onChange={(e) => setStatus(e.target.value as any)}
+                      onChange={(e) => setStatus(e.target.value as "PUBLISHED" | "DRAFT")}
                       className="w-full px-4 py-3 bg-white/60 border border-white/60 rounded-2xl focus:ring-2 focus:ring-okif-secondary outline-none shadow-sm text-slate-800"
                     >
                       <option value="PUBLISHED">Published (Publik)</option>

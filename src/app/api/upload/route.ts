@@ -67,10 +67,10 @@ export async function POST(request: NextRequest) {
     });
 
     return successResponse({ url: publicUrl }, "File uploaded successfully", 201);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Upload error:", error);
     return errorResponse(
-      error.message || "Internal Server Error",
+      (error as Error).message || "Internal Server Error",
       "INTERNAL_SERVER_ERROR",
       500
     );

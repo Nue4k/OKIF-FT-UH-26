@@ -18,7 +18,7 @@ export const formatifService = {
     }
 
     const snapshot = await query.get();
-    let results = snapshot.docs.map(doc => ({
+    const results = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data(),
     })) as Formatif[];
@@ -50,7 +50,7 @@ export const formatifService = {
 
   async create(data: Omit<Formatif, "id" | "createdAt" | "updatedAt">): Promise<{ id: string; slug: string }> {
     const now = Date.now();
-    let slug = generateSlug(data.title);
+    const slug = generateSlug(data.title);
     
     let slugExists = true;
     let counter = 1;
@@ -87,7 +87,7 @@ export const formatifService = {
       await deleteImageFromCloudinary(oldData.image);
     }
 
-    const updateData: any = {
+    const updateData: Record<string, unknown> = {
       ...data,
       updatedAt: Date.now()
     };

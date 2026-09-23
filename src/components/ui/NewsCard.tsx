@@ -20,19 +20,19 @@ export default function NewsCard({
   slug,
 }: NewsCardProps) {
   return (
-    <div className="w-full max-w-[360px] sm:max-w-none mx-auto flex flex-col bg-white rounded-[20px] sm:rounded-[24px] shadow-lg overflow-hidden group hover:-translate-y-2 transition-all duration-300">
+    <div className="w-full max-w-90 sm:max-w-none mx-auto flex flex-col bg-white rounded-[20px] sm:rounded-3xl shadow-lg overflow-hidden group hover:-translate-y-2 transition-all duration-300">
       {/* Top Image */}
-      <div className="h-[185px] sm:h-[200px] md:h-[210px] lg:h-[230px] w-full relative overflow-hidden rounded-t-[20px] sm:rounded-t-[24px]">
+      <div className="h-46.25 sm:h-50 md:h-52.5 lg:h-57.5 w-full relative overflow-hidden rounded-t-[20px] sm:rounded-t-3xl">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover object-center rounded-t-[20px] sm:rounded-t-[24px] group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover object-center rounded-t-[20px] sm:rounded-t-3xl group-hover:scale-105 transition-transform duration-500"
         />
       </div>
 
       {/* Card Body */}
-      <div className="px-4 py-3.5 sm:px-4 sm:py-3.5 md:px-5 md:py-4 flex flex-col justify-between flex-1 gap-2.5 sm:gap-3 bg-white rounded-b-[20px] sm:rounded-b-[24px]">
+      <div className="px-4 py-3.5 sm:px-4 sm:py-3.5 md:px-5 md:py-4 flex flex-col justify-between flex-1 gap-2.5 sm:gap-3 bg-white rounded-b-[20px] sm:rounded-b-3xl">
         <div className="flex flex-col gap-1.5 sm:gap-2">
           {/* Author & Date Meta */}
           <div className="flex items-center gap-1.5 text-[11px] sm:text-[12px] text-[#767676] font-normal">
@@ -48,12 +48,12 @@ export default function NewsCard({
           </div>
 
           {/* Title */}
-          <h4 className="text-[#080A8F] text-base sm:text-base md:text-[18px] lg:text-[22px] font-bold leading-snug line-clamp-2">
+          <h4 className="text-okif-dark text-base sm:text-base md:text-[18px] lg:text-[22px] font-bold leading-snug line-clamp-2">
             {title}
           </h4>
 
           {/* Description */}
-          <p className="text-[#080A8F]/90 text-xs sm:text-xs md:text-sm lg:text-[15px] font-normal leading-relaxed line-clamp-3">
+          <p className="text-okif-dark/90 text-xs sm:text-xs md:text-sm lg:text-[15px] font-normal leading-relaxed line-clamp-3">
             {description}
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function NewsCard({
         <div className="flex justify-end pt-1">
           <Link
             href={slug ? `/berita/${slug}` : '/berita'}
-            className="px-4 sm:px-5 md:px-5 lg:px-6 py-1 sm:py-1.5 rounded-[10px] sm:rounded-[12px] border-2 border-[#0C35E9] text-[#0C35E9] font-bold text-xs sm:text-xs md:text-sm tracking-wide hover:bg-[#0C35E9] hover:text-white transition-all duration-300"
+            className="px-4 sm:px-5 md:px-5 lg:px-6 py-1 sm:py-1.5 rounded-[10px] sm:rounded-xl border-2 border-okif-primary text-okif-primary font-bold text-xs sm:text-xs md:text-sm tracking-wide hover:bg-okif-primary hover:text-white transition-all duration-300"
           >
             BACA
           </Link>

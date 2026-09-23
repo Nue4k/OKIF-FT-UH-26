@@ -46,7 +46,7 @@ export default function BeritaSection({ beritaList = [], formatifList = [] }: Be
         <div className="w-full flex flex-col gap-4 sm:gap-5 md:gap-6 lg:gap-8">
           {/* Section Header Badge */}
           <div className="flex items-center justify-start w-full">
-            <div className="bg-gradient-to-b from-[#0C35E9] to-[#1486F6] text-white font-bold text-[11px] min-[360px]:text-xs sm:text-sm md:text-base lg:text-lg px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-xl inline-block shadow-md tracking-normal uppercase">
+            <div className="bg-linear-to-b from-okif-primary to-okif-secondary text-white font-bold text-[11px] min-[360px]:text-xs sm:text-sm md:text-base lg:text-lg px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-xl inline-block shadow-md tracking-normal uppercase">
               KEGIATAN HMIF FT-UH
             </div>
           </div>
@@ -57,7 +57,7 @@ export default function BeritaSection({ beritaList = [], formatifList = [] }: Be
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {[...gridBerita, ...listBerita].map((item, idx) => (
-              <div key={`mobile-news-${item.id || idx}`} className="w-[82vw] max-w-[310px] min-w-[250px] shrink-0 flex snap-center">
+              <div key={`mobile-news-${item.id || idx}`} className="w-[82vw] max-w-77.5 min-w-62.5 shrink-0 flex snap-center">
                 <BeritaGridCard 
                   author={item.author || 'Admin'}
                   date={item.date || 'Tidak ada tanggal'}
@@ -78,7 +78,7 @@ export default function BeritaSection({ beritaList = [], formatifList = [] }: Be
             {/* Top Grid Cards (Converted to Flex to allow centering when few items) */}
             <div className="flex flex-wrap justify-center gap-4 md:gap-4 lg:gap-8 w-full items-stretch">
               {gridBerita.map((item, idx) => (
-                <div key={`grid-news-${item.id || idx}`} className="w-full md:w-[calc(33.333%-1rem)] lg:w-[calc(33.333%-1.33rem)] max-w-[400px] flex">
+                <div key={`grid-news-${item.id || idx}`} className="w-full md:w-[calc(33.333%-1rem)] lg:w-[calc(33.333%-1.33rem)] max-w-100 flex">
                   <BeritaGridCard 
                     author={item.author || 'Admin'}
                     date={item.date || 'Tidak ada tanggal'}
@@ -112,7 +112,7 @@ export default function BeritaSection({ beritaList = [], formatifList = [] }: Be
         <div id="formatif" className="w-full flex flex-col gap-4 sm:gap-5 md:gap-6 lg:gap-8 pt-6 sm:pt-8 md:pt-10 scroll-mt-28 border-t border-white/15">
           {/* Section Header Badge */}
           <div className="flex items-center justify-start w-full">
-            <div className="bg-gradient-to-b from-[#0C35E9] to-[#1486F6] text-white font-bold text-[11px] min-[360px]:text-xs sm:text-sm md:text-base lg:text-lg px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-xl inline-block shadow-md tracking-normal uppercase">
+            <div className="bg-linear-to-b from-okif-primary to-okif-secondary text-white font-bold text-[11px] min-[360px]:text-xs sm:text-sm md:text-base lg:text-lg px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-xl inline-block shadow-md tracking-normal uppercase">
               HASIL FORMATIF HMIF FT-UH
             </div>
           </div>
@@ -134,7 +134,7 @@ export default function BeritaSection({ beritaList = [], formatifList = [] }: Be
           {/* Bottom Grid Cards (Converted to Flex for centering) */}
           <div className="flex flex-wrap justify-center gap-4 sm:gap-5 md:gap-4 lg:gap-8 w-full mt-1 sm:mt-2 items-stretch">
             {gridFormatif.map((item, idx) => (
-              <div key={`grid-formatif-${item.id || idx}`} className="w-full md:w-[calc(33.333%-1rem)] lg:w-[calc(33.333%-1.33rem)] max-w-[400px] flex">
+              <div key={`grid-formatif-${item.id || idx}`} className="w-full md:w-[calc(33.333%-1rem)] lg:w-[calc(33.333%-1.33rem)] max-w-100 flex">
                 <FormatifGridCard 
                   author="Admin"
                   date={item.date || 'Tidak ada tanggal'}

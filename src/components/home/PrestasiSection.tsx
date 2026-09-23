@@ -79,7 +79,7 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
 
       {/* Title */}
       <div className="text-center mb-4 md:mb-6 flex flex-col items-center gap-3 md:gap-4 px-4">
-        <div className="bg-gradient-to-b from-[#0C35E9] to-[#1486F6] text-white font-bold text-xs sm:text-sm md:text-lg px-5 py-2 rounded-xl inline-block shadow-md tracking-normal uppercase">
+        <div className="bg-linear-to-b from-okif-primary to-okif-secondary text-white font-bold text-xs sm:text-sm md:text-lg px-5 py-2 rounded-xl inline-block shadow-md tracking-normal uppercase">
           MAHASISWA BERPRESTASI
         </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight uppercase text-center">
@@ -89,7 +89,7 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
 
       {/* Empty State or Slidable Cards Container */}
       {!prestasiList || prestasiList.length === 0 ? (
-        <div className="flex flex-col items-center justify-center min-h-[150px] md:min-h-[200px] text-center relative z-10 w-full">
+        <div className="flex flex-col items-center justify-center min-h-37.5 md:min-h-50 text-center relative z-10 w-full">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-300">Belum ada data mahasiswa berprestasi saat ini.</h2>
         </div>
       ) : (
@@ -107,9 +107,9 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {displayItems.map((item, index) => (
-              <div key={index} className="flex-shrink-0 flex flex-col items-center relative group w-[185px] sm:w-[240px] md:w-[300px]">
+              <div key={index} className="shrink-0 flex flex-col items-center relative group w-46.25 sm:w-60 md:w-75">
                 {/* Image Card Container (3:4 Aspect Ratio) */}
-                <div className="relative z-10 w-[185px] sm:w-[240px] md:w-[300px] aspect-[3/4] flex justify-center hover:scale-105 transition-transform duration-300">
+                <div className="relative z-10 w-46.25 sm:w-60 md:w-75 aspect-3/4 flex justify-center hover:scale-105 transition-transform duration-300">
                   {item.image ? (
                     <Image
                       src={item.image}
@@ -121,7 +121,7 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
                     />
                   ) : (
                     <div
-                      className="w-full aspect-[3/4] bg-white/5 rounded-[32px] border-2 border-dashed border-white/20 flex flex-col items-center justify-center"
+                      className="w-full aspect-3/4 bg-white/5 rounded-4xl border-2 border-dashed border-white/20 flex flex-col items-center justify-center"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white/30 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />

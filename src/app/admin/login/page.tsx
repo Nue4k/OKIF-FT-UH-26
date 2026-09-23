@@ -37,7 +37,7 @@ export default function AdminLogin() {
 
       // 4. Redirect to Dashboard with a hard reload to ensure middleware catches the new cookie
       window.location.href = "/admin/dashboard";
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
       setError("Login gagal. Periksa kembali email dan password Anda.");
       setIsLoading(false);
@@ -86,7 +86,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-[#050170] text-white rounded-lg py-2.5 font-medium hover:bg-[#0C35E9] transition-colors disabled:opacity-70 flex justify-center mt-2"
+            className="w-full bg-[#050170] text-white rounded-lg py-2.5 font-medium hover:bg-okif-primary transition-colors disabled:opacity-70 flex justify-center mt-2"
           >
             {isLoading ? "Memproses..." : "Masuk"}
           </button>

@@ -16,7 +16,7 @@ export default function OrganisasiSection() {
       {/* Title & Header Area */}
       <div className="relative z-10 flex flex-col items-center text-center mb-8 sm:mb-10 md:mb-12 lg:mb-14 px-4">
         <div
-          className="bg-gradient-to-b from-[#0C35E9] to-[#1486F6] text-white font-bold text-sm sm:text-base md:text-base lg:text-[18px] px-5 sm:px-6 py-2 sm:py-2.5 rounded-[12px] inline-block mb-3 sm:mb-4 shadow-md tracking-normal uppercase"
+          className="bg-linear-to-b from-okif-primary to-okif-secondary text-white font-bold text-sm sm:text-base md:text-base lg:text-[18px] px-5 sm:px-6 py-2 sm:py-2.5 rounded-xl inline-block mb-3 sm:mb-4 shadow-md tracking-normal uppercase"
           style={{ fontFamily: 'var(--font-lato), Lato, sans-serif' }}
         >
           STRUKTUR KEPENGURUSAN
@@ -36,10 +36,10 @@ export default function OrganisasiSection() {
       </div>
 
       {/* 2 Big Cards Container (Identik Sempurna Kiri dan Kanan) */}
-      <div className="relative z-20 w-full max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-[48px]">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-12">
 
         {/* Left Card: DMMIF FT-UH */}
-        <div className="relative w-full max-w-[593px] h-[460px] sm:h-[500px] md:h-[540px] lg:h-[631px] rounded-[20px] overflow-hidden border-[2px] border-white shadow-[0_0_25px_rgba(255,255,255,0.75),0_0_50px_rgba(255,255,255,0.3)] hover:shadow-[0_0_35px_rgba(255,255,255,0.95),0_0_70px_rgba(255,255,255,0.45)] transition-all duration-300 flex flex-col justify-end p-5 sm:p-6 md:p-6 lg:p-[26px] group">
+        <div className="relative w-full max-w-148.25 h-115 sm:h-125 md:h-135 lg:h-157.75 rounded-[20px] overflow-hidden border-2 border-white shadow-[0_0_25px_rgba(255,255,255,0.75),0_0_50px_rgba(255,255,255,0.3)] hover:shadow-[0_0_35px_rgba(255,255,255,0.95),0_0_70px_rgba(255,255,255,0.45)] transition-all duration-300 flex flex-col justify-end p-5 sm:p-6 md:p-6 lg:p-6.5 group">
           {/* Background Image */}
           <div className="absolute inset-0 -z-10 overflow-hidden">
             <Image
@@ -66,7 +66,7 @@ export default function OrganisasiSection() {
               DMMIF FT-UH
             </h4>
             <p
-              className="text-xs sm:text-sm md:text-base lg:text-[18px] text-white leading-relaxed font-normal mb-4 sm:mb-5 md:mb-5 lg:mb-[26px] text-justify line-clamp-4 sm:line-clamp-none"
+              className="text-xs sm:text-sm md:text-base lg:text-[18px] text-white leading-relaxed font-normal mb-4 sm:mb-5 md:mb-5 lg:mb-6.5 text-justify line-clamp-4 sm:line-clamp-none"
               style={{ fontFamily: 'var(--font-lato), Lato, sans-serif' }}
             >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -76,7 +76,7 @@ export default function OrganisasiSection() {
               className="w-full"
             >
               <button
-                className="w-full h-[46px] sm:h-[48px] md:h-[52px] lg:h-[58px] bg-white hover:bg-white/90 active:scale-[0.98] text-[#080A8F] font-bold text-xs sm:text-sm md:text-base lg:text-[17px] px-4 md:px-6 lg:px-[36.48px] rounded-[9.2px] text-center uppercase tracking-normal transition-all duration-300 shadow-lg cursor-pointer flex items-center justify-center"
+                className="w-full h-11.5 sm:h-12 md:h-13 lg:h-14.5 bg-white hover:bg-white/90 active:scale-[0.98] text-okif-dark font-bold text-xs sm:text-sm md:text-base lg:text-[17px] px-4 md:px-6 lg:px-[36.48px] rounded-[9.2px] text-center uppercase tracking-normal transition-all duration-300 shadow-lg cursor-pointer flex items-center justify-center"
                 style={{ fontFamily: 'var(--font-lato), Lato, sans-serif' }}
               >
                 LIHAT STRUKTUR DMMIF FT-UH
@@ -86,7 +86,7 @@ export default function OrganisasiSection() {
         </div>
 
         {/* Right Card: HMIF FT-UH (100% Identik dengan Kartu Kiri) */}
-        <div className="relative w-full max-w-[593px] h-[460px] sm:h-[500px] md:h-[540px] lg:h-[631px] rounded-[20px] overflow-hidden border-[2px] border-white shadow-[0_0_25px_rgba(255,255,255,0.75),0_0_50px_rgba(255,255,255,0.3)] hover:shadow-[0_0_35px_rgba(255,255,255,0.95),0_0_70px_rgba(255,255,255,0.45)] transition-all duration-300 flex flex-col justify-end p-5 sm:p-6 md:p-6 lg:p-[26px] group">
+        <div className="relative w-full max-w-148.25 h-115 sm:h-125 md:h-135 lg:h-157.75 rounded-[20px] overflow-hidden border-2 border-white shadow-[0_0_25px_rgba(255,255,255,0.75),0_0_50px_rgba(255,255,255,0.3)] hover:shadow-[0_0_35px_rgba(255,255,255,0.95),0_0_70px_rgba(255,255,255,0.45)] transition-all duration-300 flex flex-col justify-end p-5 sm:p-6 md:p-6 lg:p-6.5 group">
           {/* Background Image */}
           <div className="absolute inset-0 -z-10 overflow-hidden">
             <Image
@@ -113,7 +113,7 @@ export default function OrganisasiSection() {
               HMIF FT-UH
             </h4>
             <p
-              className="text-xs sm:text-sm md:text-base lg:text-[18px] text-white leading-relaxed font-normal mb-4 sm:mb-5 md:mb-5 lg:mb-[26px] text-justify line-clamp-4 sm:line-clamp-none"
+              className="text-xs sm:text-sm md:text-base lg:text-[18px] text-white leading-relaxed font-normal mb-4 sm:mb-5 md:mb-5 lg:mb-6.5 text-justify line-clamp-4 sm:line-clamp-none"
               style={{ fontFamily: 'var(--font-lato), Lato, sans-serif' }}
             >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -123,7 +123,7 @@ export default function OrganisasiSection() {
               className="w-full"
             >
               <button
-                className="w-full h-[46px] sm:h-[48px] md:h-[52px] lg:h-[58px] bg-white hover:bg-white/90 active:scale-[0.98] text-[#080A8F] font-bold text-xs sm:text-sm md:text-base lg:text-[17px] px-4 md:px-6 lg:px-[36.48px] rounded-[9.2px] text-center uppercase tracking-normal transition-all duration-300 shadow-lg cursor-pointer flex items-center justify-center"
+                className="w-full h-11.5 sm:h-12 md:h-13 lg:h-14.5 bg-white hover:bg-white/90 active:scale-[0.98] text-okif-dark font-bold text-xs sm:text-sm md:text-base lg:text-[17px] px-4 md:px-6 lg:px-[36.48px] rounded-[9.2px] text-center uppercase tracking-normal transition-all duration-300 shadow-lg cursor-pointer flex items-center justify-center"
                 style={{ fontFamily: 'var(--font-lato), Lato, sans-serif' }}
               >
                 LIHAT STRUKTUR HMIF FT-UH

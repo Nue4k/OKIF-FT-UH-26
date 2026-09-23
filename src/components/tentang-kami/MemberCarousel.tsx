@@ -16,8 +16,8 @@ export default function MemberCarousel({
 }: MemberCarouselProps) {
   const hasNavigation = showNavigation !== undefined ? showNavigation : members.length > 5;
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [_canScrollLeft, setCanScrollLeft] = useState(false);
+  const [_canScrollRight, setCanScrollRight] = useState(true);
 
   const checkScroll = () => {
     if (scrollRef.current) {

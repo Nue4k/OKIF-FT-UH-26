@@ -24,10 +24,6 @@ export default function FormatifPage() {
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
   const [existingImageUrl, setExistingImageUrl] = useState<string>("");
 
-  useEffect(() => {
-    fetchFormatif();
-  }, []);
-
   const fetchFormatif = async () => {
     try {
       const res = await fetch("/api/formatif");
@@ -41,6 +37,10 @@ export default function FormatifPage() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchFormatif();
+  }, []);
 
   const resetForm = () => {
     setTitle("");
@@ -140,8 +140,8 @@ export default function FormatifPage() {
 
       setIsModalOpen(false);
       fetchFormatif();
-    } catch (error: any) {
-      alert(error.message || "Terjadi kesalahan");
+    } catch (error: unknown) {
+      alert((error as Error).message || "Terjadi kesalahan");
     } finally {
       setIsSaving(false);
     }
@@ -286,7 +286,7 @@ export default function FormatifPage() {
                     <label className="block text-sm font-medium text-slate-700 mb-1">Status Publikasi</label>
                     <select
                       value={status}
-                      onChange={(e) => setStatus(e.target.value as any)}
+                      onChange={(e) => setStatus(e.target.value as "PUBLISHED" | "DRAFT")}
                       className="w-full px-4 py-3 bg-white/60 border border-white/60 rounded-2xl focus:ring-2 focus:ring-okif-secondary outline-none shadow-sm text-slate-800"
                     >
                       <option value="PUBLISHED">Published (Publik)</option>
@@ -300,7 +300,7 @@ export default function FormatifPage() {
                       required
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
-                      className="w-full px-5 py-4 min-h-[300px] bg-white/60 border border-white/70 rounded-[1.5rem] focus:ring-2 focus:ring-okif-secondary focus:bg-white/80 outline-none shadow-[0_8px_30px_rgba(8,10,143,0.06)] text-slate-900 placeholder-slate-400 transition-all resize-y leading-relaxed"
+                      className="w-full px-5 py-4 min-h-75 bg-white/60 border border-white/70 rounded-3xl focus:ring-2 focus:ring-okif-secondary focus:bg-white/80 outline-none shadow-[0_8px_30px_rgba(8,10,143,0.06)] text-slate-900 placeholder-slate-400 transition-all resize-y leading-relaxed"
                       placeholder="Ketik isi formatif di sini. Pisahkan antar paragraf dengan tombol Enter..."
                     />
                   </div>

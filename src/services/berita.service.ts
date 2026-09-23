@@ -19,7 +19,7 @@ export const beritaService = {
     }
 
     const snapshot = await query.get();
-    let results = snapshot.docs.map(doc => ({
+    const results = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data(),
     })) as Berita[];
@@ -60,7 +60,7 @@ export const beritaService = {
    */
   async create(data: Omit<Berita, "id" | "createdAt" | "updatedAt">): Promise<{ id: string; slug: string }> {
     const now = Date.now();
-    let slug = generateSlug(data.title);
+    const slug = generateSlug(data.title);
     
     // Pastikan slug unik
     let slugExists = true;
@@ -101,7 +101,7 @@ export const beritaService = {
       await deleteImageFromCloudinary(oldData.image);
     }
 
-    const updateData: any = {
+    const updateData: Record<string, unknown> = {
       ...data,
       updatedAt: Date.now()
     };

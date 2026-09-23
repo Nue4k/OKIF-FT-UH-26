@@ -44,18 +44,18 @@ export default async function FormatifSlugPage({ params }: { params: Promise<{ s
       <Navbar />
 
       {/* Hero */}
-      <section className="relative w-full h-[380px] md:h-[440px] lg:h-[480px] flex items-end overflow-hidden">
+      <section className="relative w-full h-95 md:h-110 lg:h-120 flex items-end overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={data.image}
           alt={data.title}
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/60 pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/40 to-black/60 pointer-events-none" />
         <div className="absolute inset-0 bg-[#050170]/30 pointer-events-none" />
 
-        <div className="relative z-10 w-full max-w-[1360px] mx-auto px-6 md:px-12 lg:px-16 pb-10 md:pb-12 flex flex-col items-start gap-3">
-          <span className="bg-[#0051FF] text-white text-xs md:text-sm font-bold tracking-wider px-3.5 py-1 rounded-[6px] uppercase shadow-sm">
+        <div className="relative z-10 w-full max-w-340 mx-auto px-6 md:px-12 lg:px-16 pb-10 md:pb-12 flex flex-col items-start gap-3">
+          <span className="bg-[#0051FF] text-white text-xs md:text-sm font-bold tracking-wider px-3.5 py-1 rounded-md uppercase shadow-sm">
             FORMATIF
           </span>
           <h1 className="text-white text-2xl md:text-4xl lg:text-[44px] font-bold leading-snug lg:leading-[1.2] max-w-4xl drop-shadow-md">
@@ -69,7 +69,7 @@ export default async function FormatifSlugPage({ params }: { params: Promise<{ s
 
       {/* Artikel */}
       <section className="w-full bg-white py-10 md:py-14 px-6 md:px-8">
-        <div className="w-full max-w-[880px] mx-auto flex flex-col">
+        <div className="w-full max-w-220 mx-auto flex flex-col">
           <BackButton fallback="/formatif" />
 
           <p className="text-[#767676] text-xs md:text-sm font-normal mb-2">
