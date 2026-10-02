@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${data.title} - Berita OKIF FT-UH`,
     description: data.title,
     openGraph: {
-      images: [data.image],
+      images: data.image ? [data.image] : [],
     }
   };
 }
@@ -31,7 +31,7 @@ export default async function BeritaSlugPage({ params }: { params: Promise<{ slu
   }
 
   // Format tanggal dari millisecond ke string yang rapi
-  const uploadDate = data.createdAt ? new Date(data.createdAt).toLocaleDateString('id-ID', {
+  const uploadDate = (data.createdAt && !isNaN(new Date(data.createdAt).getTime())) ? new Date(data.createdAt).toLocaleDateString('id-ID', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -46,11 +46,13 @@ export default async function BeritaSlugPage({ params }: { params: Promise<{ slu
       {/* Hero */}
       <section className="relative w-full h-[380px] md:h-[440px] lg:h-[480px] flex items-end overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={data.image}
-          alt={data.title}
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
+        {data.image && (
+          <img
+            src={data.image}
+            alt={data.title}
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/60 pointer-events-none" />
         <div className="absolute inset-0 bg-[#050170]/30 pointer-events-none" />
 
