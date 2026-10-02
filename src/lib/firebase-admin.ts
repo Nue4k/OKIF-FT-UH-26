@@ -10,19 +10,23 @@ if (!getApps().length) {
     privateKey = privateKey.replace(/\\n/g, '\n').replace(/^"|"$/g, '');
   }
 
-  initializeApp({
-    credential: cert({
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: privateKey,
-    }),
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  });
-  console.log('Firebase Admin initialized successfully.');
+  try {
+    initializeApp({
+      credential: cert({
+        projectId: process.env.FIREBASE_PROJECT_ID?.replace(/^"|'|"|'$/g, '')?.trim(),
+        clientEmail: process.env.FIREBASE_CLIENT_EMAIL?.replace(/^"|'|"|'$/g, '')?.trim(),
+        privateKey: privateKey?.trim(),
+      }),
+      storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    });
+    console.log('Firebase Admin initialized successfully.');
+  } catch (error) {
+    console.error('Firebase Admin initialization error:', error);
+  }
 }
 
-const adminDb = getFirestore();
-const adminAuth = getAuth();
-const adminStorage = getStorage();
+let adminDb = getFirestore();
+let adminAuth = getAuth();
+let adminStorage = getStorage();
 
 export { adminDb, adminAuth, adminStorage };
