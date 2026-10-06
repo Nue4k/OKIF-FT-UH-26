@@ -102,7 +102,7 @@ export default function ProgramKerjaSection() {
     <BaseSection id="proker" variant="transparent" className="pt-0 md:pt-2 -mt-8 md:-mt-14 !pb-[32px] relative flex flex-col isolate" containerClassName="!max-w-full !px-0 w-full">
 
       {/* Left Light Glow - 100% Exact Figma Specs: Group 111 */}
-      <div className="absolute top-1/2 -left-[500px] md:-left-[750px] -translate-y-1/2 w-[600px] h-[600px] md:w-[932px] md:h-[932px] pointer-events-none -z-20 overflow-visible flex items-center justify-center">
+      <div className="absolute top-[360px] sm:top-[400px] md:top-[420px] lg:top-[440px] -left-[500px] md:-left-[750px] -translate-y-1/2 w-[600px] h-[600px] md:w-[932px] md:h-[932px] pointer-events-none -z-20 overflow-visible flex items-center justify-center">
         <div
           className="w-full h-full rounded-full blur-[60px] md:blur-[90px]"
           style={{
@@ -122,7 +122,7 @@ export default function ProgramKerjaSection() {
       </div>
 
       {/* Right Light Glow - 100% Exact Figma Specs: Group 116 */}
-      <div className="absolute top-1/2 -right-[500px] md:-right-[750px] -translate-y-1/2 w-[600px] h-[600px] md:w-[932px] md:h-[932px] pointer-events-none -z-20 overflow-visible flex items-center justify-center">
+      <div className="absolute top-[360px] sm:top-[400px] md:top-[420px] lg:top-[440px] -right-[500px] md:-right-[750px] -translate-y-1/2 w-[600px] h-[600px] md:w-[932px] md:h-[932px] pointer-events-none -z-20 overflow-visible flex items-center justify-center">
         <div
           className="w-full h-full rounded-full blur-[60px] md:blur-[90px]"
           style={{

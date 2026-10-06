@@ -32,7 +32,7 @@ export default function Navbar() {
         {/* Logo Asset */}
         <Link href="/" className="shrink-0 flex items-center gap-4 group">
           <Image
-            src="/hmif.png"
+            src="/hmif1.png"
             alt="Logo OKIF FT-UH"
             width={74}
             height={75}

@@ -13,34 +13,64 @@ interface PrestasiSectionProps {
 export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) {
   const safePrestasiList = prestasiList || [];
   const isFewItems = safePrestasiList.length < 4;
-  // Only duplicate items for infinite seamless auto-scrolling if there are enough items
-  const displayItems = isFewItems ? safePrestasiList : [...safePrestasiList, ...safePrestasiList];
-
+  // 3 sets of items for seamless bi-directional infinite wrap if enough items
+  const displayItems = isFewItems
+    ? safePrestasiList
+    : [...safePrestasiList, ...safePrestasiList, ...safePrestasiList];
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const isHoveredRef = useRef(false);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const startScrollLeftRef = useRef(0);
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [activeDot, setActiveDot] = useState(0);
 
+  // Helper to temporarily pause auto-scroll when user interacts
+  const pauseAutoScrollTemporarily = () => {
+    isHoveredRef.current = true;
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+    resumeTimeoutRef.current = setTimeout(() => {
+      isHoveredRef.current = false;
+    }, 2500);
+  };
+
+  // Initialize scroll position in the middle set for seamless wrap if duplicated
   useEffect(() => {
     const container = scrollRef.current;
-    if (!container) return;
+    if (!container || isFewItems || safePrestasiList.length === 0) return;
+
+    const oneSetWidth = container.scrollWidth / 3;
+    if (container.scrollLeft === 0) {
+      container.scrollLeft = oneSetWidth;
+    }
+  }, [isFewItems, safePrestasiList.length]);
+
+  // Auto-scroll loop
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container || isFewItems || safePrestasiList.length === 0) return;
 
     let animationFrameId: number;
-    const speed = 0.75; // Kecepatan scroll perlahan yang halus
+    const speed = 0.75; // Smooth slow scroll
 
     const autoScroll = () => {
-      if (!isHoveredRef.current && container) {
+      if (!isHoveredRef.current && !isDraggingRef.current && container) {
         container.scrollLeft += speed;
 
-        const halfWidth = container.scrollWidth / 2;
-        if (container.scrollLeft >= halfWidth) {
-          container.scrollLeft -= halfWidth;
+        const oneSetWidth = container.scrollWidth / 3;
+        if (container.scrollLeft >= 2 * oneSetWidth) {
+          container.scrollLeft -= oneSetWidth;
+        } else if (container.scrollLeft <= 0) {
+          container.scrollLeft += oneSetWidth;
         }
 
         // Update active dot indicator
         if (safePrestasiList.length > 0) {
-          const itemWidth = halfWidth / safePrestasiList.length;
-          const currentIdx = Math.floor((container.scrollLeft % halfWidth) / itemWidth) % safePrestasiList.length;
+          const itemWidth = oneSetWidth / safePrestasiList.length;
+          const currentIdx = Math.floor((container.scrollLeft % oneSetWidth) / itemWidth) % safePrestasiList.length;
           setActiveDot(currentIdx || 0);
         }
       }
@@ -49,34 +79,61 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
 
     animationFrameId = requestAnimationFrame(autoScroll);
 
-    const handleWheel = (e: WheelEvent) => {
-      if (e.deltaY !== 0) {
-        container.scrollLeft += e.deltaY;
-        const halfWidth = container.scrollWidth / 2;
-        if (container.scrollLeft >= halfWidth) {
-          container.scrollLeft -= halfWidth;
-        } else if (container.scrollLeft < 0) {
-          container.scrollLeft += halfWidth;
-        }
-      }
-    };
-
-    container.addEventListener('wheel', handleWheel, { passive: true });
-
     return () => {
       cancelAnimationFrame(animationFrameId);
-      container.removeEventListener('wheel', handleWheel);
+      if (resumeTimeoutRef.current) {
+        clearTimeout(resumeTimeoutRef.current);
+      }
     };
-  }, [safePrestasiList.length]);
+  }, [isFewItems, safePrestasiList.length]);
+
+  // Handle native scroll (trackpad, horizontal wheel, mobile momentum)
+  const handleScroll = () => {
+    const container = scrollRef.current;
+    if (!container || isFewItems) return;
+
+    const oneSetWidth = container.scrollWidth / 3;
+    if (container.scrollLeft >= 2 * oneSetWidth) {
+      container.scrollLeft -= oneSetWidth;
+    } else if (container.scrollLeft <= 0) {
+      container.scrollLeft += oneSetWidth;
+    }
+  };
+
+  // Mouse drag to scroll handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    isDraggingRef.current = true;
+    pauseAutoScrollTemporarily();
+    startXRef.current = e.pageX;
+    startScrollLeftRef.current = container.scrollLeft;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDraggingRef.current || !scrollRef.current) return;
+    e.preventDefault();
+    const container = scrollRef.current;
+    const deltaX = (e.pageX - startXRef.current) * 1.3;
+    container.scrollLeft = startScrollLeftRef.current - deltaX;
+    pauseAutoScrollTemporarily();
+  };
+
+  const handleMouseUpOrLeave = () => {
+    if (isDraggingRef.current) {
+      isDraggingRef.current = false;
+      pauseAutoScrollTemporarily();
+    }
+  };
 
   return (
     <BaseSection
       id="prestasi"
       variant="transparent"
       className="pt-0 pb-16 md:pb-24 relative flex flex-col justify-center overflow-visible select-none"
-      containerClassName="!max-w-full !px-0 w-full"
+      containerClassName="!max-w-full !px-0 w-full relative"
     >
-
       {/* Title */}
       <div className="text-center mb-4 md:mb-6 flex flex-col items-center gap-3 md:gap-4 px-4">
         <div className="bg-linear-to-b from-okif-primary to-okif-secondary text-white font-bold text-xs sm:text-sm md:text-lg px-5 py-2 rounded-xl inline-block shadow-md tracking-normal uppercase">
@@ -94,13 +151,18 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
         </div>
       ) : (
         <>
-          {/* Slidable Cards Container (Edge-to-Edge with Smooth Auto-Scroll) */}
+          {/* Slidable Cards Container (Edge-to-Edge with Manual Scroll & Drag Support) */}
           <div
             ref={scrollRef}
+            onScroll={handleScroll}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUpOrLeave}
+            onMouseLeave={handleMouseUpOrLeave}
+            onTouchStart={() => pauseAutoScrollTemporarily()}
+            onTouchMove={() => pauseAutoScrollTemporarily()}
+            onTouchEnd={() => pauseAutoScrollTemporarily()}
             onMouseEnter={() => { isHoveredRef.current = true; }}
-            onMouseLeave={() => { isHoveredRef.current = false; }}
-            onTouchStart={() => { isHoveredRef.current = true; }}
-            onTouchEnd={() => { isHoveredRef.current = false; }}
             className={`w-full flex flex-nowrap overflow-x-auto [&::-webkit-scrollbar]:hidden gap-4 sm:gap-6 md:gap-10 items-center pt-2 pb-4 px-4 md:px-12 cursor-grab active:cursor-grabbing ${
               isFewItems ? 'justify-center' : 'justify-start'
             }`}
@@ -116,8 +178,9 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
                       alt={item.nama}
                       fill
                       sizes="(max-width: 640px) 185px, (max-width: 768px) 240px, 300px"
-                      className="object-contain drop-shadow-2xl pointer-events-none"
+                      className="object-contain drop-shadow-2xl pointer-events-none select-none"
                       priority={index < 4}
+                      draggable={false}
                     />
                   ) : (
                     <div
@@ -148,7 +211,6 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
           </div>
         </>
       )}
-
     </BaseSection>
   );
 }

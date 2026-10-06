@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="flex items-center gap-3 sm:gap-4 order-1">
             <div className="relative w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] lg:w-[58px] lg:h-[58px] flex-shrink-0">
               <Image
-                src="/hmif.png"
+                src="/hmif1.png"
                 alt="Logo OKIF FT-UH"
                 fill
                 className="object-contain"
@@ -31,7 +31,7 @@ export default function Footer() {
             <div className="flex items-center gap-[2px] sm:gap-[3px]">
               <div className="relative w-[20px] h-[25px] sm:w-[24px] sm:h-[30px] lg:w-[26px] lg:h-[33px] flex-shrink-0">
                 <Image
-                  src="/tag1.png"
+                  src="/tag.png"
                   alt="Tag"
                   fill
                   className="object-contain"
@@ -40,7 +40,7 @@ export default function Footer() {
               </div>
               <div className="flex flex-col font-black tracking-normal leading-[15px] sm:leading-[17px] lg:leading-[17.8px] text-white select-none text-[13px] sm:text-[16px] lg:text-[18.69px]">
                 <span>HIDUPTEKNIK</span>
-                <span>JAYALAHINFORMATIKA</span>
+                <span className="-ml-[3px] sm:-ml-[4px] lg:-ml-[5px]">JAYALAHINFORMATIKA</span>
               </div>
             </div>
           </div>

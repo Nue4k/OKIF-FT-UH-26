@@ -40,7 +40,7 @@ export default function AboutSection() {
       containerClassName="!max-w-full !px-0 w-full"
     >
       {/* Pure CSS Radial Glow - Cone Tapering towards center (Slightly smaller far-left size) */}
-      <div className="absolute top-[50%] -translate-y-1/2 left-[-300px] md:left-[-500px] w-[1000px] h-[750px] md:w-[1900px] md:h-[1250px] pointer-events-none z-0 overflow-visible flex items-center justify-center">
+      <div className="absolute top-[280px] sm:top-[320px] md:top-[330px] lg:top-[340px] -translate-y-1/2 left-[-300px] md:left-[-500px] w-[1000px] h-[750px] md:w-[1900px] md:h-[1250px] pointer-events-none z-0 overflow-visible flex items-center justify-center">
         <div
           className="w-full h-full rounded-full blur-[60px] md:blur-[100px]"
           style={{
@@ -63,11 +63,11 @@ export default function AboutSection() {
       {/* About Box (Tentang Kami OKIF FT-UH) Wrapper */}
       <div className="relative w-full max-w-[1360px] mx-auto z-10 px-4 sm:px-6 md:px-8">
         {/* Outer Card Box with White Border, Ambient Glow */}
-        <div className="w-full p-[2px] rounded-[24px] bg-gradient-to-r from-white/90 via-[#040659] via-50% to-white/90 shadow-[-20px_0_40px_rgba(0,0,0,0.85),20px_0_40px_rgba(20,134,246,0.4),0_0_35px_rgba(255,255,255,0.4)] relative z-10">
-          <div className="w-full h-full bg-gradient-to-b from-[#090CBD] via-[#06088B] to-[#040659] rounded-[22px] p-4 sm:p-6 md:p-8 lg:p-12 relative overflow-hidden">
+        <div className="w-full p-[2px] rounded-[24px] bg-gradient-to-r from-white/90 via-[#040659] via-50% to-white/90 shadow-[-20px_0_40px_rgba(0,0,0,0.85),20px_0_40px_rgba(20,134,246,0.4),0_0_35px_rgba(255,255,255,0.4)] relative z-10 transition-all duration-300">
+          <div className="w-full h-full bg-gradient-to-b from-[#090CBD] via-[#06088B] to-[#040659] rounded-[22px] p-4 sm:p-6 md:p-8 lg:p-12 relative overflow-hidden transition-all duration-300">
             {/* Enhanced Glow effects inside box */}
             <div className="absolute top-0 right-0 w-3/5 h-full bg-[#1486F6]/25 blur-[90px] pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-2/5 h-full bg-[#0C35E9]/25 blur-[90px] pointer-events-none"></div>
+            <div className="absolute top-0 left-0 w-2/5 h-full bg-[#0C35E9]/25 blur-[90px] pointer-events-none"></div>
 
             <div className="flex flex-col lg:flex-row gap-5 lg:gap-12 relative z-10 items-start">
               {/* Left: Image */}

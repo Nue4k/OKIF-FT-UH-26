@@ -44,6 +44,63 @@ export default function HeroSection() {
             quality={100}
             className="object-cover object-center"
           />
+
+          {/* Blue Tone Overlay for Photo */}
+          <div 
+            className="absolute inset-0 bg-gradient-to-b from-[#030628]/80 via-[#08186E]/65 to-[#0C32A8]/50 mix-blend-multiply"
+          />
+          <div 
+            className="absolute inset-0 bg-[#0C35E9]/20 mix-blend-color"
+          />
+
+          {/* Top Navbar Vignette */}
+          <div 
+            className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#020418]/85 via-[#040828]/40 to-transparent pointer-events-none"
+          />
+
+          {/* Figma Concentric Elliptical Glows (#0C35E9 -> #5DF4EF -> #FFFFFF) */}
+          <div className="absolute inset-x-0 bottom-[-14%] sm:bottom-[-18%] md:bottom-[-22%] flex items-center justify-center pointer-events-none">
+            {/* Layer 1: Outer Electric Blue Ellipse (Figma: W 3461, H 932, #0C35E9) */}
+            <div
+              className="absolute rounded-[100%] bg-[#0C35E9] mix-blend-screen pointer-events-none"
+              style={{
+                width: 'min(3600px, 240vw)',
+                height: 'min(950px, 85vh)',
+                filter: 'blur(130px)',
+                opacity: 0.95,
+                transform: 'translate3d(0, 0, 0)',
+              }}
+            />
+
+            {/* Layer 2: Middle Cyan Ellipse (Figma: W 2770.29, H 746, #5DF4EF) */}
+            <div
+              className="absolute rounded-[100%] bg-[#5DF4EF] mix-blend-screen pointer-events-none"
+              style={{
+                width: 'min(2900px, 190vw)',
+                height: 'min(780px, 72vh)',
+                filter: 'blur(100px)',
+                opacity: 0.9,
+                transform: 'translate3d(0, 0, 0)',
+              }}
+            />
+
+            {/* Layer 3: Inner White Core Ellipse (Figma: W 1875.33, H 505, #FFFFFF) */}
+            <div
+              className="absolute rounded-[100%] bg-white mix-blend-screen pointer-events-none"
+              style={{
+                width: 'min(1900px, 130vw)',
+                height: 'min(520px, 48vh)',
+                filter: 'blur(80px)',
+                opacity: 0.85,
+                transform: 'translate3d(0, 0, 0)',
+              }}
+            />
+          </div>
+
+          {/* Wide Ambient Cyan Bottom Glow (so bottom corners have the soft cyan wash like in Figma) */}
+          <div 
+            className="absolute inset-x-0 bottom-0 h-72 bg-[radial-gradient(ellipse_120%_90%_at_50%_100%,rgba(93,244,239,0.3)_0%,rgba(12,53,233,0.15)_60%,transparent_100%)] mix-blend-screen pointer-events-none"
+          />
         </div>
 
         {/* Hero Content Area */}
