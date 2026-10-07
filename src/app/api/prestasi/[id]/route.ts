@@ -14,6 +14,14 @@ export async function GET(
     if (!data) {
       return errorResponse("Prestasi not found", "NOT_FOUND", 404);
     }
+    
+    if (data.status !== "PUBLISHED") {
+      const session = await verifySessionCookie();
+      if (!session) {
+        return errorResponse("Prestasi not found", "NOT_FOUND", 404);
+      }
+    }
+
     return successResponse(data, "Prestasi retrieved successfully");
   } catch (error) {
     console.error("Error fetching prestasi details:", error);

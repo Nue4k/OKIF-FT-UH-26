@@ -8,15 +8,21 @@ import { usePathname } from 'next/navigation';
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const navLinks = [
     { label: 'Beranda', href: '/' },
-    { label: 'Tentang Kami', href: '/tentang-kami' },
+    { label: 'Tentang Kami', href: '#', hasDropdown: true },
     { label: 'Berita', href: '/berita' },
+  ];
+  const aboutLinks = [
+    { label: 'Dewan Musyawarah Mahasiswa Informatika FT-UH', href: '/dmmif' },
+    { label: 'Himpunan Mahasiswa Informatika FT-UH', href: '/hmif' },
   ];
 
   const getIsActive = (link: { label: string; href: string }) => {
     if (link.href === '/berita') return pathname?.startsWith('/berita') || pathname?.startsWith('/formatif');
-    if (link.href === '/tentang-kami') return pathname?.startsWith('/tentang-kami');
+    if (link.label === 'Tentang Kami') return pathname?.startsWith('/dmmif') || pathname?.startsWith('/hmif');
     if (link.href === '/') return pathname === '/';
     return false;
   };
@@ -45,15 +51,55 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-6 md:gap-12 lg:gap-15 absolute left-1/2 -translate-x-1/2">
           {navLinks.map((link) => {
             const isActive = getIsActive(link);
+            const linkClass = `text-[16px] md:text-[18px] lg:text-[22px] transition-all duration-200 ${isActive
+                ? 'text-white font-black drop-shadow-[0_2px_4px_rgba(255,255,255,0.3)]'
+                : 'text-(--color-okif-white-57) font-normal hover:text-white'
+              }`;
+
+            if (link.hasDropdown) {
+              return (
+                <div
+                  key={link.label}
+                  className="relative"
+                  onMouseEnter={() => setAboutOpen(true)}
+                  onMouseLeave={() => setAboutOpen(false)}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setAboutOpen((v) => !v)}
+                    aria-haspopup="true"
+                    aria-expanded={aboutOpen}
+                    className={`${linkClass} flex items-center gap-1.5 cursor-pointer`}
+                  >
+                    {link.label}
+                    <svg xmlns="http://www.w3.org/2000/svg" className={`w-4 h-4 transition-transform duration-200 ${aboutOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  {/* Popup (pt-3 bridges the hover gap between button and panel) */}
+                  <div
+                    className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-200 ${aboutOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1'}`}
+                  >
+                    <div className="w-72 lg:w-80 rounded-2xl border border-white/20 bg-okif-darker/95 backdrop-blur-xl shadow-2xl overflow-hidden">
+                      {aboutLinks.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setAboutOpen(false)}
+                          className={`block px-5 py-3.5 text-[15px] lg:text-[17px] leading-snug transition-colors hover:bg-white/10 hover:text-white ${pathname?.startsWith(item.href) ? 'text-white font-bold' : 'text-(--color-okif-white-57)'}`}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
             return (
-              <Link
-                key={link.label}
-                href={link.href}
-                className={`text-[16px] md:text-[18px] lg:text-[22px] transition-all duration-200 ${isActive
-                    ? 'text-white font-black drop-shadow-[0_2px_4px_rgba(255,255,255,0.3)]'
-                    : 'text-(--color-okif-white-57) font-normal hover:text-white'
-                  }`}
-              >
+              <Link key={link.label} href={link.href} className={linkClass}>
                 {link.label}
               </Link>
             );
@@ -93,6 +139,43 @@ export default function Navbar() {
         <div className="md:hidden relative z-10 px-6 pb-6 pt-2 flex flex-col gap-4">
           {navLinks.map((link) => {
             const isActive = getIsActive(link);
+            const mobileClass = `text-[18px] py-2 transition-colors ${isActive
+                ? 'text-white font-black'
+                : 'text-(--color-okif-white-57) font-normal hover:text-white'
+              }`;
+
+            if (link.hasDropdown) {
+              return (
+                <div key={link.label} className="flex flex-col">
+                  <button
+                    type="button"
+                    onClick={() => setMobileAboutOpen((v) => !v)}
+                    aria-expanded={mobileAboutOpen}
+                    className={`${mobileClass} flex items-center justify-between w-full text-left`}
+                  >
+                    {link.label}
+                    <svg xmlns="http://www.w3.org/2000/svg" className={`w-5 h-5 transition-transform duration-200 ${mobileAboutOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {mobileAboutOpen && (
+                    <div className="flex flex-col gap-1 pl-4 mt-1 border-l border-white/20">
+                      {aboutLinks.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={`text-[16px] py-2 leading-snug transition-colors hover:text-white ${pathname?.startsWith(item.href) ? 'text-white font-bold' : 'text-(--color-okif-white-57)'}`}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
             return (
               <Link
                 key={link.label}
@@ -100,10 +183,7 @@ export default function Navbar() {
                 onClick={() => {
                   setMobileMenuOpen(false);
                 }}
-                className={`text-[18px] py-2 transition-colors ${isActive
-                    ? 'text-white font-black'
-                    : 'text-(--color-okif-white-57) font-normal hover:text-white'
-                  }`}
+                className={mobileClass}
               >
                 {link.label}
               </Link>

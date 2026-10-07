@@ -7,13 +7,14 @@ import Link from 'next/link';
 export default function Footer() {
   const navLinks = [
     { label: 'Beranda', href: '/' },
-    { label: 'Tentang Kami', href: '/tentang-kami' },
+    { label: 'DMMIF', href: '/dmmif' },
+    { label: 'HMIF', href: '/hmif' },
     { label: 'Berita', href: '/berita' },
   ];
 
   return (
     <footer className="w-full bg-[#080A8F] text-white relative z-20">
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-10 lg:px-[79px] min-h-[200px] lg:h-[231px] flex flex-col justify-between py-6 md:py-7 lg:py-[28px]">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-10 lg:px-[79px] min-h-[150px] sm:min-h-[160px] md:min-h-[170px] lg:h-[190px] flex flex-col justify-between py-4 sm:py-5 md:py-5 lg:py-[22px]">
         
         {/* Top Section: Logo/Slogan, Nav Links, Social Media */}
         <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap items-center justify-between gap-5 md:gap-y-5 lg:gap-0 lg:h-[85px] w-full">
@@ -141,11 +142,11 @@ export default function Footer() {
         </div>
 
         {/* Divider Line (1282 Fill x 0, Stroke #FFFFFF 100%, Weight 1) */}
-        <div className="w-full border-t border-white my-4 lg:my-0"></div>
+        <div className="w-full border-t border-white/40 my-3 sm:my-3.5 md:my-4 lg:my-0"></div>
 
-        {/* Bottom Section: Copyright (26px height) */}
-        <div className="text-center py-1 lg:py-0 lg:h-[26px] flex items-center justify-center">
-          <p className="text-white font-bold text-xs sm:text-base md:text-lg lg:text-[22px] tracking-normal leading-none">
+        {/* Bottom Section: Copyright */}
+        <div className="text-center flex items-center justify-center">
+          <p className="text-white/80 font-medium text-[11px] sm:text-xs md:text-[13px] lg:text-sm tracking-normal leading-none">
             &copy; 2026 OKIF FT-UH. All rights reserved.
           </p>
         </div>

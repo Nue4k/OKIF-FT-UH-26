@@ -66,13 +66,6 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
         } else if (container.scrollLeft <= 0) {
           container.scrollLeft += oneSetWidth;
         }
-
-        // Update active dot indicator
-        if (safePrestasiList.length > 0) {
-          const itemWidth = oneSetWidth / safePrestasiList.length;
-          const currentIdx = Math.floor((container.scrollLeft % oneSetWidth) / itemWidth) % safePrestasiList.length;
-          setActiveDot(currentIdx || 0);
-        }
       }
       animationFrameId = requestAnimationFrame(autoScroll);
     };
@@ -87,17 +80,61 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
     };
   }, [isFewItems, safePrestasiList.length]);
 
+  // Sync the active dot with whichever card is closest to the viewport center
+  const updateActiveDot = () => {
+    const container = scrollRef.current;
+    const count = safePrestasiList.length;
+    if (!container || count === 0) return;
+
+    const children = Array.from(container.children) as HTMLElement[];
+    if (children.length === 0) return;
+
+    let idx = 0;
+    if (isFewItems && container.scrollLeft + container.clientWidth >= container.scrollWidth - 2 && container.scrollWidth > container.clientWidth) {
+      idx = count - 1; // reached the end, last card can't reach the center
+    } else {
+      const center = container.scrollLeft + container.clientWidth / 2;
+      let best = Infinity;
+      children.forEach((child, i) => {
+        const dist = Math.abs(child.offsetLeft + child.offsetWidth / 2 - center);
+        if (dist < best) {
+          best = dist;
+          idx = i;
+        }
+      });
+    }
+    setActiveDot(idx % count);
+  };
+
   // Handle native scroll (trackpad, horizontal wheel, mobile momentum)
   const handleScroll = () => {
     const container = scrollRef.current;
-    if (!container || isFewItems) return;
+    if (!container) return;
 
-    const oneSetWidth = container.scrollWidth / 3;
-    if (container.scrollLeft >= 2 * oneSetWidth) {
-      container.scrollLeft -= oneSetWidth;
-    } else if (container.scrollLeft <= 0) {
-      container.scrollLeft += oneSetWidth;
+    if (!isFewItems) {
+      const oneSetWidth = container.scrollWidth / 3;
+      if (container.scrollLeft >= 2 * oneSetWidth) {
+        container.scrollLeft -= oneSetWidth;
+      } else if (container.scrollLeft <= 0) {
+        container.scrollLeft += oneSetWidth;
+      }
     }
+    updateActiveDot();
+  };
+
+  // Click on a dot -> scroll the carousel to that card
+  const scrollToIndex = (i: number) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const children = Array.from(container.children) as HTMLElement[];
+    // With duplicated sets, target the card in the middle set
+    const target = children[isFewItems ? i : i + safePrestasiList.length];
+    if (!target) return;
+
+    pauseAutoScrollTemporarily();
+    const left = target.offsetLeft - (container.clientWidth - target.offsetWidth) / 2;
+    container.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+    setActiveDot(i);
   };
 
   // Mouse drag to scroll handlers
@@ -131,7 +168,7 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
     <BaseSection
       id="prestasi"
       variant="transparent"
-      className="pt-0 pb-16 md:pb-24 relative flex flex-col justify-center overflow-visible select-none"
+      className="py-12 md:py-20 relative flex flex-col justify-center overflow-visible select-none"
       containerClassName="!max-w-full !px-0 w-full relative"
     >
       {/* Title */}
@@ -163,8 +200,9 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
             onTouchMove={() => pauseAutoScrollTemporarily()}
             onTouchEnd={() => pauseAutoScrollTemporarily()}
             onMouseEnter={() => { isHoveredRef.current = true; }}
-            className={`w-full flex flex-nowrap overflow-x-auto [&::-webkit-scrollbar]:hidden gap-4 sm:gap-6 md:gap-10 items-center pt-2 pb-4 px-4 md:px-12 cursor-grab active:cursor-grabbing ${
-              isFewItems ? 'justify-center' : 'justify-start'
+            className={`w-full flex flex-nowrap overflow-x-auto [&::-webkit-scrollbar]:hidden gap-4 sm:gap-6 md:gap-10 items-center pt-2 pb-4 px-4 md:px-12 cursor-grab active:cursor-grabbing justify-start ${
+              // Auto margins center the cards when they fit, but never clip the first card when they overflow
+              isFewItems ? '[&>:first-child]:ml-auto [&>:last-child]:mr-auto' : ''
             }`}
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
@@ -197,18 +235,6 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
             ))}
           </div>
 
-          {/* Dots Indicator */}
-          <div className="relative z-20 flex justify-center items-center gap-2.5 mt-4">
-            {safePrestasiList.map((_, i) => (
-              <div
-                key={`dot-${i}`}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === activeDot
-                  ? 'bg-cyan-400 shadow-[0_0_10px_#22d3ee] scale-125'
-                  : 'bg-white/50 hover:bg-white/80'
-                  }`}
-              />
-            ))}
-          </div>
         </>
       )}
     </BaseSection>

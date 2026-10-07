@@ -48,17 +48,25 @@ export async function POST(request: NextRequest) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    // 5. Upload ke Cloudinary dengan Auto-Compress (Future Proofing)
+    const type = request.nextUrl.searchParams.get("type");
+    const isMapres = type === "mapres";
+
+    const uploadOptions: Record<string, any> = {
+      folder: "okif26_uploads",
+      transformation: [
+        { width: 1280, crop: "limit" },
+        isMapres ? { quality: 90 } : { quality: "auto" }
+      ]
+    };
+
+    if (!isMapres) {
+      uploadOptions.format = "webp";
+    }
+
+    // 5. Upload ke Cloudinary
     const publicUrl = await new Promise<string>((resolve, reject) => {
       cloudinary.uploader.upload_stream(
-        { 
-          folder: "okif26_uploads",
-          format: "webp", // Paksa ubah ke format WebP (sangat kecil & cepat)
-          transformation: [
-            { width: 1280, crop: "limit" }, // Cegah upload gambar raksasa (max width 1280px)
-            { quality: "auto" } // Biarkan AI Cloudinary menentukan kompresi terbaik tanpa pecah
-          ]
-        },
+        uploadOptions,
         (error, result) => {
           if (error) reject(error);
           else resolve(result!.secure_url);

@@ -20,7 +20,7 @@ export default function TentangKamiMemberCard({
   member,
   className = '',
 }: TentangKamiMemberCardProps) {
-  const photoSrc = member.foto || member.imageUrl || '/ketua.png';
+  const photoSrc = member.foto || member.imageUrl || '/silhouette.svg';
   const personName = member.nama || member.name || 'A. Tyas Nur Atda';
   const personRole = member.jabatan || member.role || 'Sekretaris';
   return (

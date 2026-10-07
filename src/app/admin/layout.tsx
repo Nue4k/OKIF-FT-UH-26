@@ -47,7 +47,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Sidebar */}
       <div className="w-64 bg-white/40 backdrop-blur-xl border-r border-white/60 flex flex-col fixed h-full z-20 shadow-[4px_0_24px_-12px_rgba(0,0,0,0.1)]">
         <div className="py-8 flex flex-col items-center justify-center border-b border-white/40">
-          <img src="/hmif.png" alt="Logo OKIF" className="w-16 h-16 object-contain drop-shadow-sm" />
+          <img src="/hmif1.png" alt="Logo OKIF" className="w-16 h-16 object-contain drop-shadow-sm" />
           <h1 className="text-sm mt-3 font-bold tracking-widest uppercase text-okif-secondary bg-white/60 px-3 py-1 rounded-full shadow-sm">Admin Dashboard</h1>
         </div>
         

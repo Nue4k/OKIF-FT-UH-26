@@ -88,7 +88,7 @@ export default function PrestasiPage() {
     const formData = new FormData();
     formData.append("file", blob, "image.jpg");
     
-    const res = await fetch("/api/upload", {
+    const res = await fetch("/api/upload?type=mapres", {
       method: "POST",
       body: formData,
     });

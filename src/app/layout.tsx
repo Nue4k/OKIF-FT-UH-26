@@ -12,6 +12,11 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "OKIF FT-UH",
   description: "Organisasi Kemahasiswaan Informatika Fakultas Teknik Universitas Hasanuddin",
+  icons: {
+    icon: "/hmif1.png",
+    shortcut: "/hmif1.png",
+    apple: "/hmif1.png",
+  },
 };
 
 export default function RootLayout({

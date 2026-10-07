@@ -72,7 +72,7 @@ export default function OrganisasiSection() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
             <Link
-              href="/tentang-kami#dmmif"
+              href="/dmmif"
               className="w-full"
             >
               <button
@@ -119,7 +119,7 @@ export default function OrganisasiSection() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
             <Link
-              href="/tentang-kami#hmif"
+              href="/hmif"
               className="w-full"
             >
               <button

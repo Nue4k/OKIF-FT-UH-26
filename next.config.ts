@@ -50,6 +50,11 @@ const nextConfig: NextConfig = {
         destination: '/berita#formatif',
         permanent: true,
       },
+      {
+        source: '/tentang-kami',
+        destination: '/hmif',
+        permanent: true,
+      },
     ];
   },
 };
