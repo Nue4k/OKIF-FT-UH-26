@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Navbar from '@/components/ui/Navbar';
 import HeroSection from '@/components/home/HeroSection';
 import PrestasiSection from '@/components/home/PrestasiSection';
@@ -12,6 +13,10 @@ import { formatifService } from '@/services/formatif.service';
 import { prestasiService } from '@/services/prestasi.service';
 
 export const revalidate = 60; // Revalidate every 60 seconds
+
+export const metadata: Metadata = {
+  title: "Beranda",
+};
 
 export default async function Home() {
   const [allBerita, allFormatif, allPrestasi] = await Promise.all([

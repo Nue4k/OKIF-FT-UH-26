@@ -16,12 +16,6 @@ export async function verifySessionCookie() {
   try {
     const decodedClaims = await adminAuth.verifySessionCookie(sessionCookie, true);
     
-    const adminEmails = process.env.ADMIN_EMAILS ? process.env.ADMIN_EMAILS.split(',') : [];
-    if (!adminEmails.includes(decodedClaims.email || '') && decodedClaims.admin !== true) {
-      console.warn(`Unauthorized access attempt by email: ${decodedClaims.email}`);
-      return null;
-    }
-
     return decodedClaims;
   } catch (error) {
     console.error("Error verifying session cookie:", error);

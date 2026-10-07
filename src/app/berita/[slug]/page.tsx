@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!data) return { title: 'Not Found' };
 
   return {
-    title: `${data.title} - Berita OKIF FT-UH`,
+    title: data.title,
     description: data.title,
     openGraph: {
       images: data.image ? [data.image] : [],
