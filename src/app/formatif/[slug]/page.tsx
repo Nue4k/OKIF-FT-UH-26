@@ -87,21 +87,19 @@ export default async function FormatifSlugPage({ params }: { params: Promise<{ s
 
           {/* Plain Text Render with Inline Image */}
           <div className="flex flex-col gap-6 text-[#2B2B2B] text-[17px] leading-[1.85] text-justify">
-            {(data.description || "").split(/\n+/).map((paragraph: string, index: number) => {
-              if (!paragraph.trim()) return null;
-              return (
-                <React.Fragment key={index}>
-                  <p>{paragraph}</p>
-                  {index === 1 && data.image && (
-                    <img
-                      src={data.image}
-                      alt={data.title}
-                      className="w-full rounded-[20px] my-4 shadow-sm object-cover"
-                    />
-                  )}
-                </React.Fragment>
-              );
-            })}
+            {(data.description || "").split(/\n+/).filter((p: string) => p.trim()).map((paragraph: string, index: number) => (
+              <React.Fragment key={index}>
+                <p>{paragraph}</p>
+                {index === 0 && (data.contentImage || data.image) && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={data.contentImage || data.image}
+                    alt={data.title}
+                    className="w-full rounded-[20px] my-4 shadow-sm object-cover"
+                  />
+                )}
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </section>

@@ -24,6 +24,9 @@ export default function FormatifPage() {
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
   const [existingImageUrl, setExistingImageUrl] = useState<string>("");
 
+  const [contentImageBlob, setContentImageBlob] = useState<Blob | null>(null);
+  const [existingContentImageUrl, setExistingContentImageUrl] = useState<string>("");
+
   const fetchFormatif = async () => {
     try {
       const res = await fetch("/api/formatif");
@@ -51,6 +54,8 @@ export default function FormatifPage() {
     setImageBlob(null);
     setImagePreviewUrl("");
     setExistingImageUrl("");
+    setContentImageBlob(null);
+    setExistingContentImageUrl("");
     setIsEditing(false);
     setSelectedId(null);
   };
@@ -70,6 +75,7 @@ export default function FormatifPage() {
     setDescription(item.description);
     setStatus(item.status || "PUBLISHED");
     setExistingImageUrl(item.image);
+    setExistingContentImageUrl(item.contentImage || "");
     setIsModalOpen(true);
   };
 
@@ -118,6 +124,11 @@ export default function FormatifPage() {
         return;
       }
 
+      let finalContentImageUrl = existingContentImageUrl;
+      if (contentImageBlob) {
+        finalContentImageUrl = await uploadImage(contentImageBlob);
+      }
+
       const payload: Partial<Formatif> = {
         title,
         speaker,
@@ -125,6 +136,7 @@ export default function FormatifPage() {
         description,
         status,
         image: finalImageUrl,
+        ...(finalContentImageUrl ? { contentImage: finalContentImageUrl } : {}),
       };
 
       const url = isEditing ? `/api/formatif/${selectedId}` : "/api/formatif";
@@ -306,14 +318,25 @@ export default function FormatifPage() {
                   </div>
                 </div>
 
-                <div className="col-span-1 md:col-span-2">
+                <div className="col-span-1">
                   <ImageUploadCrop
                     aspectRatio={16 / 9}
-                    label="Gambar (16:9) *"
+                    label="Cover & Header (16:9) *"
                     defaultImage={existingImageUrl}
                     onCropSuccess={(blob, url) => {
                       setImageBlob(blob);
                       setImagePreviewUrl(url);
+                    }}
+                  />
+                </div>
+
+                <div className="col-span-1">
+                  <ImageUploadCrop
+                    aspectRatio={16 / 9}
+                    label="Gambar Isi (16:9) - opsional"
+                    defaultImage={existingContentImageUrl}
+                    onCropSuccess={(blob) => {
+                      setContentImageBlob(blob);
                     }}
                   />
                 </div>

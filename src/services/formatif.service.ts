@@ -87,6 +87,10 @@ export const formatifService = {
       await deleteImageFromCloudinary(oldData.image);
     }
 
+    if (data.contentImage && oldData?.contentImage && data.contentImage !== oldData.contentImage) {
+      await deleteImageFromCloudinary(oldData.contentImage);
+    }
+
     const updateData: Record<string, unknown> = {
       ...data,
       updatedAt: Date.now()
@@ -101,6 +105,9 @@ export const formatifService = {
     // Hapus gambar dari Cloudinary terlebih dahulu
     if (data?.image) {
       await deleteImageFromCloudinary(data.image);
+    }
+    if (data?.contentImage) {
+      await deleteImageFromCloudinary(data.contentImage);
     }
 
     // Baru hapus dari Firestore

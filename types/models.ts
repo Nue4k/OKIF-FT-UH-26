@@ -19,6 +19,7 @@ export interface Formatif {
   title: string;
   description: string;
   image: string;
+  contentImage?: string;
   status?: "DRAFT" | "PUBLISHED";
   createdAt?: number;
   updatedAt?: number;
