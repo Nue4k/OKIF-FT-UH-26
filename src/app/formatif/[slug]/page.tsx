@@ -85,22 +85,29 @@ export default async function FormatifSlugPage({ params }: { params: Promise<{ s
             Pembicara / Penulis: <span className="text-[#0051FF] font-bold">{data.speaker || 'HMIF FT-UH'}</span>
           </div>
 
-          {/* Plain Text Render with Inline Image */}
-          <div className="flex flex-col gap-6 text-[#2B2B2B] text-[17px] leading-[1.85] text-justify">
-            {(data.description || "").split(/\n+/).filter((p: string) => p.trim()).map((paragraph: string, index: number) => (
-              <React.Fragment key={index}>
-                <p>{paragraph}</p>
-                {index === 0 && (data.contentImage || data.image) && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={data.contentImage || data.image}
-                    alt={data.title}
-                    className="w-full rounded-[20px] my-4 shadow-sm object-cover"
-                  />
-                )}
-              </React.Fragment>
-            ))}
-          </div>
+          {/* Plain Text Render with Image in the middle */}
+          {(() => {
+            const paragraphs = (data.description || "").split(/\n+/).filter((p: string) => p.trim());
+            const middleIndex = Math.ceil(paragraphs.length / 2) - 1;
+            const imageSrc = data.contentImage || data.image;
+            return (
+              <div className="flex flex-col gap-6 text-[#2B2B2B] text-[17px] leading-[1.85] text-justify">
+                {paragraphs.map((paragraph: string, index: number) => (
+                  <React.Fragment key={index}>
+                    <p>{paragraph}</p>
+                    {index === middleIndex && imageSrc && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={imageSrc}
+                        alt={data.title}
+                        className="w-full rounded-[20px] my-4 shadow-sm object-cover"
+                      />
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+            );
+          })()}
         </div>
       </section>
     </main>
