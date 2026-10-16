@@ -45,7 +45,7 @@ export default function BeritaSection({ beritaList }: BeritaSectionProps) {
               <Link href={`/berita/${beritaList[0].slug}`} className="w-full lg:max-w-137.5 h-60 sm:h-70 md:h-85 lg:h-100 rounded-2xl sm:rounded-[20px] overflow-hidden shadow-2xl relative group cursor-pointer block">
                 {/* Image */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={beritaList[0].image || "/r54.png"} alt={beritaList[0].title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src={beritaList[0].image || "/header-mmif.jpg"} alt={beritaList[0].title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
 
                 {/* Bottom Gradient Overlay for Date */}
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-[#050170]/90 to-transparent pointer-events-none" />
@@ -78,7 +78,7 @@ export default function BeritaSection({ beritaList }: BeritaSectionProps) {
                     author={news.author || 'Admin'}
                     title={news.title}
                     description={news.description ? (news.description.length > 100 ? news.description.substring(0, 100) + '...' : news.description) : ''}
-                    image={news.image || '/r54.png'}
+                    image={news.image || '/header-mmif.jpg'}
                     slug={news.slug}
                   />
                 </div>

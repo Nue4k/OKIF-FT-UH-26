@@ -73,7 +73,7 @@ export default function AboutSection() {
               {/* Left: Image */}
               <div className="w-full lg:w-[48%] flex justify-center relative aspect-[16/10] sm:aspect-[3/2] md:aspect-[16/10] lg:aspect-[3/2] rounded-[16px] overflow-hidden shadow-xl border border-white/20 flex-shrink-0">
                 <Image
-                  src="/r54.png"
+                  src="/header-mmif.jpg"
                   alt="Foto Kegiatan OKIF FT-UH"
                   fill
                   sizes="(max-width: 1024px) 100vw, 48vw"
@@ -126,16 +126,7 @@ export default function AboutSection() {
                     </h2>
                     <div className="text-xs sm:text-sm md:text-base lg:text-lg text-white/90 space-y-2.5 sm:space-y-4 md:space-y-5 lg:space-y-6 font-normal text-center lg:text-left leading-relaxed">
                       <p>
-                        Himpunan Mahasiswa Informatika Fakultas Teknik Universitas
-                        Hasanuddin - Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua.
-                      </p>
-                      <p>
-                        Himpunan Mahasiswa Informatika Fakultas Teknik Universitas
-                        Hasanuddin - Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua.
+                        OKIF FT-UH adalah organisasi kemahasiswaan di Departemen Teknik Informatika Fakultas Teknik Universitas Hasanuddin yang bertujuan sebagai sarana peningkatan kualitas ketakwaan kepada Tuhan Yang Maha Esa, yang berasaskan nilai-nilai luhur Pancasila demi terwujudnya cita-cita bangsa dengan mengembangkan wawasan, integritas dan potensi diri, kemampuan keprofesian serta pengabdian kepada masyarakat.
                       </p>
                     </div>
                   </>

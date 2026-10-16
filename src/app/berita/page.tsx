@@ -30,14 +30,14 @@ export default async function BeritaPage() {
           <BeritaHero 
             title={allBerita[0].title}
             description={allBerita[0].description ? (allBerita[0].description.length > 200 ? allBerita[0].description.substring(0, 200) + '...' : allBerita[0].description) : ''}
-            image={allBerita[0].image || '/r54.png'}
+            image={allBerita[0].image || '/header-mmif.jpg'}
             slug={allBerita[0].slug}
           />
         ) : (
           <BeritaHero 
             title="BELUM ADA BERITA"
             description="Belum ada berita yang tersedia saat ini."
-            image="/r54.png"
+            image="/header-mmif.jpg"
           />
         )}
         <BeritaSection beritaList={allBerita} formatifList={allFormatif} />

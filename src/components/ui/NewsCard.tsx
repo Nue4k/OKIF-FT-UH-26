@@ -16,7 +16,7 @@ export default function NewsCard({
   author = 'Hanzalah',
   title,
   description,
-  image = '/r54.png',
+  image = '/header-mmif.jpg',
   slug,
 }: NewsCardProps) {
   return (

@@ -37,8 +37,8 @@ export default function HeroSection() {
         {/* Background Image */}
         <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
           <Image
-            src="/bg1.png"
-            alt="Gedung Informatika FT-UH"
+            src="/header-mmif.jpg"
+            alt="Header OKIF FT-UH"
             fill
             priority
             quality={100}

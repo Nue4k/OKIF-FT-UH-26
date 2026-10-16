@@ -190,6 +190,7 @@ const kompartemenList: KompartemenData[] = [
       { id: 'med-8', name: 'Afifah Shafira P. M.', role: 'Anggota', imageUrl: '/silhouette.svg' },
       { id: 'med-9', name: 'Brigitte Margie G. A.', role: 'Anggota', imageUrl: '/silhouette.svg' },
       { id: 'med-10', name: 'Dinda Nor’aini', role: 'Anggota', imageUrl: '/silhouette.svg' },
+      { id: 'med-11', name: 'Muh. Revan A. A.', role: 'Anggota', imageUrl: '/silhouette.svg' },
     ],
   },
 ];
@@ -215,7 +216,7 @@ export default function HmifPage() {
         <div className="absolute inset-0 -z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/r54.png"
+            src="/header-mmif.jpg"
             alt="Organisasi Kemahasiswaan Informatika FT-UH"
             className="w-full h-full object-cover object-center"
           />

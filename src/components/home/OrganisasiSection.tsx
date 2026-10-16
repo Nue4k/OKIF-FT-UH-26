@@ -43,7 +43,7 @@ export default function OrganisasiSection() {
           {/* Background Image */}
           <div className="absolute inset-0 -z-10 overflow-hidden">
             <Image
-              src="/r54.png"
+              src="/dmif-hmif-card.jpg"
               alt="Foto Bersama DMMIF FT-UH"
               fill
               className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
@@ -65,12 +65,14 @@ export default function OrganisasiSection() {
             >
               DMMIF FT-UH
             </h4>
-            <p
-              className="text-xs sm:text-sm md:text-base lg:text-[18px] text-white leading-relaxed font-normal mb-4 sm:mb-5 md:mb-5 lg:mb-6.5 text-justify line-clamp-4 sm:line-clamp-none"
-              style={{ fontFamily: 'var(--font-lato), Lato, sans-serif' }}
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+            <div className="w-full min-h-[64px] sm:min-h-[76px] md:min-h-[92px] lg:min-h-[116px] flex flex-col justify-end mb-4 sm:mb-5 md:mb-5 lg:mb-6.5">
+              <p
+                className="text-xs sm:text-sm md:text-base lg:text-[18px] text-white leading-relaxed font-normal text-justify"
+                style={{ fontFamily: 'var(--font-lato), Lato, sans-serif' }}
+              >
+                Dewan Musyawarah Organisasi Kemahasiswaan Informatika Fakultas Teknik Universitas Hasanuddin merupakan lembaga legislatif dan yudikatif pada OKIF FT-UH
+              </p>
+            </div>
             <Link
               href="/dmmif"
               className="w-full"
@@ -90,7 +92,7 @@ export default function OrganisasiSection() {
           {/* Background Image */}
           <div className="absolute inset-0 -z-10 overflow-hidden">
             <Image
-              src="/r54.png"
+              src="/dmif-hmif-card.jpg"
               alt="Foto Bersama HMIF FT-UH"
               fill
               className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
@@ -112,12 +114,14 @@ export default function OrganisasiSection() {
             >
               HMIF FT-UH
             </h4>
-            <p
-              className="text-xs sm:text-sm md:text-base lg:text-[18px] text-white leading-relaxed font-normal mb-4 sm:mb-5 md:mb-5 lg:mb-6.5 text-justify line-clamp-4 sm:line-clamp-none"
-              style={{ fontFamily: 'var(--font-lato), Lato, sans-serif' }}
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+            <div className="w-full min-h-[64px] sm:min-h-[76px] md:min-h-[92px] lg:min-h-[116px] flex flex-col justify-end mb-4 sm:mb-5 md:mb-5 lg:mb-6.5">
+              <p
+                className="text-sm sm:text-base md:text-lg lg:text-[21px] text-white leading-relaxed lg:leading-[1.6] font-normal text-justify"
+                style={{ fontFamily: 'var(--font-lato), Lato, sans-serif' }}
+              >
+                Himpunan Mahasiswa Informatika Fakultas Teknik Universitas Hasanuddin merupakan lembaga eksekutif pada OKIF FT-UH
+              </p>
+            </div>
             <Link
               href="/hmif"
               className="w-full"

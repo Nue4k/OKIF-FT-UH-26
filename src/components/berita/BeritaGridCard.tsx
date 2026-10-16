@@ -26,7 +26,7 @@ export default function BeritaGridCard({
       <div className="h-40 min-[360px]:h-43.75 sm:h-52.5 md:h-37.5 lg:h-57.5 w-full relative overflow-hidden rounded-t-[18px] sm:rounded-t-3xl">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={image || '/r54.png'}
+          src={image || '/header-mmif.jpg'}
           alt={title}
           className="w-full h-full object-cover object-center rounded-t-[18px] sm:rounded-t-3xl group-hover:scale-105 transition-transform duration-500"
         />

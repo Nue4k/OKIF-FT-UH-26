@@ -17,7 +17,7 @@ export default function BeritaHorizontalCard({
       <div className="w-full md:w-65 lg:w-70 h-52.5 md:h-auto md:self-stretch md:min-h-43.75 shrink-0 rounded-t-3xl md:rounded-2xl overflow-hidden relative">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={image || '/r54.png'}
+          src={image || '/header-mmif.jpg'}
           alt={title}
           className="w-full h-full object-cover object-center rounded-t-3xl md:rounded-2xl group-hover:scale-105 transition-transform duration-500"
         />

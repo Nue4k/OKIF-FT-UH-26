@@ -63,7 +63,7 @@ export default function BeritaSection({ beritaList = [], formatifList = [] }: Be
                   date={item.date || 'Tidak ada tanggal'}
                   title={item.title}
                   description={item.description ? (item.description.length > 100 ? item.description.substring(0, 100) + '...' : item.description) : ''}
-                  image={item.image || '/r54.png'}
+                  image={item.image || '/header-mmif.jpg'}
                   slug={item.slug}
                 />
               </div>
@@ -84,7 +84,7 @@ export default function BeritaSection({ beritaList = [], formatifList = [] }: Be
                     date={item.date || 'Tidak ada tanggal'}
                     title={item.title}
                     description={item.description ? (item.description.length > 100 ? item.description.substring(0, 100) + '...' : item.description) : ''}
-                    image={item.image || '/r54.png'}
+                    image={item.image || '/header-mmif.jpg'}
                     slug={item.slug}
                   />
                 </div>
@@ -100,7 +100,7 @@ export default function BeritaSection({ beritaList = [], formatifList = [] }: Be
                   date={item.date || 'Tidak ada tanggal'}
                   title={item.title}
                   description={item.description || ''}
-                  image={item.image || '/r54.png'}
+                  image={item.image || '/header-mmif.jpg'}
                   slug={item.slug}
                 />
               ))}
@@ -124,7 +124,7 @@ export default function BeritaSection({ beritaList = [], formatifList = [] }: Be
               date={featuredFormatif.date || 'Tidak ada tanggal'}
               title={featuredFormatif.title}
               description={featuredFormatif.description || ''}
-              image={featuredFormatif.image || '/r54.png'}
+              image={featuredFormatif.image || '/header-mmif.jpg'}
               slug={featuredFormatif.slug}
             />
           ) : (
@@ -140,7 +140,7 @@ export default function BeritaSection({ beritaList = [], formatifList = [] }: Be
                   date={item.date || 'Tidak ada tanggal'}
                   title={item.title}
                   description={item.description ? (item.description.length > 100 ? item.description.substring(0, 100) + '...' : item.description) : ''}
-                  image={item.image || '/r54.png'}
+                  image={item.image || '/header-mmif.jpg'}
                   slug={item.slug}
                 />
               </div>

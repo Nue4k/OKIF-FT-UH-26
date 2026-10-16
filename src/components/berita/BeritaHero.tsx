@@ -14,7 +14,7 @@ export default function BeritaHero({
   badge = 'KEGIATAN TERBARU',
   title = 'PENGABDIAN MASYARAKAT',
   description = 'Himpunan Mahasiswa Informatika Fakultas Teknik Universitas Hasanuddin - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  image = '/r54.png',
+  image = '/header-mmif.jpg',
   slug,
 }: BeritaHeroProps) {
   return (

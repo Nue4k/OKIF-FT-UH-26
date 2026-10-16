@@ -31,7 +31,7 @@ export default function DmmifPage() {
         <div className="absolute inset-0 -z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/r54.png"
+            src="/header-mmif.jpg"
             alt="Dewan Musyawarah Mahasiswa Informatika FT-UH"
             className="w-full h-full object-cover object-center"
           />

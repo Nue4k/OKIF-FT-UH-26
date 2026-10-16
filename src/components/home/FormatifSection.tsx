@@ -49,7 +49,7 @@ export default function FormatifSection({ formatifList }: FormatifSectionProps) 
                   tag={`Formatif #${idx + 1}`}
                   title={item.title}
                   description={item.description ? (item.description.length > 100 ? item.description.substring(0, 100) + '...' : item.description) : ''}
-                  image={item.image || '/r54.png'}
+                  image={item.image || '/header-mmif.jpg'}
                   href={`/formatif/${item.slug}`}
                 />
               </div>

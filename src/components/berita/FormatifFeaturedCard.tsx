@@ -15,7 +15,7 @@ export default function FormatifFeaturedCard({
   date = '27 Juni 2026',
   title = 'Lorem Ipsum Dolor Sit Amet',
   description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-  image = '/r54.png',
+  image = '/header-mmif.jpg',
   slug,
 }: FormatifFeaturedCardProps) {
   return (
