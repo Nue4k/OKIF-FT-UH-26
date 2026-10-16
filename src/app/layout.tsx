@@ -45,6 +45,9 @@ export const metadata: Metadata = {
     shortcut: "/hmif1.png",
     apple: "/hmif1.png",
   },
+  verification: {
+    google: "kcb54Y7cTEfO6ucVc3iPGtSTpwDb8HLQAwa0Babc2M0",
+  },
 };
 
 export default function RootLayout({
