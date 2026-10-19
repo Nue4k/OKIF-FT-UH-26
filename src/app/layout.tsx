@@ -41,9 +41,15 @@ export const metadata: Metadata = {
     images: ["/hmif1.png"],
   },
   icons: {
-    icon: "/hmif1.png",
-    shortcut: "/hmif1.png",
-    apple: "/hmif1.png",
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/hmif1.png", type: "image/png" },
+    ],
+    shortcut: "/icon.png",
+    apple: [
+      { url: "/apple-icon.png" },
+      { url: "/hmif1.png" },
+    ],
   },
   verification: {
     google: "kcb54Y7cTEfO6ucVc3iPGtSTpwDb8HLQAwa0Babc2M0",

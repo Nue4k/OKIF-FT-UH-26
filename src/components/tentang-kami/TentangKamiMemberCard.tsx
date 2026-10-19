@@ -27,9 +27,9 @@ export default function TentangKamiMemberCard({
     <div
       className={`group relative flex flex-col items-center w-[155px] sm:w-[185px] md:w-[200px] lg:w-[220px] xl:w-[227.55px] member-carousel-card shrink-0 select-none transition-all duration-300 hover:-translate-y-1.5 hover:z-10 ${className}`}
     >
-      {/* Photo Container: 227.55px x 295px on desktop, proportional on mobile & tablet */}
+      {/* Photo Container: Presisi 3:4 murni di semua ukuran layar */}
       <div
-        className="relative w-full h-[200px] sm:h-[240px] md:h-[260px] lg:h-[295px] rounded-[14px] sm:rounded-[16px] overflow-hidden bg-white border-2 border-white/40 shadow-md transition-all duration-300 ease-out group-hover:border-[#1486F6] group-hover:shadow-[0_0_12px_2px_#1486F6,0_0_22px_3px_rgba(20,134,246,0.75)]"
+        className="relative w-full aspect-[3/4] rounded-[14px] sm:rounded-[16px] overflow-hidden bg-white border-2 border-white/40 shadow-md transition-all duration-300 ease-out group-hover:border-[#1486F6] group-hover:shadow-[0_0_12px_2px_#1486F6,0_0_22px_3px_rgba(20,134,246,0.75)]"
       >
         <Image
           src={photoSrc}
