@@ -35,6 +35,7 @@ export default function TentangKamiMemberCard({
           src={photoSrc}
           alt={personName}
           fill
+          unoptimized={photoSrc.endsWith('.svg')}
           className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 640px) 155px, (max-width: 768px) 185px, (max-width: 1024px) 200px, 228px"
         />

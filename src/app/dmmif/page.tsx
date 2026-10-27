@@ -8,11 +8,11 @@ import { MemberItem } from '@/components/tentang-kami/TentangKamiMemberCard';
 
 // Sample members list for DMMIF (5 members, no navigation needed)
 const dmmifMembers: MemberItem[] = [
-  { id: 'dmmif-1', name: 'Ahmad Naufaldy H.', role: 'Ketua', imageUrl: '/silhouette.svg' },
-  { id: 'dmmif-2', name: 'Sabrun Rifqi A.', role: 'Sekretaris', imageUrl: '/silhouette.svg' },
-  { id: 'dmmif-3', name: 'Muh. Randy Muflih', role: 'Komisi A', imageUrl: '/silhouette.svg' },
-  { id: 'dmmif-4', name: 'Adelia Fachrani', role: 'Komisi B', imageUrl: '/silhouette.svg' },
-  { id: 'dmmif-5', name: 'Intan', role: 'Komisi C', imageUrl: '/silhouette.svg' },
+  { id: 'dmmif-1', name: 'Ahmad Naufaldy H.', role: 'Ketua', imageUrl: '/members/dmmif/ahmad-naufaldy-hasan.jpg' },
+  { id: 'dmmif-2', name: 'Sabrun Rifqi A.', role: 'Sekretaris', imageUrl: '/members/dmmif/sabrun-rifqi-ahmad.jpg' },
+  { id: 'dmmif-3', name: 'Muh. Randy Muflih', role: 'Komisi A', imageUrl: '/members/dmmif/muhammad-randy-muflih.jpg' },
+  { id: 'dmmif-4', name: 'Adelia Fachrani', role: 'Komisi B', imageUrl: '/members/dmmif/adelia-fachrani.jpg' },
+  { id: 'dmmif-5', name: 'Intan', role: 'Komisi C', imageUrl: '/members/dmmif/intan.jpg' },
 ];
 
 export default function DmmifPage() {
