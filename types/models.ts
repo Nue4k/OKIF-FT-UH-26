@@ -5,7 +5,7 @@ export interface Berita {
   date: string;
   title: string;
   description: string;
-  image?: string;
+  image: string;
   status?: "DRAFT" | "PUBLISHED";
   createdAt?: number;
   updatedAt?: number;
@@ -18,7 +18,7 @@ export interface Formatif {
   date: string;
   title: string;
   description: string;
-  image?: string;
+  image: string;
   contentImage?: string;
   status?: "DRAFT" | "PUBLISHED";
   createdAt?: number;

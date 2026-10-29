@@ -5,6 +5,7 @@ import Navbar from '@/components/ui/Navbar';
 import BaseSection from '@/components/ui/BaseSection';
 import MemberCarousel from '@/components/tentang-kami/MemberCarousel';
 import { MemberItem } from '@/components/tentang-kami/TentangKamiMemberCard';
+import VisiMisiSection from '@/components/tentang-kami/VisiMisiSection';
 
 // Sample members list for DMMIF (5 members, no navigation needed)
 const dmmifMembers: MemberItem[] = [
@@ -13,6 +14,15 @@ const dmmifMembers: MemberItem[] = [
   { id: 'dmmif-3', name: 'Muh. Randy Muflih', role: 'Komisi A', imageUrl: '/members/dmmif/muhammad-randy-muflih.jpg' },
   { id: 'dmmif-4', name: 'Adelia Fachrani', role: 'Komisi B', imageUrl: '/members/dmmif/adelia-fachrani.jpg' },
   { id: 'dmmif-5', name: 'Intan', role: 'Komisi C', imageUrl: '/members/dmmif/intan.jpg' },
+];
+
+const dmmifVisi = "Mewujudkan DMMIF FT-UH sebagai lembaga legislatif dan yudikatif kemahasiswaan yang berintegritas, aspiratif, transparan, dan sinergis dalam mengawal konstitusi serta arah kemajuan OKIF FT-UH.";
+
+const dmmifMisi = [
+  "Menjalankan fungsi legislasi, pengawasan, dan anggaran secara optimal dan akuntabel demi kemaslahatan organisasi.",
+  "Menampung, menyerap, serta menindaklanjuti aspirasi warga Informatika FT-UH secara aktif dan responsif.",
+  "Menjaga dan menegakkan konstitusi serta nilai-nilai luhur kemahasiswaan Informatika FT-UH.",
+  "Membangun hubungan sinergis dan harmonis dengan lembaga eksekutif (HMIF) serta seluruh elemen OKIF FT-UH."
 ];
 
 export default function DmmifPage() {
@@ -50,6 +60,17 @@ export default function DmmifPage() {
 
       {/* Main Body Content */}
       <div className="relative z-10 w-full max-w-360 mx-auto px-2.5 sm:px-4 md:px-6 mt-4 sm:mt-8 md:mt-10 lg:mt-24 pb-16 sm:pb-20 md:pb-24 lg:pb-32 flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-20">
+        
+        {/* Visi & Misi DMMIF Section */}
+        <VisiMisiSection
+          id="visi-misi-dmmif"
+          title="DMMIF FT-UH"
+          imageSrc="/dmif-hmif-card.jpg"
+          imageAlt="Foto Bersama DMMIF FT-UH"
+          visi={dmmifVisi}
+          misi={dmmifMisi}
+        />
+
         <section
           id="dmmif"
           className="flex flex-col gap-3.5 sm:gap-5 md:gap-6 scroll-mt-20 sm:scroll-mt-22 md:scroll-mt-25 lg:scroll-mt-30"

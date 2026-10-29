@@ -6,6 +6,16 @@ import BaseSection from '@/components/ui/BaseSection';
 import MemberCarousel from '@/components/tentang-kami/MemberCarousel';
 import { MemberItem } from '@/components/tentang-kami/TentangKamiMemberCard';
 import HorizontalScrollContainer from '@/components/ui/HorizontalScrollContainer';
+import VisiMisiSection from '@/components/tentang-kami/VisiMisiSection';
+
+const hmifVisi = "Mewujudkan HMIF FT-UH sebagai organisasi yang berlandaskan nilai ketuhanan, menjunjung tinggi kebersamaan, serta menjadi wadah pengembangan sumber daya manusia kader yang aktif dan berdampak bagi masyarakat.";
+
+const hmifMisi = [
+  "Meningkatkan nilai ketuhanan dan keimanan kader melalui kegiatan yang menumbuhkan kesadaran spiritual dan moral dalam kehidupan berorganisasi.",
+  "Membangun keharmonisan, kerja sama, dan rasa kekeluargaan antar anggota guna menciptakan lingkungan organisasi yang solid dan saling mendukung.",
+  "Meningkatkan kualitas sumber daya manusia serta antusiasme kader melalui pengembangan potensi, keterampilan, dan partisipasi aktif dalam kegiatan organisasi.",
+  "Mendorong peran aktif kader dalam pengabdian kepada masyarakat melalui kegiatan sosial dan kontribusi keilmuan di bidang informatika."
+];
 
 interface KompartemenData {
   id: string;
@@ -236,6 +246,16 @@ export default function HmifPage() {
 
       {/* Main Body Content */}
       <div className="relative z-10 w-full max-w-360 mx-auto px-2.5 sm:px-4 md:px-6 mt-4 sm:mt-8 md:mt-10 lg:mt-24 pb-16 sm:pb-20 md:pb-24 lg:pb-32 flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-20">
+
+        {/* Visi & Misi HMIF Section */}
+        <VisiMisiSection
+          id="visi-misi-hmif"
+          title="HMIF FT-UH"
+          imageSrc="/dmif-hmif-card.jpg"
+          imageAlt="Foto Bersama HMIF FT-UH"
+          visi={hmifVisi}
+          misi={hmifMisi}
+        />
 
         {/* 2. Section: Himpunan Mahasiswa Informatika FT-UH */}
         <section
