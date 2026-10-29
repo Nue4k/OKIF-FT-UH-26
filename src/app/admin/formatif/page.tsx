@@ -74,7 +74,7 @@ export default function FormatifPage() {
     setDate(item.date || "");
     setDescription(item.description);
     setStatus(item.status || "PUBLISHED");
-    setExistingImageUrl(item.image);
+    setExistingImageUrl(item.image || "");
     setExistingContentImageUrl(item.contentImage || "");
     setIsModalOpen(true);
   };
@@ -118,10 +118,28 @@ export default function FormatifPage() {
         finalImageUrl = await uploadImage(imageBlob);
       }
 
-      if (!finalImageUrl) {
-        alert("Gambar wajib diisi!");
-        setIsSaving(false);
-        return;
+      // Validasi kewajiban isi hanya berlaku jika status PUBLISHED
+      if (status === "PUBLISHED") {
+        if (!finalImageUrl) {
+          alert("Gambar cover & header wajib diisi jika status Published!");
+          setIsSaving(false);
+          return;
+        }
+        if (!speaker.trim()) {
+          alert("Speaker wajib diisi jika status Published!");
+          setIsSaving(false);
+          return;
+        }
+        if (!date.trim()) {
+          alert("Tanggal wajib diisi jika status Published!");
+          setIsSaving(false);
+          return;
+        }
+        if (!description.trim()) {
+          alert("Isi formatif wajib diisi jika status Published!");
+          setIsSaving(false);
+          return;
+        }
       }
 
       let finalContentImageUrl = existingContentImageUrl;
@@ -131,11 +149,11 @@ export default function FormatifPage() {
 
       const payload: Partial<Formatif> = {
         title,
-        speaker,
-        date,
-        description,
+        speaker: speaker.trim() || "-",
+        date: date.trim() || new Date().toISOString().split("T")[0],
+        description: description.trim() || "",
         status,
-        image: finalImageUrl,
+        image: finalImageUrl || "",
         ...(finalContentImageUrl ? { contentImage: finalContentImageUrl } : {}),
       };
 
@@ -241,23 +259,23 @@ export default function FormatifPage() {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-40 flex items-center justify-center bg-slate-900/40 backdrop-blur-md p-4">
-          <div className="bg-white/80 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/60 w-full max-w-4xl max-h-[90vh] flex flex-col">
-            <div className="px-6 py-5 border-b border-white/60 flex justify-between items-center bg-white/40 rounded-t-3xl">
-              <h3 className="text-lg font-bold text-slate-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-md p-3 sm:p-5 md:p-6 overflow-y-auto">
+          <div className="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/80 w-full max-w-4xl max-h-[92vh] flex flex-col my-auto overflow-hidden">
+            <div className="px-5 sm:px-6 py-4 sm:py-5 border-b border-slate-100 flex justify-between items-center bg-white/70 rounded-t-3xl shrink-0">
+              <h3 className="text-base sm:text-lg font-bold text-slate-800">
                 {isEditing ? "Edit Formatif" : "Tambah Formatif"}
               </h3>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-slate-400 hover:text-slate-600 transition-colors"
+                className="text-slate-400 hover:text-slate-600 transition-colors p-1.5 rounded-xl hover:bg-slate-100"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
             
-            <div className="p-6 overflow-y-auto">
-              <form id="formatif-form" onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-5 col-span-1 md:col-span-2">
+            <div className="p-4 sm:p-6 overflow-y-auto">
+              <form id="formatif-form" onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <div className="space-y-4 sm:space-y-5 col-span-1 md:col-span-2">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">Judul Formatif *</label>
                       <input
@@ -270,11 +288,13 @@ export default function FormatifPage() {
                       />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">Speaker *</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-1">
+                        Speaker {status === "PUBLISHED" ? <span className="text-red-500">*</span> : <span className="text-xs text-slate-400 font-normal">(Opsional)</span>}
+                      </label>
                       <input
-                        required
+                        required={status === "PUBLISHED"}
                         type="text"
                         value={speaker}
                         onChange={(e) => setSpeaker(e.target.value)}
@@ -283,9 +303,11 @@ export default function FormatifPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">Tanggal *</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-1">
+                        Tanggal {status === "PUBLISHED" ? <span className="text-red-500">*</span> : <span className="text-xs text-slate-400 font-normal">(Opsional)</span>}
+                      </label>
                       <input
-                        required
+                        required={status === "PUBLISHED"}
                         type="date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
@@ -307,9 +329,11 @@ export default function FormatifPage() {
                   </div>
 
                   <div className="col-span-1 md:col-span-2">
-                    <label className="block text-sm font-medium text-slate-700 mb-1">Isi Formatif *</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">
+                      Isi Formatif {status === "PUBLISHED" ? <span className="text-red-500">*</span> : <span className="text-xs text-slate-400 font-normal">(Opsional untuk Draft)</span>}
+                    </label>
                     <textarea
-                      required
+                      required={status === "PUBLISHED"}
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       className="w-full px-5 py-4 min-h-75 bg-white/60 border border-white/70 rounded-3xl focus:ring-2 focus:ring-okif-secondary focus:bg-white/80 outline-none shadow-[0_8px_30px_rgba(8,10,143,0.06)] text-slate-900 placeholder-slate-400 transition-all resize-y leading-relaxed"
@@ -321,7 +345,7 @@ export default function FormatifPage() {
                 <div className="col-span-1">
                   <ImageUploadCrop
                     aspectRatio={16 / 9}
-                    label="Cover & Header (16:9) *"
+                    label={`Cover & Header (16:9) ${status === "PUBLISHED" ? "*" : "(Opsional untuk Draft)"}`}
                     defaultImage={existingImageUrl}
                     onCropSuccess={(blob, url) => {
                       setImageBlob(blob);

@@ -110,11 +110,20 @@ export default function PrestasiPage() {
         finalImageUrl = await uploadImage(imageBlob);
       }
 
-      // Untuk prestasi, gambar mungkin opsional sesuai keinginan, tapi mari kita jadikan opsional saja
+      // Validasi kewajiban isi hanya berlaku jika status PUBLISHED
+      if (status === "PUBLISHED") {
+        if (!prestasi.trim()) {
+          alert("Pencapaian / Prestasi wajib diisi jika status Published!");
+          setIsSaving(false);
+          return;
+        }
+      }
+
+      // Untuk prestasi, gambar opsional
       const payload: Partial<Prestasi> = {
-        nama,
-        prestasi,
-        deskripsi,
+        nama: nama.trim(),
+        prestasi: prestasi.trim() || "-",
+        deskripsi: deskripsi.trim() || "",
         status,
       };
 
@@ -223,23 +232,23 @@ export default function PrestasiPage() {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-40 flex items-center justify-center bg-slate-900/40 backdrop-blur-md p-4">
-          <div className="bg-white/80 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/60 w-full max-w-4xl max-h-[90vh] flex flex-col">
-            <div className="px-6 py-5 border-b border-white/60 flex justify-between items-center bg-white/40 rounded-t-3xl">
-              <h3 className="text-lg font-bold text-slate-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-md p-3 sm:p-5 md:p-6 overflow-y-auto">
+          <div className="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/80 w-full max-w-4xl max-h-[92vh] flex flex-col my-auto overflow-hidden">
+            <div className="px-5 sm:px-6 py-4 sm:py-5 border-b border-slate-100 flex justify-between items-center bg-white/70 rounded-t-3xl shrink-0">
+              <h3 className="text-base sm:text-lg font-bold text-slate-800">
                 {isEditing ? "Edit Prestasi" : "Tambah Prestasi"}
               </h3>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-slate-400 hover:text-slate-600 transition-colors"
+                className="text-slate-400 hover:text-slate-600 transition-colors p-1.5 rounded-xl hover:bg-slate-100"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
             
-            <div className="p-6 overflow-y-auto">
-              <form id="prestasi-form" onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-5">
+            <div className="p-4 sm:p-6 overflow-y-auto">
+              <form id="prestasi-form" onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <div className="space-y-4 sm:space-y-5">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap *</label>
                       <input
@@ -253,9 +262,11 @@ export default function PrestasiPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">Pencapaian / Prestasi *</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">
+                      Pencapaian / Prestasi {status === "PUBLISHED" ? <span className="text-red-500">*</span> : <span className="text-xs text-slate-400 font-normal">(Opsional untuk Draft)</span>}
+                    </label>
                       <input
-                        required
+                        required={status === "PUBLISHED"}
                         type="text"
                         value={prestasi}
                         onChange={(e) => setPrestasi(e.target.value)}
