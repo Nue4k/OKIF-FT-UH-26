@@ -16,13 +16,12 @@ const dmmifMembers: MemberItem[] = [
   { id: 'dmmif-5', name: 'Intan', role: 'Komisi C', imageUrl: '/members/dmmif/intan.jpg' },
 ];
 
-const dmmifVisi = "Mewujudkan DMMIF FT-UH sebagai lembaga legislatif dan yudikatif kemahasiswaan yang berintegritas, aspiratif, transparan, dan sinergis dalam mengawal konstitusi serta arah kemajuan OKIF FT-UH.";
+const dmmifVisi = "Mewujudkan DMMIF FT-UH yang berintegritas, aspiratif, dan profesional dalam menjalankan fungsi legislatif dan yudikatif untuk menciptakan tata kelola OKIF FT-UH yang sesuai mekanisme serta demi terwujudnya tujuan OKIF FT-UH";
 
 const dmmifMisi = [
-  "Menjalankan fungsi legislasi, pengawasan, dan anggaran secara optimal dan akuntabel demi kemaslahatan organisasi.",
-  "Menampung, menyerap, serta menindaklanjuti aspirasi warga Informatika FT-UH secara aktif dan responsif.",
-  "Menjaga dan menegakkan konstitusi serta nilai-nilai luhur kemahasiswaan Informatika FT-UH.",
-  "Membangun hubungan sinergis dan harmonis dengan lembaga eksekutif (HMIF) serta seluruh elemen OKIF FT-UH."
+  "Mewujudkan ruang aspirasi yang terarah dan solutif",
+  "Memaksimalkan fungsi pengawasan terhadap HMIF FT-UH agar tetap sesuai dengan aturan organisasi.",
+  "Mengoptimalkan evaluasi kinerja terhadap HMIF FT-UH serta memastikan peradilan berjalan secara tegas, objektif, dan bertanggung jawab di lingkup OKIF FT-UH"
 ];
 
 export default function DmmifPage() {
