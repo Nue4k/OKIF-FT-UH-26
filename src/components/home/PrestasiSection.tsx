@@ -12,11 +12,12 @@ interface PrestasiSectionProps {
 
 export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) {
   const safePrestasiList = prestasiList || [];
-  const isFewItems = safePrestasiList.length < 4;
-  // 3 sets of items for seamless bi-directional infinite wrap if enough items
-  const displayItems = isFewItems
-    ? safePrestasiList
-    : [...safePrestasiList, ...safePrestasiList, ...safePrestasiList];
+  const [canLoop, setCanLoop] = useState(false);
+
+  // 3 sets of items only when looping is safely enabled, otherwise just unique items
+  const displayItems = canLoop
+    ? [...safePrestasiList, ...safePrestasiList, ...safePrestasiList]
+    : safePrestasiList;
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const isHoveredRef = useRef(false);
@@ -24,37 +25,64 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
   const startXRef = useRef(0);
   const startScrollLeftRef = useRef(0);
   const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [activeDot, setActiveDot] = useState(0);
 
-  // Helper to temporarily pause auto-scroll when user interacts
-  const pauseAutoScrollTemporarily = () => {
+  // Quick-resume helper when user finishes interacting (short 500-600ms delay)
+  const resumeAutoScrollQuickly = (delay = 600) => {
     isHoveredRef.current = true;
     if (resumeTimeoutRef.current) {
       clearTimeout(resumeTimeoutRef.current);
     }
     resumeTimeoutRef.current = setTimeout(() => {
       isHoveredRef.current = false;
-    }, 2500);
+    }, delay);
   };
 
-  // Initialize scroll position in the middle set for seamless wrap if duplicated
+  // Check if content length warrants auto-scroll loop or should stay clean & static
+  useEffect(() => {
+    const checkLoopCondition = () => {
+      const container = scrollRef.current;
+      if (!container || safePrestasiList.length === 0) return;
+
+      const containerWidth = container.clientWidth;
+      const firstCard = container.querySelector('[data-mapres-card="true"]') as HTMLElement | null;
+      const cardWidth = firstCard ? firstCard.offsetWidth : 280;
+      
+      // Determine gap from container style or estimation
+      const gap = window.innerWidth >= 1280 ? 48 : window.innerWidth >= 1024 ? 40 : 32;
+      const totalUniqueWidth = safePrestasiList.length * (cardWidth + gap);
+
+      // Looping ONLY activates if total cards exceed 1.25x the screen width
+      // If cards comfortably fit the screen (e.g., 6 cards on 2560px screen), keep them steady & centered
+      const shouldEnableLoop = safePrestasiList.length >= 4 && totalUniqueWidth > containerWidth * 1.25;
+      setCanLoop(shouldEnableLoop);
+    };
+
+    checkLoopCondition();
+    window.addEventListener('resize', checkLoopCondition);
+    return () => window.removeEventListener('resize', checkLoopCondition);
+  }, [safePrestasiList.length]);
+
+  // Initialize scroll position in the middle set for seamless wrap if looping
   useEffect(() => {
     const container = scrollRef.current;
-    if (!container || isFewItems || safePrestasiList.length === 0) return;
+    if (!container || !canLoop || safePrestasiList.length === 0) {
+      if (container) container.scrollLeft = 0;
+      return;
+    }
 
     const oneSetWidth = container.scrollWidth / 3;
     if (container.scrollLeft === 0) {
       container.scrollLeft = oneSetWidth;
     }
-  }, [isFewItems, safePrestasiList.length]);
+  }, [canLoop, safePrestasiList.length]);
 
-  // Auto-scroll loop
+  // Smooth continuous auto-scroll loop with fast resume (only active when canLoop is true)
   useEffect(() => {
     const container = scrollRef.current;
-    if (!container || isFewItems || safePrestasiList.length === 0) return;
+    if (!container || !canLoop || safePrestasiList.length === 0) return;
 
     let animationFrameId: number;
-    const speed = 0.75; // Smooth slow scroll
+    const speed = 0.8; // Smooth natural scroll speed
 
     const autoScroll = () => {
       if (!isHoveredRef.current && !isDraggingRef.current && container) {
@@ -78,63 +106,19 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
         clearTimeout(resumeTimeoutRef.current);
       }
     };
-  }, [isFewItems, safePrestasiList.length]);
-
-  // Sync the active dot with whichever card is closest to the viewport center
-  const updateActiveDot = () => {
-    const container = scrollRef.current;
-    const count = safePrestasiList.length;
-    if (!container || count === 0) return;
-
-    const children = Array.from(container.children) as HTMLElement[];
-    if (children.length === 0) return;
-
-    let idx = 0;
-    if (isFewItems && container.scrollLeft + container.clientWidth >= container.scrollWidth - 2 && container.scrollWidth > container.clientWidth) {
-      idx = count - 1; // reached the end, last card can't reach the center
-    } else {
-      const center = container.scrollLeft + container.clientWidth / 2;
-      let best = Infinity;
-      children.forEach((child, i) => {
-        const dist = Math.abs(child.offsetLeft + child.offsetWidth / 2 - center);
-        if (dist < best) {
-          best = dist;
-          idx = i;
-        }
-      });
-    }
-    setActiveDot(idx % count);
-  };
+  }, [canLoop, safePrestasiList.length]);
 
   // Handle native scroll (trackpad, horizontal wheel, mobile momentum)
   const handleScroll = () => {
     const container = scrollRef.current;
-    if (!container) return;
+    if (!container || !canLoop) return;
 
-    if (!isFewItems) {
-      const oneSetWidth = container.scrollWidth / 3;
-      if (container.scrollLeft >= 2 * oneSetWidth) {
-        container.scrollLeft -= oneSetWidth;
-      } else if (container.scrollLeft <= 0) {
-        container.scrollLeft += oneSetWidth;
-      }
+    const oneSetWidth = container.scrollWidth / 3;
+    if (container.scrollLeft >= 2 * oneSetWidth) {
+      container.scrollLeft -= oneSetWidth;
+    } else if (container.scrollLeft <= 0) {
+      container.scrollLeft += oneSetWidth;
     }
-    updateActiveDot();
-  };
-
-  // Click on a dot -> scroll the carousel to that card
-  const scrollToIndex = (i: number) => {
-    const container = scrollRef.current;
-    if (!container) return;
-    const children = Array.from(container.children) as HTMLElement[];
-    // With duplicated sets, target the card in the middle set
-    const target = children[isFewItems ? i : i + safePrestasiList.length];
-    if (!target) return;
-
-    pauseAutoScrollTemporarily();
-    const left = target.offsetLeft - (container.clientWidth - target.offsetWidth) / 2;
-    container.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
-    setActiveDot(i);
   };
 
   // Mouse drag to scroll handlers
@@ -143,7 +127,8 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
     if (!container) return;
 
     isDraggingRef.current = true;
-    pauseAutoScrollTemporarily();
+    isHoveredRef.current = true;
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
     startXRef.current = e.pageX;
     startScrollLeftRef.current = container.scrollLeft;
   };
@@ -152,15 +137,14 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
     if (!isDraggingRef.current || !scrollRef.current) return;
     e.preventDefault();
     const container = scrollRef.current;
-    const deltaX = (e.pageX - startXRef.current) * 1.3;
+    const deltaX = (e.pageX - startXRef.current) * 1.25;
     container.scrollLeft = startScrollLeftRef.current - deltaX;
-    pauseAutoScrollTemporarily();
   };
 
   const handleMouseUpOrLeave = () => {
     if (isDraggingRef.current) {
       isDraggingRef.current = false;
-      pauseAutoScrollTemporarily();
+      resumeAutoScrollQuickly(500);
     }
   };
 
@@ -172,70 +156,75 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
       containerClassName="!max-w-full !px-0 w-full relative"
     >
       {/* Title */}
-      <div className="text-center mb-4 md:mb-6 flex flex-col items-center gap-3 md:gap-4 px-4">
-        <div className="bg-linear-to-b from-okif-primary to-okif-secondary text-white font-bold text-xs sm:text-sm md:text-lg px-5 py-2 rounded-xl inline-block shadow-md tracking-normal uppercase">
+      <div className="text-center mb-6 md:mb-8 flex flex-col items-center gap-3 md:gap-4 px-4">
+        <div className="bg-gradient-to-r from-okif-primary to-okif-secondary text-white font-bold text-xs sm:text-sm md:text-base px-5 py-2 rounded-xl inline-block shadow-md tracking-wider uppercase border border-white/20">
           MAHASISWA BERPRESTASI
         </div>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight uppercase text-center">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight uppercase text-center tracking-tight">
           TEKNIK INFORMATIKA FT-UH
         </h2>
       </div>
 
       {/* Empty State or Slidable Cards Container */}
       {!prestasiList || prestasiList.length === 0 ? (
-        <div className="flex flex-col items-center justify-center min-h-37.5 md:min-h-50 text-center relative z-10 w-full">
+        <div className="flex flex-col items-center justify-center min-h-[150px] md:min-h-[200px] text-center relative z-10 w-full">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-300">Belum ada data mahasiswa berprestasi saat ini.</h2>
         </div>
       ) : (
-        <>
-          {/* Slidable Cards Container (Edge-to-Edge with Manual Scroll & Drag Support) */}
-          <div
-            ref={scrollRef}
-            onScroll={handleScroll}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUpOrLeave}
-            onMouseLeave={handleMouseUpOrLeave}
-            onTouchStart={() => pauseAutoScrollTemporarily()}
-            onTouchMove={() => pauseAutoScrollTemporarily()}
-            onTouchEnd={() => pauseAutoScrollTemporarily()}
-            onMouseEnter={() => { isHoveredRef.current = true; }}
-            className={`w-full flex flex-nowrap overflow-x-auto [&::-webkit-scrollbar]:hidden gap-4 sm:gap-6 md:gap-10 items-center pt-2 pb-4 px-4 md:px-12 cursor-grab active:cursor-grabbing justify-start ${
-              // Auto margins center the cards when they fit, but never clip the first card when they overflow
-              isFewItems ? '[&>:first-child]:ml-auto [&>:last-child]:mr-auto' : ''
-            }`}
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {displayItems.map((item, index) => (
-              <div key={index} className="shrink-0 flex flex-col items-center relative group w-46.25 sm:w-60 md:w-75">
-                {/* Image Card Container (3:4 Aspect Ratio) */}
-                <div className="relative z-10 w-46.25 sm:w-60 md:w-75 aspect-3/4 flex justify-center hover:scale-105 transition-transform duration-300">
-                  {item.image ? (
-                    <Image
-                      src={item.image}
-                      alt={item.nama}
-                      fill
-                      sizes="(max-width: 640px) 185px, (max-width: 768px) 240px, 300px"
-                      className="object-contain drop-shadow-2xl pointer-events-none select-none"
-                      priority={index < 4}
-                      draggable={false}
-                    />
-                  ) : (
-                    <div
-                      className="w-full aspect-3/4 bg-white/5 rounded-4xl border-2 border-dashed border-white/20 flex flex-col items-center justify-center"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white/30 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <span className="text-white/30 text-sm font-bold tracking-widest text-center">GAMBAR<br />KARTU MAPRES</span>
-                    </div>
-                  )}
-                </div>
+        /* Edge-to-Edge Full Width Slidable Cards Container */
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUpOrLeave}
+          onMouseLeave={handleMouseUpOrLeave}
+          onTouchStart={() => {
+            isHoveredRef.current = true;
+            if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+          }}
+          onTouchEnd={() => resumeAutoScrollQuickly(500)}
+          className={`w-full flex flex-nowrap overflow-x-auto [&::-webkit-scrollbar]:hidden gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 items-center pt-2 pb-4 px-4 md:px-12 cursor-grab active:cursor-grabbing ${
+            !canLoop ? 'justify-center mx-auto' : 'justify-start'
+          }`}
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {displayItems.map((item, index) => (
+            <div
+              key={index}
+              data-mapres-card="true"
+              className="shrink-0 flex flex-col items-center relative group w-[185px] sm:w-[240px] md:w-[280px] lg:w-[320px] xl:w-[350px]"
+              onMouseEnter={() => {
+                isHoveredRef.current = true;
+              }}
+              onMouseLeave={() => {
+                resumeAutoScrollQuickly(400);
+              }}
+            >
+              {/* Image Card Container (3:4 Aspect Ratio) */}
+              <div className="relative z-10 w-[185px] sm:w-[240px] md:w-[280px] lg:w-[320px] xl:w-[350px] aspect-[3/4] flex justify-center hover:scale-105 transition-transform duration-300">
+                {item.image ? (
+                  <Image
+                    src={item.image}
+                    alt={item.nama}
+                    fill
+                    sizes="(max-width: 640px) 185px, (max-width: 768px) 240px, (max-width: 1024px) 280px, (max-width: 1280px) 320px, 350px"
+                    className="object-contain drop-shadow-2xl pointer-events-none select-none"
+                    priority={index < 4}
+                    draggable={false}
+                  />
+                ) : (
+                  <div className="w-full aspect-[3/4] bg-white/5 rounded-4xl border-2 border-dashed border-white/20 flex flex-col items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white/30 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span className="text-white/30 text-sm font-bold tracking-widest text-center">GAMBAR<br />KARTU MAPRES</span>
+                  </div>
+                )}
               </div>
-            ))}
-          </div>
-
-        </>
+            </div>
+          ))}
+        </div>
       )}
     </BaseSection>
   );
