@@ -27,7 +27,7 @@ export default async function Home() {
 
   const beritaList = allBerita.slice(0, 3);
   const formatifList = allFormatif.slice(0, 3);
-  const prestasiList = allPrestasi.slice(0, 8);
+  const prestasiList = allPrestasi;
 
   return (
     <main className="flex flex-col min-h-screen bg-okif-dark overflow-x-hidden relative">
