@@ -4,7 +4,11 @@ import React from 'react';
 import Image from 'next/image';
 import BaseSection from '@/components/ui/BaseSection';
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  totalPrestasi?: number;
+}
+
+export default function HeroSection({ totalPrestasi = 0 }: HeroSectionProps) {
   const handleScrollToTentangKami = (e: React.MouseEvent) => {
     e.preventDefault();
     const el = document.getElementById('tentang-kami');
@@ -201,7 +205,7 @@ export default function HeroSection() {
               fontFamily: 'var(--font-lato), Lato, sans-serif',
             }}
           >
-            6
+            {totalPrestasi}
           </span>
           <p
             className="text-white font-bold text-[9px] min-[370px]:text-[10.5px] sm:text-[13px] md:text-[16px] lg:text-[24px] xl:text-[36px] leading-[11px] min-[370px]:leading-[13px] sm:leading-[16px] md:leading-[20px] lg:leading-[30px] xl:leading-[43.5px] text-center mt-0.5 sm:mt-1"

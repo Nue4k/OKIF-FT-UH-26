@@ -35,7 +35,7 @@ export default async function Home() {
       {/* Main Content Wrapper */}
       <div className="relative z-10 w-full flex flex-col">
         <Navbar />
-        <HeroSection />
+        <HeroSection totalPrestasi={allPrestasi.length} />
         <PrestasiSection prestasiList={prestasiList} />
         <AboutSection />
         <OrganisasiSection />
