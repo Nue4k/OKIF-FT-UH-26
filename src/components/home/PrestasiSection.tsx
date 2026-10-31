@@ -12,7 +12,7 @@ interface PrestasiSectionProps {
 
 export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) {
   const safePrestasiList = prestasiList || [];
-  const [canLoop, setCanLoop] = useState(false);
+  const [canLoop, setCanLoop] = useState(safePrestasiList.length >= 6);
 
   // 3 sets of items only when looping is safely enabled, otherwise just unique items
   const displayItems = canLoop
@@ -26,9 +26,8 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
   const startScrollLeftRef = useRef(0);
   const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Quick-resume helper when user finishes interacting (short 500-600ms delay)
-  const resumeAutoScrollQuickly = (delay = 600) => {
-    isHoveredRef.current = true;
+  // Quick-resume helper when user finishes interacting (short 400-500ms delay)
+  const resumeAutoScrollQuickly = (delay = 400) => {
     if (resumeTimeoutRef.current) {
       clearTimeout(resumeTimeoutRef.current);
     }
@@ -43,17 +42,16 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
       const container = scrollRef.current;
       if (!container || safePrestasiList.length === 0) return;
 
-      const containerWidth = container.clientWidth;
+      const containerWidth = container.clientWidth || window.innerWidth;
       const firstCard = container.querySelector('[data-mapres-card="true"]') as HTMLElement | null;
-      const cardWidth = firstCard ? firstCard.offsetWidth : 280;
-      
-      // Determine gap from container style or estimation
+      const cardWidth = firstCard && firstCard.offsetWidth > 0 ? firstCard.offsetWidth : 280;
+
+      // Determine gap from screen width
       const gap = window.innerWidth >= 1280 ? 48 : window.innerWidth >= 1024 ? 40 : 32;
       const totalUniqueWidth = safePrestasiList.length * (cardWidth + gap);
 
-      // Looping ONLY activates if total cards exceed 1.25x the screen width
-      // If cards comfortably fit the screen (e.g., 6 cards on 2560px screen), keep them steady & centered
-      const shouldEnableLoop = safePrestasiList.length >= 4 && totalUniqueWidth > containerWidth * 1.25;
+      // Looping activates if total cards exceed screen width
+      const shouldEnableLoop = safePrestasiList.length >= 4 && totalUniqueWidth > containerWidth;
       setCanLoop(shouldEnableLoop);
     };
 
@@ -71,28 +69,36 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
     }
 
     const oneSetWidth = container.scrollWidth / 3;
-    if (container.scrollLeft === 0) {
+    if (container.scrollLeft === 0 && oneSetWidth > 0) {
       container.scrollLeft = oneSetWidth;
     }
   }, [canLoop, safePrestasiList.length]);
 
-  // Smooth continuous auto-scroll loop with fast resume (only active when canLoop is true)
+  // Smooth continuous auto-scroll loop with sub-pixel accumulator (prevents browser integer truncation)
   useEffect(() => {
     const container = scrollRef.current;
     if (!container || !canLoop || safePrestasiList.length === 0) return;
 
     let animationFrameId: number;
-    const speed = 0.8; // Smooth natural scroll speed
+    let subPixelAccumulator = 0;
+    const speed = 1.1; // Smooth natural scroll speed
 
     const autoScroll = () => {
       if (!isHoveredRef.current && !isDraggingRef.current && container) {
-        container.scrollLeft += speed;
+        subPixelAccumulator += speed;
+        if (subPixelAccumulator >= 1) {
+          const step = Math.floor(subPixelAccumulator);
+          container.scrollLeft += step;
+          subPixelAccumulator -= step;
+        }
 
         const oneSetWidth = container.scrollWidth / 3;
-        if (container.scrollLeft >= 2 * oneSetWidth) {
-          container.scrollLeft -= oneSetWidth;
-        } else if (container.scrollLeft <= 0) {
-          container.scrollLeft += oneSetWidth;
+        if (oneSetWidth > 0) {
+          if (container.scrollLeft >= 2 * oneSetWidth) {
+            container.scrollLeft -= oneSetWidth;
+          } else if (container.scrollLeft <= 0) {
+            container.scrollLeft += oneSetWidth;
+          }
         }
       }
       animationFrameId = requestAnimationFrame(autoScroll);
@@ -114,10 +120,12 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
     if (!container || !canLoop) return;
 
     const oneSetWidth = container.scrollWidth / 3;
-    if (container.scrollLeft >= 2 * oneSetWidth) {
-      container.scrollLeft -= oneSetWidth;
-    } else if (container.scrollLeft <= 0) {
-      container.scrollLeft += oneSetWidth;
+    if (oneSetWidth > 0) {
+      if (container.scrollLeft >= 2 * oneSetWidth) {
+        container.scrollLeft -= oneSetWidth;
+      } else if (container.scrollLeft <= 0) {
+        container.scrollLeft += oneSetWidth;
+      }
     }
   };
 
@@ -141,11 +149,16 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
     container.scrollLeft = startScrollLeftRef.current - deltaX;
   };
 
-  const handleMouseUpOrLeave = () => {
+  const handleMouseUp = () => {
     if (isDraggingRef.current) {
       isDraggingRef.current = false;
-      resumeAutoScrollQuickly(500);
+      resumeAutoScrollQuickly(400);
     }
+  };
+
+  const handleMouseLeaveContainer = () => {
+    isDraggingRef.current = false;
+    resumeAutoScrollQuickly(300);
   };
 
   return (
@@ -177,13 +190,13 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
           onScroll={handleScroll}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUpOrLeave}
-          onMouseLeave={handleMouseUpOrLeave}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeaveContainer}
           onTouchStart={() => {
             isHoveredRef.current = true;
             if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
           }}
-          onTouchEnd={() => resumeAutoScrollQuickly(500)}
+          onTouchEnd={() => resumeAutoScrollQuickly(400)}
           className={`w-full flex flex-nowrap overflow-x-auto [&::-webkit-scrollbar]:hidden gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 items-center pt-2 pb-4 px-4 md:px-12 cursor-grab active:cursor-grabbing ${
             !canLoop ? 'justify-center mx-auto' : 'justify-start'
           }`}
@@ -195,10 +208,11 @@ export default function PrestasiSection({ prestasiList }: PrestasiSectionProps) 
               data-mapres-card="true"
               className="shrink-0 flex flex-col items-center relative group w-[185px] sm:w-[240px] md:w-[280px] lg:w-[320px] xl:w-[350px]"
               onMouseEnter={() => {
+                if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
                 isHoveredRef.current = true;
               }}
               onMouseLeave={() => {
-                resumeAutoScrollQuickly(400);
+                resumeAutoScrollQuickly(300);
               }}
             >
               {/* Image Card Container (3:4 Aspect Ratio) */}

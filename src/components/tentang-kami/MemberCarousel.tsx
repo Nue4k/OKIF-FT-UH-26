@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import TentangKamiMemberCard, { MemberItem } from './TentangKamiMemberCard';
 
 interface MemberCarouselProps {
@@ -16,25 +16,11 @@ export default function MemberCarousel({
 }: MemberCarouselProps) {
   const hasNavigation = showNavigation !== undefined ? showNavigation : members.length > 5;
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [_canScrollLeft, setCanScrollLeft] = useState(false);
-  const [_canScrollRight, setCanScrollRight] = useState(true);
-
-  const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 5);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 5);
-    }
-  };
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollLeft = 0;
     }
-    checkScroll();
-    const handleResize = () => checkScroll();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, [members]);
 
   const scroll = (direction: 'left' | 'right') => {
@@ -118,7 +104,6 @@ export default function MemberCarousel({
       {/* Cards Scroll Container */}
       <div
         ref={scrollRef}
-        onScroll={checkScroll}
         className={`w-full ${
           hasNavigation
             ? 'flex-1 min-w-0 lg:flex-none lg:w-[1244px] xl:w-[1244px] -mx-3 px-[26px] sm:-mx-2 sm:px-8 md:mx-0 md:px-8 lg:mx-0 lg:px-6'
